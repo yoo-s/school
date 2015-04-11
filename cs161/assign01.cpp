@@ -13,6 +13,7 @@
 #include <cfloat>
 
 int main() {
+	std::cout << "Assignment 1: All About Numbers in C++\n\n";
 
 	std::cout << "Sizes of primitive types:" << std::endl;
 	std::cout << sizeof(int) << std::endl;
