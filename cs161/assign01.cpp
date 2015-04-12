@@ -2,9 +2,9 @@
  ** Program: assign01.cpp
  ** Author: Soo-Min Yoo
  ** Date: 04/10/15
- ** Description: 
- ** Input: 
- ** Output: 
+ ** Description: program exploring the different data types in C++ and their differing value ranges.
+ ** Input: none
+ ** Output: return 0
  ********************************************/
 
 #include <iostream>
@@ -13,11 +13,11 @@
 #include <cfloat>
 
 /*********************************************
- ** Function: 
- ** Description: 
- ** Parameters: 
- ** Pre-Conditions: 
- ** Post-Conditions: 
+ ** Function: main
+ ** Description: prints data type sizes, their min and max values, 
+ ** Parameters: none
+ ** Pre-Conditions: none
+ ** Post-Conditions: return 0
  ********************************************/
 int main() {
 	std::cout << "Assignment 1: All About Numbers in C++\n\n";
