@@ -14,7 +14,7 @@
 
 /*********************************************
  ** Function: main
- ** Description: prints data type sizes, their min and max values, 
+ ** Description: prints data type sizes, macro values, and their min and max values.
  ** Parameters: none
  ** Pre-Conditions: none
  ** Post-Conditions: return 0
@@ -76,16 +76,16 @@ int main() {
 	std::cout << std::endl;
 
 	std::cout << "Largest/smallest of short, int, and long:" << std::endl;
-	std::cout << "Smallest signed int: "     << 0 - pow (2, (sizeof(int) * 8)) - 1 << std::endl;
-	std::cout << "Largest signed int: "      << 2 * pow (2, (sizeof(int) * 8) - 1) - 1 << std::endl;
+	std::cout << "Smallest signed int: "     << (0 - pow (2, (sizeof(int) * 8)) + 1) / 2 << std::endl;
+	std::cout << "Largest signed int: "      << (pow (2, (sizeof(int) * 8)) - 1) / 2 << std::endl;
 	std::cout << "Smallest unsigned int: "   << 0 << std::endl;
 	std::cout << "Largest unsigned int: "    << pow (2, (sizeof(unsigned int) * 8)) - 1 << std::endl;
-	std::cout << "Smallest signed short: "   << 0 - pow (2, (sizeof(short) * 8)) - 1 << std::endl;
-	std::cout << "Largest signed short: "    << 2 * pow (2, (sizeof(short) * 8) - 1) - 1 << std::endl;
+	std::cout << "Smallest signed short: "   << (0 - pow (2, (sizeof(short) * 8)) + 1) / 2 << std::endl;
+	std::cout << "Largest signed short: "    << (pow (2, (sizeof(short) * 8)) - 1) / 2 << std::endl;
 	std::cout << "Smallest unsigned short: " << 0 << std::endl;
 	std::cout << "Largest unsigned short: "  << pow (2, (sizeof(unsigned short) * 8)) - 1  << std::endl;
-	std::cout << "Smallest signed long: "    << 0 - pow (2, (sizeof(long) * 8)) - 1 << std::endl;
-	std::cout << "Largest signed long: "     << 2 * pow (2, (sizeof(long) * 8) - 1) - 1 << std::endl;
+	std::cout << "Smallest signed long: "    << (0 - pow (2, (sizeof(long) * 8)) + 1) / 2 << std::endl;
+	std::cout << "Largest signed long: "     << (pow (2, (sizeof(long) * 8)) - 1) / 2 << std::endl;
 	std::cout << "Smallest unsigned long: "  << 0 << std::endl;
 	std::cout << "Largest unsigned long: "   << pow (2, (sizeof(unsigned long) * 8)) - 1 << std::endl;
 	std::cout << std::endl;
