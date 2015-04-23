@@ -97,9 +97,9 @@ int main() {
 	    std::cin >> num;
 	    while (num != 0) {
 	       num /= 2;
-	       std::cout << num;
+	       std::cout << num%2;
 	    }
-	 } (num != 0)
+	 } while (num != 0);
       } else if (option == 5) {			//Option 5
 	 std::cout << "Exit" << std::endl;
       } else {
