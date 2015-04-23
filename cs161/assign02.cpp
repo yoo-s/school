@@ -1,8 +1,8 @@
 /*********************************************
  ** Program: assign02.cpp
  ** Author: Soo-Min Yoo
- ** Date: 04/17/15
- ** Description: program exploring the different data types in C++ and their differing value ranges.
+ ** Date: 04/22/15
+ ** Description: program that gives a menu of options, each of which executes various calculations using conditional and repetitive statements.
  ** Input: none
  ** Output: return 0
  ********************************************/
@@ -12,7 +12,7 @@
 
 /*********************************************
  ** Function: main
- ** Description: 
+ ** Description: menu of options that each carry out different calculations
  ** Parameters: none
  ** Pre-Conditions: none
  ** Post-Conditions: return 0
@@ -21,7 +21,7 @@ int main() {
 
    int option;
    std::cout << "Assignment 2: Conditional & Repetitive Statements\n" << std::endl;
-   do {
+   do {		   //Creates menu of options
       std::cout << "MENU----------------------" << std::endl;
       std::cout << "1) Highest of ten integers" << std::endl;
       std::cout << "2) Money earning rate" << std::endl;
@@ -64,7 +64,7 @@ int main() {
 	 std::cin >> target;
 	 std::cout << "Enter annual percentage rate: " << std::endl;
 	 std::cin >> rate;
-	 while (earned < target) {
+	 while (earned < target) {		//Calculates how many years it takes to reach target
 	    earned *= (1+(rate/100));
 	    years++;
 	 }
@@ -97,8 +97,8 @@ int main() {
 	 do {
 	    std::cout << "Enter a decimal (base 10) number: " << std::endl;
 	    std::cin >> dec;
-	    while (dec > 0) {
-	       bin += (dec%2)*tens;
+	    while (dec > 0) {			//Converts decimal to binary by adding the remainder of
+	       bin += (dec%2)*tens;		//the decimal divided by two to each tens place.
 	       dec /= 2;
 	       tens *= 10;
 	    }
