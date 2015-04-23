@@ -2,7 +2,8 @@
  ** Program: assign02.cpp
  ** Author: Soo-Min Yoo
  ** Date: 04/22/15
- ** Description: program that gives a menu of options, each of which executes various calculations using conditional and repetitive statements.
+ ** Description: program that gives a menu of options, each of which executes various calculations
+                 using conditional and repetitive statements.
  ** Input: none
  ** Output: return 0
  ********************************************/
