@@ -53,6 +53,7 @@ int main() {
 	 }
       	 std::cout << "The highest number was: " << highest << std::endl;
 	 std::cout << std::endl;
+
       } else if (option == 2) {			//Option 2
 	 double earned;
 	 double target;
@@ -71,6 +72,7 @@ int main() {
 	 }
 	 std::cout << "It will take " << years << " years to reach the target value." << std::endl;
 	 std::cout << std::endl;
+
       } else if (option == 3) {			//Option 3
 	 int value;
 	 int count = 0;
@@ -90,6 +92,7 @@ int main() {
 	 } while (value != -1 && value >= 1);
 	 std::cout << "The average of your values is " << (double)sum/count << "." << std::endl;
 	 std::cout << std::endl;
+
       } else if (option == 4) {			//Option 4
 	 int dec;
 	 int bin = 0;
@@ -106,6 +109,7 @@ int main() {
 	    std::cout << "The binary version of this number is " << bin << "." << std::endl;
 	    std::cout << std::endl;
 	 } while (dec > 0);
+
       } else if (option == 5) {			//Option 5
 	 std::cout << "Exit" << std::endl;
       } else {
@@ -113,6 +117,7 @@ int main() {
       }
       
    } while (option != 5);			//End menu loop
+
 
       return 0;
 }
