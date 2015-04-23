@@ -90,22 +90,27 @@ int main() {
 	 std::cout << "The average of your values is " << (double)sum/count << "." << std::endl;
 	 std::cout << std::endl;
       } else if (option == 4) {			//Option 4
-	 int num;
+	 int dec;
+	 int bin = 0;
+	 int tens = 1;
 
 	 do {
 	    std::cout << "Enter a decimal (base 10) number: " << std::endl;
-	    std::cin >> num;
-	    while (num != 0) {
-	       num /= 2;
-	       std::cout << num%2;
+	    std::cin >> dec;
+	    while (dec > 0) {
+	       bin += (dec%2)*tens;
+	       dec /= 2;
+	       tens *= 10;
 	    }
-	 } while (num != 0);
+	    std::cout << "The binary version of this number is " << bin << "." << std::endl;
+	    std::cout << std::endl;
+	 } while (dec > 0);
       } else if (option == 5) {			//Option 5
 	 std::cout << "Exit" << std::endl;
       } else {
 	 std::cout << "Not a valid option. Please try again: \n" << std::endl;
       }
-
+      
    } while (option != 5);			//End menu loop
 
       return 0;
