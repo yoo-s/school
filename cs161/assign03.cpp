@@ -18,8 +18,8 @@
 #include <iostream>
 
 double f(int x, int option);
-double rect();
-double trap();
+void rect(int option);
+void trap(int option);
 
 /*********************************************
  ** Function: main
@@ -46,19 +46,18 @@ int main() {
       //Prompt user to select an option
       std::cout << "Enter your option: " << std::endl;
       std::cin >> option;
+      //Prompt user to select a method
       std::cout << "Calculate area using rectangle, trapezoid, or both (1, 2, 3): " << std::endl;
       std::cin >> method;
       std::cout << std::endl;
 
-      trap(option);
-
-      if (method == 1) {			//Option 1
+      if (method == 1) {			//Method 1: Rectangles
 	 rect(option);
       }
-      else if (method == 2) {			//Option 2
+      else if (method == 2) {			//Method 2: Trapezoids
 	 trap(option);
       }
-      else if (method == 3) {			//Option 3
+      else if (method == 3) {			//Method 3: Both
 	 rect(option);
 	 trap(option);
       }
@@ -72,7 +71,15 @@ int main() {
    return 0;
 }
 
-double rect() {					//Calculates area using rectangles
+/*********************************************
+ ** Function: rect
+ ** Description: calculates area using rectangles
+ ** Parameters: int option
+ ** Pre-Conditions: none
+ ** Post-Conditions: return 0
+ ********************************************/
+
+void rect(int option) {			//Calculates area using rectangles
    int n;
    int a;
    int b;
@@ -86,18 +93,26 @@ double rect() {					//Calculates area using rectangles
    std::cin >> b;
 
    for (int i = a; i <= b; i++) {
-      area += ((b-a)/n * f(i, option));
+      area += (double)((b-a)/n * f(i, option));
    }
-   return area;
+   std::cout << "The area of the function " << option << " from  " << a << " to " << b << " using rectangles is " << area << std::endl;
 }
 
-double trap(int option) {					//Calculates area using trapezoids
+/*********************************************
+ ** Function: trap
+ ** Description: calculates area using trapezoids
+ ** Parameters: int option
+ ** Pre-Conditions: none
+ ** Post-Conditions: return 0
+ ********************************************/
+
+void trap(int option) {			//Calculates area using trapezoids
    int n;
    int a;
    int b;
    double area;
 
-   std::cout << "How many rectangles do you want? " << std::endl;
+   std::cout << "How many trapezoids do you want? " << std::endl;
    std::cin >> n;
    std::cout << "Select starting point, a=" << std::endl;
    std::cin >> a;
@@ -105,12 +120,21 @@ double trap(int option) {					//Calculates area using trapezoids
    std::cin >> b;
 
    for (int i = a; i <= b; i++) {
-      area += ((b-a)/n * (f(i, option)+f(i+1, option))/2);
+      area += (double)((b-a)/n * (f(i, option)+f(i+1, option))/2);
    }
-   return area;
+   std::cout << "The area of the function " << option << " from  " << a << " to " << b << " using trapezoids is " << area << std::endl;
+ 
 }
 
-double f(int x, int option) {
+/*********************************************
+ ** Function: f
+ ** Description: calculates height of each rectangle/trapezoid for each function
+ ** Parameters: int x, int option
+ ** Pre-Conditions: none
+ ** Post-Conditions: return rectangle/trapezoid height
+ ********************************************/
+
+double f(int x, int option) {			//Calculates height of rectangle/trapezoid depending on function
    if (option == 1) {
       return (2*x^5 + x^3 - 10*x + 2);
    }
