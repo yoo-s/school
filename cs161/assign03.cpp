@@ -17,11 +17,7 @@
 
 #include <iostream>
 
-double f1();
-double f2();
-double f3();
-double f4();
-double f5();
+double f(int x, int option);
 double rect();
 double trap();
 
@@ -54,23 +50,22 @@ int main() {
       std::cin >> method;
       std::cout << std::endl;
 
-      if (option == 1) {			//Option 1
+      trap(option);
+
+      if (method == 1) {			//Option 1
+	 rect(option);
       }
-      else if (option == 2) {			//Option 2
+      else if (method == 2) {			//Option 2
+	 trap(option);
       }
-      else if (option == 3) {			//Option 3
-      }
-      else if (option == 4) {			//Option 4
-      }
-      else if (option == 5) {			//Option 5
-      }
-      else if (option == 6) {
-	 std::cout << "Exit" << std::endl;
+      else if (method == 3) {			//Option 3
+	 rect(option);
+	 trap(option);
       }
       else {
 	 std::cout << "Not a valid option. Please try again: \n" << std::endl;
       }
-     
+
    } while (option != 6);			//End menu loop
 
 
@@ -91,12 +86,12 @@ double rect() {					//Calculates area using rectangles
    std::cin >> b;
 
    for (int i = a; i <= b; i++) {
-      area += ((b-a)/n * f1(i));
+      area += ((b-a)/n * f(i, option));
    }
    return area;
 }
 
-double trap() {					//Calculates area using trapezoids
+double trap(int option) {					//Calculates area using trapezoids
    int n;
    int a;
    int b;
@@ -108,30 +103,32 @@ double trap() {					//Calculates area using trapezoids
    std::cin >> a;
    std::cout << "Select ending point, b=" << std::endl;
    std::cin >> b;
-   
+
    for (int i = a; i <= b; i++) {
-      area += ((b-a)/n * (f(i)+f(i+1))/2);
+      area += ((b-a)/n * (f(i, option)+f(i+1, option))/2);
    }
    return area;
 }
 
-double f1(int x) {				//Function 1
-   return (2*x^5 + x^3 - 10*x + 2);
-}
-
-double f2(int x) {				//Function 2
-   return (6*x^2 - x + 10);
-}
-
-double f3(int x) {				//Function 3
-   return (5*x + 3);
-}
-
-double f4(int x) {				//Function 4
-   return (2*x^3 + 120);
-}
-
-double f5(int x) {				//Function 5
-   return (2*x^2);
+double f(int x, int option) {
+   if (option == 1) {
+      return (2*x^5 + x^3 - 10*x + 2);
+   }
+   else if (option == 2) {
+      return (6*x^2 - x + 10);
+   }
+   else if (option == 3) {
+      return (5*x + 3);
+   }
+   else if (option == 4) {
+      return (2*x^3 + 120);
+   }
+   else if (option == 5) {
+      return (2*x^2);
+   }
+   else {
+      std::cout << "Invalid option, please try again." << std::endl;
+      return 0;
+   }
 }
 
