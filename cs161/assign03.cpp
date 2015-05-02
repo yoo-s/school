@@ -28,6 +28,7 @@ void trap(int option);
  ** Pre-Conditions: none
  ** Post-Conditions: return 0
  ********************************************/
+
 int main() {
 
    int option;
@@ -96,6 +97,7 @@ void rect(int option) {			//Calculates area using rectangles
       area += (double)((b-a)/n * f(i, option));
    }
    std::cout << "The area of the function " << option << " from  " << a << " to " << b << " using rectangles is " << area << std::endl;
+   std::cout << std::endl;
 }
 
 /*********************************************
@@ -123,6 +125,7 @@ void trap(int option) {			//Calculates area using trapezoids
       area += (double)((b-a)/n * (f(i, option)+f(i+1, option))/2);
    }
    std::cout << "The area of the function " << option << " from  " << a << " to " << b << " using trapezoids is " << area << std::endl;
+   std::cout << std::endl;
  
 }
 
