@@ -35,6 +35,8 @@ double trap();
 int main() {
 
    int option;
+   int method;
+
    std::cout << "Assignment 3: Decomposition/Functions\n" << std::endl;
    do {		   //Creates menu of options
       std::cout << "MENU----------------------" << std::endl;
@@ -48,6 +50,8 @@ int main() {
       //Prompt user to select an option
       std::cout << "Enter your option: " << std::endl;
       std::cin >> option;
+      std::cout << "Calculate area using rectangle, trapezoid, or both (1, 2, 3): " << std::endl;
+      std::cin >> method;
       std::cout << std::endl;
 
       if (option == 1) {			//Option 1
@@ -72,3 +76,62 @@ int main() {
 
    return 0;
 }
+
+double rect() {					//Calculates area using rectangles
+   int n;
+   int a;
+   int b;
+   double area;
+
+   std::cout << "How many rectangles do you want? " << std::endl;
+   std::cin >> n;
+   std::cout << "Select starting point, a=" << std::endl;
+   std::cin >> a;
+   std::cout << "Select ending point, b=" << std::endl;
+   std::cin >> b;
+
+   for (int i = a; i <= b; i++) {
+      area += ((b-a)/n * f1(i));
+   }
+   return area;
+}
+
+double trap() {					//Calculates area using trapezoids
+   int n;
+   int a;
+   int b;
+   double area;
+
+   std::cout << "How many rectangles do you want? " << std::endl;
+   std::cin >> n;
+   std::cout << "Select starting point, a=" << std::endl;
+   std::cin >> a;
+   std::cout << "Select ending point, b=" << std::endl;
+   std::cin >> b;
+   
+   for (int i = a; i <= b; i++) {
+      area += ((b-a)/n * (f(i)+f(i+1))/2);
+   }
+   return area;
+}
+
+double f1(int x) {				//Function 1
+   return (2*x^5 + x^3 - 10*x + 2);
+}
+
+double f2(int x) {				//Function 2
+   return (6*x^2 - x + 10);
+}
+
+double f3(int x) {				//Function 3
+   return (5*x + 3);
+}
+
+double f4(int x) {				//Function 4
+   return (2*x^3 + 120);
+}
+
+double f5(int x) {				//Function 5
+   return (2*x^2);
+}
+
