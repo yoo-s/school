@@ -2,7 +2,7 @@
  ** Program: assign04.cpp
  ** Author: Soo-Min Yoo
  ** Date: 05/13/15
- ** Description: program that calculates the area under a function using both the rectangle and trapezoid methods for solving integration problems.
+ ** Description: program that uses command line arguments to calculate the area under a function using both the rectangle and trapezoid methods for solving integration problems.
  ** Input:
        Starting and ending points for the area
        Function to calculate the area, i.e. f1, f2, f3, f4, f5
@@ -24,83 +24,60 @@ void trap(int option, int a, int b, int n);
 
 /*********************************************
  ** Function: main
- ** Description: menu of options that each carry out different calculations
- ** Parameters: none
+ ** Description: calculates various integrals given the function, starting and ending values, method, and number of rectangles/trapezoids
+ ** Parameters: int argc, char *argv[]
  ** Pre-Conditions: none
  ** Post-Conditions: return 0
  ********************************************/
 
 int main(int argc, char *argv[]) {
 
-   std::cout << "There are " << argc << " arguments:" << std::endl;
-   for (int i = 0; i < argc; i++) {
-      std::cout << "Argument " << i << " " << argv[i] << std::endl;
-   }
-   //if user didn't provide filename command line arg, print error/exit
-   if (argc <= 1) {
+   std::cout << "Assignment 3: Decomposition/Functions\n" << std::endl;
+   std::cout << std::endl;
+
+   std::cout << "Function: " << argv[1] << std::endl;
+   std::cout << "Starting value: " << argv[2] << std::endl;
+   std::cout << "Ending value: " << argv[3] << std::endl;
+   std::cout << "Method: " << argv[4] << std::endl;
+   std::cout << "# of rect/trap's: " << argv[5] << std::endl;
+   std::cout << std::endl;
+
+   if (argc <= 1) {				//if the user didn't provide any command line arguments, print error message and exit
       std::cerr << "Usage: " << argv[0] << " function, starting/ending values, method, # of rectangles/trapezoids" << std::endl;
       return 1;
    }
-   int option = atof(argv[1]);
+   int option = atof(argv[1]);			//Assign argv values
    int a = atof(argv[2]);
    int b = atof(argv[3]);
    int method = atof(argv[4]);
    int n = atof(argv[5]);
 
-   std::cout << "Assignment 3: Decomposition/Functions\n" << std::endl;
-   do {		   //Creates menu of options
-      std::cout << "MENU----------------------" << std::endl;
-      std::cout << "1) f1(x) = 2x^5 + x^3 - 10x + 2" << std::endl;
-      std::cout << "2) f2(x) = 6x^2 - x + 10" << std::endl;
-      std::cout << "3) f3(x) = 5x + 3" << std::endl;
-      std::cout << "4) f4(x) = 2x^3 + 120" << std::endl;
-      std::cout << "5) f5(x) = 2x^2" << std::endl;
-      std::cout << "6) Quit" << std::endl;
-      std::cout << std::endl;
-      //Prompt user to select an option
-      /*std::cout << "Enter your option: " << std::endl;
-      std::cin >> option;*/
-      //Prompt user to select a method
-      /*std::cout << "Calculate area using rectangle, trapezoid, or both (1, 2, 3): " << std::endl;
-      std::cin >> method;*/
-      std::cout << std::endl;
-
-      if (method == 1) {			//Method 1: Rectangles
-	 rect(option, a, b, n);
-      }
-      else if (method == 2) {			//Method 2: Trapezoids
-	 trap(option, a, b, n);
-      }
-      else if (method == 3) {			//Method 3: Both
-	 rect(option, a, b, n);
-	 trap(option, a, b, n);
-      }
-      else {
-	 std::cout << "Not a valid option. Please try again: \n" << std::endl;
-      }
-
-   } while (option != 6);			//End menu loop
-
+   if (method == 1) {				//Method 1: Rectangles
+      rect(option, a, b, n);
+   }
+   else if (method == 2) {			//Method 2: Trapezoids
+      trap(option, a, b, n);
+   }
+   else if (method == 3) {			//Method 3: Both
+      rect(option, a, b, n);
+      trap(option, a, b, n);
+   }
+   else {
+      std::cout << "Not a valid option. Please try again: \n" << std::endl;
+   }
    return 0;
 }
 
 /*********************************************
  ** Function: rect
  ** Description: calculates area using rectangles
- ** Parameters: int option
+ ** Parameters: int option, int a, int b, int n
  ** Pre-Conditions: none
- ** Post-Conditions: return 0
+ ** Post-Conditions: none
  ********************************************/
 
 void rect(int option, int a, int b, int n) {			//Calculates area using rectangles
    double area;
-
-   /*std::cout << "How many rectangles do you want? " << std::endl;
-   std::cin >> n;
-   std::cout << "Select starting point, a=" << std::endl;
-   std::cin >> a;
-   std::cout << "Select ending point, b=" << std::endl;
-   std::cin >> b;*/
 
    for (int i = a; i <= b; i++) {
       area += (double)((b-a)/n * f(i, option));
@@ -112,20 +89,13 @@ void rect(int option, int a, int b, int n) {			//Calculates area using rectangle
 /*********************************************
  ** Function: trap
  ** Description: calculates area using trapezoids
- ** Parameters: int option
+ ** Parameters: int option, int a, int b, int n
  ** Pre-Conditions: none
- ** Post-Conditions: return 0
+ ** Post-Conditions: none
  ********************************************/
 
 void trap(int option, int a, int b, int n) {			//Calculates area using trapezoids
    double area;
-
-   /*std::cout << "How many trapezoids do you want? " << std::endl;
-   std::cin >> n;
-   std::cout << "Select starting point, a=" << std::endl;
-   std::cin >> a;
-   std::cout << "Select ending point, b=" << std::endl;
-   std::cin >> b;*/
 
    for (int i = a; i <= b; i++) {
       area += (double)((b-a)/n * (f(i, option)+f(i+1, option))/2);
@@ -143,7 +113,7 @@ void trap(int option, int a, int b, int n) {			//Calculates area using trapezoid
  ** Post-Conditions: return rectangle/trapezoid height
  ********************************************/
 
-double f(int x, int option) {			//Calculates height of rectangle/trapezoid depending on function
+double f(int x, int option) {					//Calculates height of rectangle/trapezoid depending on function
    if (option == 1) {
       return (2*x^5 + x^3 - 10*x + 2);
    }
