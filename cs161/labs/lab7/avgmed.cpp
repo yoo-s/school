@@ -1,0 +1,65 @@
+#include <iostream>
+#include <stdlib.h>
+
+double average(int a, int b, int c, int d, int e);
+int median(int a1[]);
+
+int main(int argc, char *argv[]) {
+
+   std::cout << "Average Calculation\n" << std::endl;
+   
+   std::cout << "Integers: ";
+   for (int i = 2; i <= 6; i++) {
+      std::cout << argv[i] << " ";
+   }
+
+   if (argc <= 1) {
+      std::cerr << "Usage: " << argv[0] << " int1, int2, int3, int4, int5";
+      return 1;
+   }
+
+   bool med = true;
+   if (argv[1][0] == 'a') {
+      med = false;
+   }
+   else if (argv[1][0] == 'm') {
+      med = true;
+   }
+   int a = atoi(argv[2]);
+   int b = atoi(argv[3]);
+   int c = atoi(argv[4]);
+   int d = atoi(argv[5]);
+   int e = atoi(argv[6]);
+   int a1[5] = {a, b, c, d, e};
+
+   std::cout << std::endl;
+   
+   if (med) {
+      std::cout << "The median is: " << median(a1) << "\n" << std::endl;
+   }
+   else {
+      std::cout << "The average is: " << average(a, b, c, d, e) << "\n" << std::endl;
+   }
+
+   return 0;
+
+}
+
+double average (int a, int b, int c, int d, int e) {
+   
+   return (double)(a+b+c+d+e)/5;
+
+}
+
+int median (int a1[]) {
+   for (int i = 0; i < 5; i++) {
+      for (int j = 1; j < 4; j++) {
+	 if (a1[j] < a1[i]){
+	    int temp = a1[i];
+	    a1[i] = a1[j];
+	    a1[j] = temp;
+	 }
+      }
+   }
+   return a1[2];
+}
