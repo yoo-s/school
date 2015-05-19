@@ -3,26 +3,27 @@
 
 double average(int a, int b, int c, int d, int e);
 int median(int a1[]);
+void sortArray(int array[], int size);
 
 int main(int argc, char *argv[]) {
-
-   std::cout << "Average Calculation\n" << std::endl;
    
+   // Lists the 5 integers
    std::cout << "Integers: ";
    for (int i = 2; i <= 6; i++) {
       std::cout << argv[i] << " ";
    }
 
+   // Prints error message if not enough command line arguments
    if (argc <= 1) {
       std::cerr << "Usage: " << argv[0] << " int1, int2, int3, int4, int5";
       return 1;
    }
 
    bool med = true;
-   if (argv[1][0] == 'a') {
+   if (argv[1][0] == 'a') {		// If a, calculate average
       med = false;
    }
-   else if (argv[1][0] == 'm') {
+   else if (argv[1][0] == 'm') {	// If m, calculate median
       med = true;
    }
    int a = atoi(argv[2]);
@@ -45,21 +46,37 @@ int main(int argc, char *argv[]) {
 
 }
 
+// Returns average of 5 integers
 double average (int a, int b, int c, int d, int e) {
    
    return (double)(a+b+c+d+e)/5;
 
 }
 
+// Returns median of 5 integers
 int median (int a1[]) {
-   for (int i = 0; i < 5; i++) {
-      for (int j = 1; j < 4; j++) {
-	 if (a1[j] < a1[i]){
-	    int temp = a1[i];
-	    a1[i] = a1[j];
-	    a1[j] = temp;
+   
+   sortArray(a1, 5);
+   
+   return a1[2];
+}
+
+// Source: Gaddis et al, Starting Out with C++; Early Objects (8th Ed.). pg 607
+// Sorts array
+void sortArray (int array[], int size) {
+   
+   int temp;
+   bool swap;
+
+   do {
+      swap = false;
+      for (int count = 0; count < (size-1); count++) {
+	 if (array[count] > array[count+1]) {
+	    temp = array[count];
+	    array[count] = array[count+1];
+	    array[count+1] = temp;
+	    swap = true;
 	 }
       }
-   }
-   return a1[2];
+   } while (swap);	// Loop again if a swap occurred on this pass.
 }
