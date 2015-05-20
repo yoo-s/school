@@ -32,25 +32,63 @@ void trap(int option, int a, int b, int n);
 
 int main(int argc, char *argv[]) {
 
-   std::cout << "Assignment 3: Decomposition/Functions\n" << std::endl;
+   std::cout << "Assignment 4: Command Line Arguments\n" << std::endl;
    std::cout << std::endl;
 
-   std::cout << "Function: " << argv[1] << std::endl;
-   std::cout << "Starting value: " << argv[2] << std::endl;
-   std::cout << "Ending value: " << argv[3] << std::endl;
-   std::cout << "Method: " << argv[4] << std::endl;
-   std::cout << "# of rect/trap's: " << argv[5] << std::endl;
+   std::cout << "Function: " << argv[2] << std::endl;
+   std::cout << "Starting value: " << argv[4] << std::endl;
+   std::cout << "Ending value: " << argv[6] << std::endl;
+   std::cout << "Method: " << argv[8] << std::endl;
+   std::cout << "# of rect/trap's: " << argv[10] << std::endl;
    std::cout << std::endl;
 
+   std::cout << std::endl;
+   
    if (argc <= 1) {				//if the user didn't provide any command line arguments, print error message and exit
       std::cerr << "Usage: " << argv[0] << " function, starting/ending values, method, # of rectangles/trapezoids" << std::endl;
       return 1;
    }
-   int option = atof(argv[1]);			//Assign argv values
-   int a = atof(argv[2]);
-   int b = atof(argv[3]);
-   int method = atof(argv[4]);
-   int n = atof(argv[5]);
+   char func = argv[1][0];				// Assign argv values
+   int option;
+   char start = argv[3][0];
+   int a = atof(argv[4]);
+   char end = argv[5][0];
+   int b = atof(argv[6]);
+   char method = argv[7][0];
+   int m = atof(argv[8]);
+   char num = argv[9][0];
+   int n = atof(argv[10]);
+
+   if (argv[1][0] == 'f') {		// If f, next argv is function
+      option = atof(argv[2]);
+   }
+   else {
+      std::cout << "Not a valid argument." << std::endl;
+   }
+   if (argv[3][0] == 'a') {		// If a, next argv is start value
+      start = atof(argv[4]);
+   }
+   else {
+      std::cout << "Not a valid argument." << std::endl;
+   }
+   if (argv[5][0] == 'b') {		// If b, next argv is end value
+      end = atof(argv[6]);
+   }
+   else {
+      std::cout << "Not a valid argument." << std::endl;
+   }
+   if (argv[7][0] == 'm') {		// If m, next argv is method
+      method = atof(argv[8]);
+   }
+   else {
+      std::cout << "Not a valid argument." << std::endl;
+   }
+   if (argv[9][0] == 'n') {		// If n, next argv is number of rect/trap's
+      num = atof(argv[10]);
+   }
+   else {
+      std::cout << "Not a valid argument." << std::endl;
+   }
 
    if (method == 1) {				//Method 1: Rectangles
       rect(option, a, b, n);
