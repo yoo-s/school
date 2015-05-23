@@ -2,9 +2,9 @@
  ** Program: assign05b.cpp
  ** Author: Soo-Min Yoo
  ** Date: 05/22/15
- ** Description: 
- ** Input: 
- ** Output: 
+ ** Description: Reads in a line of text up to 100 characters and outputs the number of words in the line as well as the number of occurrences of each letter.
+ ** Input: none
+ ** Output: return 0
  ********************************************/
 #include <iostream>
 #include <stdlib.h>
@@ -19,8 +19,8 @@ void letterCount(char input[], int letters[]);
 
 /*********************************************
  ** Function: main
- ** Description: 
- ** Parameters: 
+ ** Description: reads in input string, outputs number of words in string and number of occurrences of each letter
+ ** Parameters: none
  ** Pre-Conditions: none
  ** Post-Conditions: return 0
  ********************************************/
@@ -49,8 +49,8 @@ int main() {
 }
 /*********************************************
  ** Function: wordCount
- ** Description: 
- ** Parameters: 
+ ** Description: counts the number of words in input string
+ ** Parameters: char input[]
  ** Pre-Conditions: none
  ** Post-Conditions: return number of words
  ********************************************/
@@ -76,8 +76,8 @@ int wordCount (char input[]) {
 }
 /*********************************************
  ** Function: letterCount
- ** Description: 
- ** Parameters: 
+ ** Description: counts number of occurrences of each letter
+ ** Parameters: char input[], int letters[]
  ** Pre-Conditions: none
  ** Post-Conditions: list occurrences of each letter
  ********************************************/
