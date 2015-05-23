@@ -1,8 +1,8 @@
 /*********************************************
- ** Program: assign05b.cpp
+ ** Program: assign05a.cpp
  ** Author: Soo-Min Yoo
  ** Date: 05/22/15
- ** Description: 
+ ** Description: Recursively calculates matrix
  ** Input: 
  ** Output: 
  ********************************************/
@@ -10,10 +10,6 @@
 #include <stdlib.h>
 #include <cstring>
 
-// declare max char size of input string
-const int size = 100;
-// declare number of alphabet letters
-const int numLetters = 26;
 
 int wordCount(char input[]);
 void letterCount(char input[], int letters[]);
@@ -26,58 +22,45 @@ void letterCount(char input[], int letters[]);
  ** Post-Conditions: return 0
  ********************************************/
 int main() {
-   int letters[numLetters] = {};
-   char input[size];
+   int n;
 
-   std::cout << "Input string: " << std::endl;
-   std::cin.getline(input, size);
+   std::cout << "N value: ";
+   std::cin >> n;
 
-   letterCount(input, letters);
+   double data[n][n] = {
+      0, 0, 0, 0,
+      0, 0, 0, 0,
+      0, 0, 0, 0,
+      0, 0, 0, 0
+   };
 
+   init(data);
+
+  
    std::cout << std::endl;
-   std::cout << "You have " << wordCount(input) << " words with these letters:" << std::endl;
-   for (int i = 0; i <= numLetters; i++) {
-      if (letters[i] > 0) {
-	 std::cout << static_cast<char>(i+'a') << " " << letters[i] << std::endl;
-      }
-   }
+   std::cout << "Initial array: " <<  << std::endl;
+   std::cout << "Resulting array: " <<  << std::endl;
 
    return 0;
 }
 /*********************************************
- ** Function: wordCount
+ ** Function: calculate_result
  ** Description: 
  ** Parameters: 
  ** Pre-Conditions: none
  ** Post-Conditions: return number of words
  ********************************************/
-int wordCount (char input[]) {
-   std::cout << "running wordCount" << std::endl;
-   int words;
+void init (double (&r)[4][4]) {
 
-   for (int i = 0; i <= ; i++) {
-      if (input[i] == ' ' || input[i] == '.' || input[i] == ',' || input[i] == '\n' || input[i] == '\r') {
-	 words++;
-      }
-   }
-   return words;
+   r[0][0] = 1;
 }
 /*********************************************
- ** Function: letterCount
+ ** Function: recursive_calculate_result
  ** Description: 
  ** Parameters: 
  ** Pre-Conditions: none
  ** Post-Conditions: list occurrences of each letter
  ********************************************/
-void letterCount (char input[], int letters[]) {
-   std::cout << "running letterCount" << std::endl;
+void recursive_calculate_result () {
    
-   for (int i = 0; i <= numLetters; i++) {
-      letters[i] = 0;
-   }
-   
-   for (int i = 0; i < size; i++) {
-      input[i] = tolower(input[i]);
-      letters[input[i]-'a']++;
-   }
 }
