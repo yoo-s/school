@@ -2,9 +2,9 @@
  ** Program: assign05c.cpp
  ** Author: Soo-Min Yoo
  ** Date: 05/22/15
- ** Description: 
- ** Input: 
- ** Output: 
+ ** Description: Accepts c-string input from user and prints the reversed version of the array.
+ ** Input: none
+ ** Output: none
  ********************************************/
 #include <iostream>
 #include <stdlib.h>
@@ -14,20 +14,22 @@ char* reverse (char* a, int SIZE);
 
 /*********************************************
  ** Function: main
- ** Description: 
- ** Parameters: 
+ ** Description: Reads in input string, prints original string and reversed string.
+ ** Parameters: none
  ** Pre-Conditions: none
  ** Post-Conditions: return 0
  ********************************************/
-int main (int argc, char *argv[]) {
+int main () {
    const int SIZE = 50;
    char input[SIZE];
 
+   // Reads in input string
    std::cout << "Input string: " << std::endl;
    std::cin.getline(input, SIZE);
 
    char* rev = reverse(input, SIZE);
 
+   // Prints original and reversed strings
    std::cout << "Original: " << input << std::endl;
    std::cout << "Reversed: " << rev << std::endl;
 
@@ -36,8 +38,8 @@ int main (int argc, char *argv[]) {
 
 /*********************************************
  ** Function: reverse
- ** Description: 
- ** Parameters: 
+ ** Description: Reverses array containing input string.
+ ** Parameters: char* a, int SIZE
  ** Pre-Conditions: none
  ** Post-Conditions: returns reversed array
  ********************************************/
