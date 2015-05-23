@@ -1,9 +1,24 @@
+/*********************************************
+ ** Program: assign05c.cpp
+ ** Author: Soo-Min Yoo
+ ** Date: 05/22/15
+ ** Description: 
+ ** Input: 
+ ** Output: 
+ ********************************************/
 #include <iostream>
 #include <stdlib.h>
 #include <cstring>
 
 char* reverse (char* a, int SIZE);
 
+/*********************************************
+ ** Function: main
+ ** Description: 
+ ** Parameters: 
+ ** Pre-Conditions: none
+ ** Post-Conditions: return 0
+ ********************************************/
 int main (int argc, char *argv[]) {
    const int SIZE = 50;
    char input[SIZE];
@@ -19,6 +34,13 @@ int main (int argc, char *argv[]) {
    return 0;
 }
 
+/*********************************************
+ ** Function: reverse
+ ** Description: 
+ ** Parameters: 
+ ** Pre-Conditions: none
+ ** Post-Conditions: returns reversed array
+ ********************************************/
 char* reverse (char* a, int SIZE) {
    char* r = new char[SIZE];
    int j = 0;
