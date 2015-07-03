@@ -50,6 +50,7 @@ int main() {
 	int arr2[3][2];
 	int arr3[2][2];
 
+	// Fills input matrices with input integers
 	std::cout << "Fill array 1" << std::endl;
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 3; j++) {
@@ -68,6 +69,7 @@ int main() {
 
 	std::cout << std::endl;
 
+	// Prints input matrices
 	std::cout << "Array 1:" << std::endl;
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 3; j++) {
@@ -84,6 +86,7 @@ int main() {
 		std::cout << std::endl;
 	}
 
+	// Calculates and prints product matrix
 	matrix(arr1, arr2, arr3);
 
 	return 0;
