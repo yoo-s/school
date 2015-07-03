@@ -19,13 +19,13 @@
  ** Pre-Conditions: none
  ** Post-Conditions: none
  ********************************************/
-
 class player {
 public:
 	int vict;
 	int play();
 	player() : vict(0) {}
 };
+
 /*********************************************
  ** Member function: play
  ** Description: returns a random number between 1 and 52
@@ -33,10 +33,10 @@ public:
  ** Pre-Conditions: none
  ** Post-Conditions: none
  ********************************************/
-
 int player::play() {
 	return rand() % 52 + 1;
 }
+
 /*********************************************
  ** Function: main
  ** Description: plays through input number of rounds of the card game War,
@@ -46,7 +46,6 @@ int player::play() {
  ** Pre-Conditions: none
  ** Post-Conditions: return 0
  ********************************************/
-
 int main() {
 	srand(time(NULL));
 	int rounds;
