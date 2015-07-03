@@ -17,7 +17,6 @@
  ** Pre-Conditions: none
  ** Post-Conditions: none
  ********************************************/
-
 void matrix(int (*arr1)[3], int (*arr2)[2], int (*arr3)[2]) {
 	for (int i = 0; i < 2; i++) {
 		for (int k = 0; k < 2; k++) {
@@ -36,6 +35,7 @@ void matrix(int (*arr1)[3], int (*arr2)[2], int (*arr3)[2]) {
 		std::cout << std::endl;
 	}
 }
+
 /*********************************************
  ** Function: main
  ** Description: fills two matrices and prints them and its product matrix
@@ -44,7 +44,6 @@ void matrix(int (*arr1)[3], int (*arr2)[2], int (*arr3)[2]) {
  ** Pre-Conditions: none
  ** Post-Conditions: return 0
  ********************************************/
-
 int main() {
 
 	int arr1[2][3];
