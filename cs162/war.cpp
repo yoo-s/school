@@ -23,7 +23,7 @@ class player {
 public:
 	int vict;
 	int play();
-	player() : vict(0) {}
+	player() : vict(0) {}			// Set initial victory count to 0
 };
 
 /*********************************************
@@ -47,16 +47,20 @@ int player::play() {
  ** Post-Conditions: return 0
  ********************************************/
 int main() {
-	srand(time(NULL));
+	srand(time(NULL));			// Seed random numbers for each round
 	int rounds;
 
+	// Initialize player objects
 	player p1;
 	player p2;
 
+	// Prompts user for number of rounds
 	std::cout << "How many rounds will you play? ";
 	std::cin >> rounds;
 	std::cout << std::endl;
 
+	// Plays through each round, generating a random number for both players
+	// and incrementing the victory count for the player with the high number
 	for (int i = 0; i < rounds; i++) {
 		std::cout << "Round " << i+1 << "-----" << std::endl;
 		int p1num = p1.play();
@@ -75,6 +79,7 @@ int main() {
 		}
 	}
 
+	// Prints the final victory score for each player, and the final winner
 	std::cout << "\nResults -----------" << std::endl;
 	std::cout << "Player 1 score: " << p1.vict << std::endl;
 	std::cout << "Player 2 score: " << p2.vict << std::endl;
