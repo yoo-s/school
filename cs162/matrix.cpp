@@ -1,4 +1,22 @@
+/*********************************************
+ ** Program: matrix.cpp
+ ** Author: Soo-Min Yoo
+ ** Date: 07/02/15
+ ** Description: program that takes two matrices and prints its product matrix.
+ ** Input: none
+ ** Output: return 0
+ ********************************************/
+
 #include <iostream>
+
+/*********************************************
+ ** Function: matrix
+ ** Description: loops through the two input matrices and assigns product values
+ ** to each element in third matrix.
+ ** Parameters: int (*arr1)[3], int (*arr2)[2], int (*arr3)[2]
+ ** Pre-Conditions: none
+ ** Post-Conditions: none
+ ********************************************/
 
 void matrix(int (*arr1)[3], int (*arr2)[2], int (*arr3)[2]) {
 	for (int i = 0; i < 2; i++) {
@@ -18,6 +36,14 @@ void matrix(int (*arr1)[3], int (*arr2)[2], int (*arr3)[2]) {
 		std::cout << std::endl;
 	}
 }
+/*********************************************
+ ** Function: main
+ ** Description: fills two matrices and prints them and its product matrix
+ ** through the matrix function.
+ ** Parameters: none
+ ** Pre-Conditions: none
+ ** Post-Conditions: return 0
+ ********************************************/
 
 int main() {
 
