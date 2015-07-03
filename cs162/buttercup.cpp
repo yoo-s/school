@@ -12,6 +12,14 @@
 #include <vector>
 #include <algorithm>
 
+bool third(int a) {
+	if (a%3) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 /*********************************************
  ** Function: main
  ** Description: creates vector of input number of suitors each assigned a number,
@@ -29,7 +37,7 @@ int main() {
 
 	// Initialize vector of input size, assigns each element with a number
 	std::vector<int> vect(suitors);
-	std::vector<int>::iterator it;
+	std::vector<int>::iterator it = vect.begin();
 	for (int i = 0; i < suitors; i++) {
 		vect.push_back(i+1);
 	}
@@ -39,11 +47,10 @@ int main() {
 	}
 
 	// Loop through vector, eliminating every third element (suitor)
-	int index = 2;
 	while (vect.size() > 1) {
-		for (it = vect.begin(); it < vect.end(); it++) {
-			vect.erase(it+index);
-			index+=2;
+		for (int i = 2; i < vect.size(); i+=2) {
+				vect.erase(i);
+			}
 		}
 	}
 
