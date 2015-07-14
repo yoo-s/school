@@ -135,16 +135,17 @@ std::istream& operator >>(std::istream &is, const Rational &fr) {
  ** Description: runs program
  ********************************************/
 int main() {
-	Rational fr1(3, 8), fr2(5, 6);
-	//Rational fr1(0, 0), fr2(0, 0);
-	char space;
-	char div;
+	Rational fr1(0, 0), fr2(0, 0);
 	char op;
-/*
+
 	std::cout << "Enter arithmetic problem of the form, 3 / 4 + 5 / 9: ";
-	std::cin >> fr1.num >> space >> div >> space >> fr1.den;
-	std::cin >> space >> op >> space;
-	std::cin >> fr2.num >> space >> div >> space >> fr2.den;
+	std::cin >> fr1.num;
+	std::cin.ignore(3, '\n');
+	std::cin >> fr1.den;
+	std::cin >> op;
+	std::cin >> fr2.num;
+	std::cin.ignore(3, '\n');
+	std::cin >> fr2.den;
 	std::cout << std::endl;
 
 	if (op == '+') {
@@ -165,20 +166,7 @@ int main() {
 		std::cout << quo << std::endl;
 	} else {
 		std::cout << "Not a valid expression. Please try again." << std::endl;
-	}*/
-
-	Rational sum = fr1 + fr2;
-	sum.reduce();
-	std::cout << sum << std::endl;
-	Rational dif = fr1 - fr2;
-	dif.reduce();
-	std::cout << dif << std::endl;
-	Rational pro = fr1 * fr2;
-	pro.reduce();
-	std::cout << pro << std::endl;
-	Rational quo = fr1 / fr2;
-	quo.reduce();
-	std::cout << quo << std::endl;
+	}
 
 	return 0;
 
