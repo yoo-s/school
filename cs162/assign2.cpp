@@ -1,5 +1,19 @@
+/*********************************************
+ ** Program: assign2.cpp
+ ** Author: Soo-Min Yoo
+ ** Date: 07/13/15
+ ** Description: program that uses overloaded operators to solve arithmetic problems with rational numbers.
+ ** Input: none
+ ** Output: none
+ ********************************************/
+
 #include <iostream>
 
+/*********************************************
+ ** Class: Rational
+ ** Description: 
+ ** Pre-Conditions: none
+ ********************************************/
 class Rational {
 	public:
 		int num;
@@ -20,24 +34,47 @@ class Rational {
 		friend std::ostream& operator <<(std::ostream& os, const Rational &fr);
 };
 
+/*********************************************
+ ** Function: overloaded operator +
+ ** Description: finds numerator/denominator of a sum of two fractions
+ ** Parameters: const Rational &fr1, const Rational &fr2
+ ********************************************/
 Rational operator +(const Rational &fr1, const Rational &fr2) {
 	int n, d;
 	n = fr1.num*fr2.den + fr1.num*fr2.den;
 	d = fr1.den*fr2.den;
 	return Rational(n, d);
 }
+
+/*********************************************
+ ** Function: overloaded operator -
+ ** Description: finds numerator/denominator of a difference of two fractions
+ ** Parameters: const Rational &fr1, const Rational &fr2
+ ********************************************/
 Rational operator -(const Rational &fr1, const Rational &fr2) {
 	int n, d;
 	n = fr1.num*fr2.den - fr1.num*fr2.den;
 	d = fr1.den*fr2.den;
 	return Rational(n, d);
 }
+
+/*********************************************
+ ** Function: overloaded operator *
+ ** Description: finds numerator/denominator of a product of two fractions
+ ** Parameters: const Rational &fr1, const Rational &fr2
+ ********************************************/
 Rational operator *(const Rational &fr1, const Rational &fr2) {
 	int n, d;
 	n = fr1.num * fr2.num;
 	d = fr1.den * fr2.den;
 	return Rational(n, d);
 }
+
+/*********************************************
+ ** Function: overloaded operator /
+ ** Description: finds numerator/denominator of a quotient of two fractions
+ ** Parameters: const Rational &fr1, const Rational &fr2
+ ********************************************/
 Rational operator /(const Rational &fr1, const Rational &fr2) {
 	int n, d;
 	n = fr1.num * fr2.den;
@@ -45,6 +82,11 @@ Rational operator /(const Rational &fr1, const Rational &fr2) {
 	return Rational(n, d);
 }
 
+/*********************************************
+ ** Function: Rational::gcf
+ ** Description: finds the greatest common factor of a Rational's numerator/denominator
+ ** Parameters: int x, int y
+ ********************************************/
 int Rational::gcf(int x, int y) {
 	//find GCD of num and den
 	while (x != y) {
@@ -57,6 +99,11 @@ int Rational::gcf(int x, int y) {
 	return x;
 }
 
+/*********************************************
+ ** Function: Rational::reduce
+ ** Description: reduces a Rational to simplest form
+ ** Parameters: none
+ ********************************************/
 void Rational::reduce() {
 	int div = gcf(num, den);
 	num /= div;
@@ -70,11 +117,20 @@ void Rational::reduce() {
 	std::cout << den;
 }
 
-std::ostream& operator <<(std::ostream& os, const Rational& fr) {
+/*********************************************
+ ** Function: overloaded operator <<
+ ** Description: prints out objects of type Rational
+ ** Parameters: std::ostream &os, const Rational &fr
+ ********************************************/
+std::ostream& operator <<(std::ostream &os, const Rational &fr) {
 	std::cout << fr.num << "/" << fr.den << std::endl;
 	return os;
 }
 
+/*********************************************
+ ** Function: main
+ ** Description: runs program
+ ********************************************/
 int main() {
 
 	Rational fr1(2, 5), fr2(1, 4);
