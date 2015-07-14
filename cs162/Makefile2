@@ -1,0 +1,10 @@
+CXX = g++
+SRCS = assign2.cpp
+HEADERS = 
+pr2: ${SRCS} ${HEADERS}
+	${CXX} ${SRCS} -o a2
+assign2.o: assign2.cpp
+	${CXX} -c assign2.cpp
+clean:
+	rm -f *.o a2
+
