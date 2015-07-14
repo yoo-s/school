@@ -8,10 +8,11 @@
  ********************************************/
 
 #include <iostream>
+#include <string>
 
 /*********************************************
  ** Class: Rational
- ** Description: 
+ ** Description: creates object representing a rational number
  ** Pre-Conditions: none
  ********************************************/
 class Rational {
@@ -32,6 +33,7 @@ class Rational {
 		friend Rational operator /(const Rational &fr1, const Rational &fr2);
 
 		friend std::ostream& operator <<(std::ostream& os, const Rational &fr);
+		friend std::istream& operator >>(std::istream& is, const Rational &fr);
 };
 
 /*********************************************
@@ -41,7 +43,7 @@ class Rational {
  ********************************************/
 Rational operator +(const Rational &fr1, const Rational &fr2) {
 	int n, d;
-	n = fr1.num*fr2.den + fr1.num*fr2.den;
+	n = fr1.num*fr2.den + fr2.num*fr1.den;
 	d = fr1.den*fr2.den;
 	return Rational(n, d);
 }
@@ -53,7 +55,7 @@ Rational operator +(const Rational &fr1, const Rational &fr2) {
  ********************************************/
 Rational operator -(const Rational &fr1, const Rational &fr2) {
 	int n, d;
-	n = fr1.num*fr2.den - fr1.num*fr2.den;
+	n = fr1.num*fr2.den - fr2.num*fr1.den;
 	d = fr1.den*fr2.den;
 	return Rational(n, d);
 }
@@ -89,14 +91,11 @@ Rational operator /(const Rational &fr1, const Rational &fr2) {
  ********************************************/
 int Rational::gcf(int x, int y) {
 	//find GCD of num and den
-	while (x != y) {
-		if (x > y) {
-			x -= y;
-		} else {
-			y -= x;
-		}
+	if (y == 0) {
+		return x;
+	} else {
+		return gcf(y, x % y);
 	}
-	return x;
 }
 
 /*********************************************
@@ -113,8 +112,6 @@ void Rational::reduce() {
 		num *= -1;
 		den *= -1;
 	}
-	std::cout << num << "/ ";
-	std::cout << den;
 }
 
 /*********************************************
@@ -126,49 +123,62 @@ std::ostream& operator <<(std::ostream &os, const Rational &fr) {
 	std::cout << fr.num << "/" << fr.den << std::endl;
 	return os;
 }
-
+/*
+std::istream& operator >>(std::istream &is, const Rational &fr) {
+	std::cin >> fr.num;
+	std::cin >> fr.den;
+	return is;
+}
+*/
 /*********************************************
  ** Function: main
  ** Description: runs program
  ********************************************/
 int main() {
+	Rational fr1(3, 8), fr2(5, 6);
+	//Rational fr1(0, 0), fr2(0, 0);
+	char space;
+	char div;
+	char op;
+/*
+	std::cout << "Enter arithmetic problem of the form, 3 / 4 + 5 / 9: ";
+	std::cin >> fr1.num >> space >> div >> space >> fr1.den;
+	std::cin >> space >> op >> space;
+	std::cin >> fr2.num >> space >> div >> space >> fr2.den;
+	std::cout << std::endl;
 
-	Rational fr1(2, 5), fr2(1, 4);
-	int option;
+	if (op == '+') {
+		Rational sum = fr1 + fr2;
+		sum.reduce();
+		std::cout << sum << std::endl;
+	} else if (op == '-') {
+		Rational dif = fr1 - fr2;
+		dif.reduce();
+		std::cout << dif << std::endl;
+	} else if (op == '*') {
+		Rational pro = fr1 * fr2;
+		pro.reduce();
+		std::cout << pro << std::endl;
+	} else if (op == '/') {
+		Rational quo = fr1 / fr2;
+		quo.reduce();
+		std::cout << quo << std::endl;
+	} else {
+		std::cout << "Not a valid expression. Please try again." << std::endl;
+	}*/
 
 	Rational sum = fr1 + fr2;
-	Rational dif = fr1 - fr2;
-	Rational pro = fr1 * fr2;
-	Rational quo = fr1 / fr2;
-
 	sum.reduce();
-	dif.reduce();
-	pro.reduce();
-	quo.reduce();
-
 	std::cout << sum << std::endl;
+	Rational dif = fr1 - fr2;
+	dif.reduce();
 	std::cout << dif << std::endl;
+	Rational pro = fr1 * fr2;
+	pro.reduce();
 	std::cout << pro << std::endl;
+	Rational quo = fr1 / fr2;
+	quo.reduce();
 	std::cout << quo << std::endl;
-	/*
-	std::cout << "2) Subtraction" << std::endl;
-	std::cout << "3) Multiplication" << std::endl;
-	std::cout << "4) Division" << std::endl;
-	std::cout << "Please select operator to test:" << std::endl;
-	std::cin >> option;
-
-	if (option == 1) {
-		//addition
-	} else if (option == 2) {
-		//subtraction
-	} else if (option == 3) {
-		//multiplication
-	} else if (option == 4) {
-		//division
-	} else {
-		std::cout << "Not a valid option. Please try again." << std::endl;
-	}
-*/
 
 	return 0;
 
