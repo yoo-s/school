@@ -59,7 +59,6 @@ int Rational::gcf(int x, int y) {
 
 void Rational::reduce() {
 	int div = gcf(num, den);
-	std::cout << div << std::endl;
 	num /= div;
 	den /= div;
 
