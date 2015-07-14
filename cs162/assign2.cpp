@@ -27,13 +27,14 @@ class Rational {
 		int gcf(int x, int y);
 		void reduce();
 
+		// overloaded arithmetic operators
 		friend Rational operator +(const Rational &fr1, const Rational &fr2);
 		friend Rational operator -(const Rational &fr1, const Rational &fr2);
 		friend Rational operator *(const Rational &fr1, const Rational &fr2);
 		friend Rational operator /(const Rational &fr1, const Rational &fr2);
 
+		// overloaded << operator
 		friend std::ostream& operator <<(std::ostream& os, const Rational &fr);
-		friend std::istream& operator >>(std::istream& is, const Rational &fr);
 };
 
 /*********************************************
@@ -105,9 +106,11 @@ int Rational::gcf(int x, int y) {
  ********************************************/
 void Rational::reduce() {
 	int div = gcf(num, den);
+	// simplify fraction
 	num /= div;
 	den /= div;
 
+	// check if denominator is negative, switch negation to numerator if it is
 	if (den < 0) {
 		num *= -1;
 		den *= -1;
@@ -123,13 +126,7 @@ std::ostream& operator <<(std::ostream &os, const Rational &fr) {
 	std::cout << fr.num << "/" << fr.den << std::endl;
 	return os;
 }
-/*
-std::istream& operator >>(std::istream &is, const Rational &fr) {
-	std::cin >> fr.num;
-	std::cin >> fr.den;
-	return is;
-}
-*/
+
 /*********************************************
  ** Function: main
  ** Description: runs program
@@ -138,29 +135,33 @@ int main() {
 	Rational fr1(0, 0), fr2(0, 0);
 	char op;
 
+	// Prompt user for arithmetic expression. For negative numbers type the
+	//		negative sign next to the number w/o spacing, i.e. -2 and not - 2
+	// Any-digit integers, positive or negative, are valid as input numerators or
+	//		denominators.
 	std::cout << "Enter arithmetic problem of the form, 3 / 4 + 5 / 9: ";
 	std::cin >> fr1.num;
-	std::cin.ignore(3, '\n');
+	std::cin.ignore(3, '\n');			// this skips the apaces until next number
 	std::cin >> fr1.den;
-	std::cin >> op;
+	std::cin >> op;						// character representing arithmetic operator
 	std::cin >> fr2.num;
 	std::cin.ignore(3, '\n');
 	std::cin >> fr2.den;
 	std::cout << std::endl;
 
-	if (op == '+') {
+	if (op == '+') {					// addition case
 		Rational sum = fr1 + fr2;
 		sum.reduce();
 		std::cout << sum << std::endl;
-	} else if (op == '-') {
+	} else if (op == '-') {				// subtraction case
 		Rational dif = fr1 - fr2;
 		dif.reduce();
 		std::cout << dif << std::endl;
-	} else if (op == '*') {
+	} else if (op == '*') {				// multiplication case
 		Rational pro = fr1 * fr2;
 		pro.reduce();
 		std::cout << pro << std::endl;
-	} else if (op == '/') {
+	} else if (op == '/') {				// division case
 		Rational quo = fr1 / fr2;
 		quo.reduce();
 		std::cout << quo << std::endl;
