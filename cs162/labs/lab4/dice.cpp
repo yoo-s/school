@@ -16,15 +16,14 @@ class Dice {
 			sides = s;
 		}
 
-		int roll(int sides);
+		int roll();
 
 	protected:
 		int sides;
 
 };
 
-int Dice::roll(int sides) {
-	srand(time(NULL));
+int Dice::roll() {
 	return (rand() % sides + 1);
 }
 

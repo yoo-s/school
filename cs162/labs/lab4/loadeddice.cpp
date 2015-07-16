@@ -11,28 +11,29 @@ class loadedDice: public Dice {
 	public:
 		loadedDice(int s);
 
-		void roll(int sides);
+		int roll();
 
 };
 
-loadedDice::loadedDice(int s): Dice(s) {
+loadedDice::loadedDice(int s): 
+	Dice(s) {
 	sides = s;
 }
 
-void loadedDice::roll(int sides) {
-			srand(time(NULL));
-			int result = rand() & sides + 1;
+int loadedDice::roll() {
+	int result = rand() % sides + 1;
 
-			if (result != sides) {
-				int chance = rand() % 20 + 1;
-				if (chance = 1) {
-					result += 1;
-				} else {
-					result = result;
-				}
-			} else {
-				result = result;
-			}
+	if (result != sides) {
+		int chance = rand() % 20 + 1;
+		if (chance = 1) {
+			result += 1;
+		} else {
+			result = result;
+		}
+	} else {
+		result = result;
+	}
+	return result;
 }
 
 #endif /* LOADEDDICE_CPP_ */
