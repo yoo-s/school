@@ -13,11 +13,10 @@ class Character {
 		int armor;
 		int strength;
 
-		Character(std::string type)
-			: chartype(type) {
-		}
-
 	public:
+		Character(std::string type);
+		Character(const Character& ch);
+
 		std::string get_name() {
 			return chartype;
 		}

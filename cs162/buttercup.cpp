@@ -49,8 +49,8 @@ int main() {
 	// Loop through vector, eliminating every third element (suitor)
 	while (vect.size() > 1) {
 		for (int i = 2; i < vect.size(); i+=2) {
-				vect.erase(i);
-			}
+			std::cout << vect[i];
+			vect.erase(i);
 		}
 	}
 

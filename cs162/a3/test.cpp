@@ -6,20 +6,20 @@
 #include "char.cpp"
 #include "barbarian.cpp"
 
-void round(Object& a, Object2& b) {			// how to do this??
+void round(Character *&a, Character *&b) {			// how to do this??
+	int atk1 = a.attack();
+	int dfs1 = a.defend();
+	int atk2 = b.attack();
+	int dfs2 = b.defend();
+	int dmg1 = atk2 - dfs1;
+	int dmg2 = atk1 - dfs2;
+	int app_dmg1 = dmg1 - a.armor();
+	int app_dmg2 = dmg2 - b.armor();
+
 	std::cout << a.get_name() << " and " << b.get_name() << " fight!" << std::endl;
 	std::cout << "Fighting...\n" << std::endl;
 
 	while (a.strength() > 0 || b.strength() > 0) {
-		int atk1 = a.attack();
-		int dfs1 = a.defend();
-		int atk2 = b.attack();
-		int dfs2 = b.defend();
-		int dmg1 = atk2 - dfs1;
-		int dmg2 = atk1 - dfs2;
-		int app_dmg1 = dmg1 - a.armor();
-		int app_dmg2 = dmg2 - b.armor();
-		
 		a.strength() -= app_dmg1;
 		b.strength() -= app_dmg2;
 
@@ -36,11 +36,6 @@ void round(Object& a, Object2& b) {			// how to do this??
 int main() {
 	srand(time(NULL));
 	
-	Barbarian *bb = new Barbarian("Barbarian1");
-	Barbarian *bb2 = new Barbarian("Barbarian2");
-	Character *c1 = bb;
-	Character *c2 = bb2;
-
 	std::string winner;
 	int option;
 	int option2;
@@ -50,8 +45,26 @@ int main() {
 	std::cout << "Character 2: ";
 	std::cin >> option2;
 
+	if (option == 1) {
+		Character *c = new Barbarian("Barbarian");
+	/*} else if (option == 2) {
+		Goblin *gb = new Goblin("Goblin");
+		Character *c = gb;
+	} else if (option == 3) {
+		Reptile *rp = new Reptile("Reptile");
+		Character *c = rp;
+	} else if (option == 4) {
+		Bluemen *bm = new Bluemen("Blue Men");
+		Character *c = bm;
+	} else if (option == 5) {
+		Shadow *sh = new Shadow("Shadow");
+		Character *c = sh;*/
+	} else {
+		std::cout << "Not valid options." << std::endl;
+	}
+
 	if (option == 1 && option2 == 1) {
-		round(bb, bb2);
+		round(c, c);
 /*	} else if (option == 1 && option2 == 2) {
 		round(bb, gb);
 	} else if (option == 1 && option2 == 3) {
