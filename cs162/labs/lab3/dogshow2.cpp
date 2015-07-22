@@ -65,17 +65,17 @@ int main() {
 	dog goldie;
 	dog pointer;
 	dog setter;
-	std::vector<std::string> hunters;
+	std::vector<dog> hunters;
 
 	dog collie;
 	dog shepherd;
 	dog husky;
-	std::vector<std::string> workers;
+	std::vector<dog> workers;
 
 	dog pom;
 	dog yorkie;
 	dog shihtzu;
-	std::vector<std::string> toys;
+	std::vector<dog> toys;
 
 	// for each of the 9 listed dogs, ask for user input on dog info
 	for (int i = 0; i < 9; i++) {
@@ -86,6 +86,7 @@ int main() {
 		std::cout << "Owner? ";
 		std::cin >> owner;
 		std::cout << "Trainer? ";
+		std::cin >> trainer;
 
 	// depending on their breed, store dog info into proper dog object
 		if (breed == "goldie") {
