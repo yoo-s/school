@@ -10,12 +10,12 @@
 class Character {
 	protected:
 		std::string chartype;
-		int armor;
-		int strength;
 
 	public:
+		int armor;
+		int strength;
 		Character(std::string type);
-		Character(const Character& ch);
+		virtual ~Character();
 
 		std::string get_name() {
 			return chartype;

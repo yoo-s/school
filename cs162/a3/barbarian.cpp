@@ -9,6 +9,7 @@ class Barbarian: public Character {
 		Barbarian(std::string type)
 			: Character(type) {
 		}
+		~Barbarian();
 
 		virtual int attack() {
 			int a = (rand() % 6 + 1);

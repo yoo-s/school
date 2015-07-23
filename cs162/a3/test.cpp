@@ -7,26 +7,27 @@
 #include "barbarian.cpp"
 
 void round(Character *&a, Character *&b) {			// how to do this??
-	int atk1 = a.attack();
-	int dfs1 = a.defend();
-	int atk2 = b.attack();
-	int dfs2 = b.defend();
+	int atk1 = a->attack();
+	int dfs1 = a->defend();
+	int atk2 = b->attack();
+	int dfs2 = b->defend();
 	int dmg1 = atk2 - dfs1;
 	int dmg2 = atk1 - dfs2;
-	int app_dmg1 = dmg1 - a.armor();
-	int app_dmg2 = dmg2 - b.armor();
+	int app_dmg1 = dmg1 - a->armor;
+	int app_dmg2 = dmg2 - b->armor;
+	std::string winner;
 
-	std::cout << a.get_name() << " and " << b.get_name() << " fight!" << std::endl;
+	std::cout << a->get_name() << " and " << b->get_name() << " fight!" << std::endl;
 	std::cout << "Fighting...\n" << std::endl;
 
-	while (a.strength() > 0 || b.strength() > 0) {
-		a.strength() -= app_dmg1;
-		b.strength() -= app_dmg2;
+	while (a->strength > 0 || b->strength > 0) {
+		a->strength -= app_dmg1;
+		b->strength -= app_dmg2;
 
-		if (a.strength() > b.strength()) {
-			winner = a.get_name();
+		if (a->strength > b->strength) {
+			winner = a->get_name();
 		} else {
-			winner = b.get_name();
+			winner = b->get_name();
 		}
 	}
 
@@ -36,9 +37,9 @@ void round(Character *&a, Character *&b) {			// how to do this??
 int main() {
 	srand(time(NULL));
 	
-	std::string winner;
 	int option;
 	int option2;
+	Character *c;
 
 	std::cout << "Character 1: ";
 	std::cin >> option;
@@ -46,7 +47,7 @@ int main() {
 	std::cin >> option2;
 
 	if (option == 1) {
-		Character *c = new Barbarian("Barbarian");
+		c = new Barbarian("Barbarian");
 	/*} else if (option == 2) {
 		Goblin *gb = new Goblin("Goblin");
 		Character *c = gb;
