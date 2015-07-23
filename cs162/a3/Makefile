@@ -1,6 +1,6 @@
 CXX = g++
 SRCS = test.cpp char.cpp barbarian.cpp goblin.cpp reptile.cpp bluemen.cpp shadow.cpp
-HEADERS = test.hpp char.hpp barbarian.hpp goblin.hpp reptile.hpp bluemen.hpp shadow.hpp
+#HEADERS = test.hpp char.hpp barbarian.hpp goblin.hpp reptile.hpp bluemen.hpp shadow.hpp
 pr1: ${SRCS} ${HEADERS}
 	${CXX} ${SRCS} -o play
 test.o: test.cpp

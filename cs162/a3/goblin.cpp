@@ -1,21 +1,19 @@
-#ifndef REPTILE_CPP_
-#define REPTILE_CPP_
+#ifndef GOBLIN_CPP_
+#define GOBLIN_CPP_
 
 #include <iostream>
 #include "char.cpp"
 
-class Reptile: public Character {
+class Goblin: public Character {
 	public:
-		Reptile(std::string type)
+		Goblin(std::string type)
 			: Character(type) {};
-		~Reptile() {};
+		~Goblin() {};
 
 		virtual int attack() {
 			int a = (rand() % 6 + 1);
 			int b = (rand() % 6 + 1);
-			int c = (rand() % 6 + 1);
-
-			return a+b+c;
+			return a+b;
 		}
 
 		virtual int defend() {
@@ -24,14 +22,13 @@ class Reptile: public Character {
 		}
 
 		virtual void set_armor() {
-			armor = 7;
+			armor = 3;
 		}
 
 		virtual void set_strength() {
-			strength = 18;
+			strength = 8;
 		}
 
 };
 
-#endif /* REPTILE_CPP_ */
-
+#endif /* GOBLIN_CPP_ */

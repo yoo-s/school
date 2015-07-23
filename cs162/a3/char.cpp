@@ -14,8 +14,8 @@ class Character {
 	public:
 		int armor;
 		int strength;
-		Character(std::string type);
-		virtual ~Character();
+		Character(std::string type) {};
+		virtual ~Character() {};
 
 		std::string get_name() {
 			return chartype;

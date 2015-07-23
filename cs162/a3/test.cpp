@@ -5,33 +5,35 @@
 #include <stdio.h>
 #include "char.cpp"
 #include "barbarian.cpp"
+#include "goblin.cpp"
+#include "reptile.cpp"
+#include "bluemen.cpp"
+#include "shadow.cpp"
 
-void round(Character *&a, Character *&b) {			// how to do this??
+
+void round(Character *&a, Character *&b, int roundnum) {
 	int atk1 = a->attack();
 	int dfs1 = a->defend();
 	int atk2 = b->attack();
 	int dfs2 = b->defend();
-	int dmg1 = atk2 - dfs1;
-	int dmg2 = atk1 - dfs2;
-	int app_dmg1 = dmg1 - a->armor;
-	int app_dmg2 = dmg2 - b->armor;
-	std::string winner;
+	int dmg1 = atk1 - dfs2;
+	int dmg2 = atk2 - dfs1;
+	int app_dmg1 = dmg2 - a->armor;
+	int app_dmg2 = dmg1 - b->armor;
 
 	std::cout << a->get_name() << " and " << b->get_name() << " fight!" << std::endl;
-	std::cout << "Fighting...\n" << std::endl;
+	std::cout << std::endl;
 
-	while (a->strength > 0 || b->strength > 0) {
-		a->strength -= app_dmg1;
-		b->strength -= app_dmg2;
+	a->strength -= app_dmg1;
+	b->strength -= app_dmg2;
 
-		if (a->strength > b->strength) {
-			winner = a->get_name();
-		} else {
-			winner = b->get_name();
-		}
-	}
+	std::cout << "Round " << roundnum << ":" << std::endl;
+	std::cout << a->get_name() << " inflicts " << atk1 << " damage." << std::endl;
+	std::cout << b->get_name() << " uses " << dfs2 << " defense." << std::endl;
+	std::cout << b->get_name() << " takes a total of " << app_dmg2 << " damage." << std::endl;
+	std::cout << b->get_name() << " has " << b->strength << " hp left." << std::endl;
+	std::cout << std::endl;
 
-	std::cout << "The winner is: " << winner << "!" << std::endl;
 }
 
 int main() {
@@ -40,6 +42,9 @@ int main() {
 	int option;
 	int option2;
 	Character *c;
+	Character *c2;
+	int roundnum = 1;
+	std::string winner;
 
 	std::cout << "Character 1: ";
 	std::cin >> option;
@@ -48,55 +53,46 @@ int main() {
 
 	if (option == 1) {
 		c = new Barbarian("Barbarian");
-	/*} else if (option == 2) {
-		Goblin *gb = new Goblin("Goblin");
-		Character *c = gb;
+	} else if (option == 2) {
+		c = new Goblin("Goblin");
 	} else if (option == 3) {
-		Reptile *rp = new Reptile("Reptile");
-		Character *c = rp;
+		c = new Reptile("Reptile");
 	} else if (option == 4) {
-		Bluemen *bm = new Bluemen("Blue Men");
-		Character *c = bm;
+		c = new Bluemen("Blue Men");
 	} else if (option == 5) {
-		Shadow *sh = new Shadow("Shadow");
-		Character *c = sh;*/
+		c = new Shadow("Shadow");
+	} else {
+		std::cout << "Not valid options." << std::endl;
+	}
+	if (option2 == 1) {
+		c2 = new Barbarian("Barbarian");
+	} else if (option == 2) {
+		c2 = new Goblin("Goblin");
+	} else if (option == 3) {
+		c2 = new Reptile("Reptile");
+	} else if (option == 4) {
+		c2 = new Bluemen("Blue Men");
+	} else if (option == 5) {
+		c2 = new Shadow("Shadow");
 	} else {
 		std::cout << "Not valid options." << std::endl;
 	}
 
-	if (option == 1 && option2 == 1) {
-		round(c, c);
-/*	} else if (option == 1 && option2 == 2) {
-		round(bb, gb);
-	} else if (option == 1 && option2 == 3) {
-		round(bb, rp);
-	} else if (option == 1 && option2 == 4) {
-		round(bb, bm);
-	} else if (option == 1 && option2  == 5) {
-		round(bb, sh);
-	} else if (option == 2 && option2 == 2) {
-		round(gb, gb2);
-	} else if (option == 2 && option2 == 3) {
-		round(gb, rp);
-	} else if (option == 2 && option2 == 4) {
-		round(gb, bm);
-	} else if (option == 2 && option2 == 5) {
-		round(gb, sh);
-	} else if (option == 3 && option2 == 3) {
-		round(rp, rp2);
-	} else if (option == 3 && option2 == 4) {
-		round(rp, bm);
-	} else if (option == 3 && option2 == 5) {
-		round(rp, sh);
-	} else if (option == 4 && option2 == 4) {
-		round(bm, bm2);
-	} else if (option == 4 && option2 == 5) {
-		round(bm, sh);
-	} else if (option == 5 && option2 == 5) {
-		round(sh, sh2);*/
-	} else {
-		std::cout << "Not valid options, please try again." << std::endl;
+	while (c->strength > 0 || c2->strength > 0) {
+		round(c, c2, roundnum);
+		roundnum++;
+		round(c2, c, roundnum);
+		roundnum++;
 	}
+
+	if (c->strength > c2->strength) {
+		winner = c->get_name();
+	} else {
+		winner = c2->get_name();
+	}
+
+	std::cout << "The winner is: " << winner << "!" << std::endl;
+
 
 	return 0;
 
