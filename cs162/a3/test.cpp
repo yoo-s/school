@@ -3,12 +3,12 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "char.cpp"
-#include "barbarian.cpp"
-#include "goblin.cpp"
-#include "reptile.cpp"
-#include "bluemen.cpp"
-#include "shadow.cpp"
+#include "char.hpp"
+#include "barbarian.hpp"
+#include "goblin.hpp"
+#include "reptile.hpp"
+#include "bluemen.hpp"
+#include "shadow.hpp"
 
 
 void round(Character *&a, Character *&b, int roundnum) {
