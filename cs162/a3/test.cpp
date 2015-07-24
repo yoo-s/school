@@ -12,25 +12,24 @@
 
 
 void round(Character *&a, Character *&b, int roundnum) {
-	int atk1 = a->attack();
-	int dfs1 = a->defend();
-	int atk2 = b->attack();
-	int dfs2 = b->defend();
-	int dmg1 = atk1 - dfs2;
-	int dmg2 = atk2 - dfs1;
-	int app_dmg1 = dmg2 - a->armor;
-	int app_dmg2 = dmg1 - b->armor;
+	int atk = a->attack();
+	int dfs = b->defend();
+	int dmg = atk - dfs;
+	int app_dmg = dmg - b->armor;
 
 	std::cout << a->charname << " and " << b->charname << " fight!" << std::endl;
 	std::cout << std::endl;
 
-	a->strength -= app_dmg1;
-	b->strength -= app_dmg2;
-
+	if (app_dmg < 0) {
+		b->strength = b->strength;
+	} else {
+		b->strength -= app_dmg;
+	}
+	
 	std::cout << "Round " << roundnum << ":" << std::endl;
-	std::cout << a->charname << " inflicts " << atk1 << " damage." << std::endl;
-	std::cout << b->charname << " uses " << dfs2 << " defense." << std::endl;
-	std::cout << b->charname << " takes a total of " << app_dmg2 << " damage." << std::endl;
+	std::cout << a->charname << " inflicts " << atk << " damage." << std::endl;
+	std::cout << b->charname << " uses " << dfs << " defense." << std::endl;
+	std::cout << b->charname << " takes a total of " << app_dmg << " damage." << std::endl;
 	std::cout << b->charname << " has " << b->strength << " hp left." << std::endl;
 	std::cout << std::endl;
 
@@ -89,8 +88,7 @@ int main() {
 	}
 
 	round(c, c2, roundnum);
-	std::cout << c->charname << " " << c2->charname << std::endl;/*
-	while (c->strength > 0 || c2->strength > 0) {
+	/*while (c->strength > 0 || c2->strength > 0) {
 		round(c, c2, roundnum);
 		roundnum++;
 		round(c2, c, roundnum);
