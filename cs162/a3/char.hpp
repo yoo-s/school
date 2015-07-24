@@ -3,24 +3,27 @@
 
 #include <iostream>
 #include <string>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
 #include <stdio.h>
 
 class Character {
 	protected:
-		std::string chartype;
+		//std::string chartype;
+		//std::string charname;
 
 	public:
+		std::string charname;
 		int armor;
 		int strength;
-		Character(std::string type) {};
-		virtual ~Character() {};
+		Character();
+		virtual ~Character();
 
-		std::string get_name() {
+		/*std::string get_name() {
 			return chartype;
-		}
+		}*/
 
+		virtual void set_name(std::string name);
 		virtual int attack() = 0;
 		virtual int defend() = 0;
 		virtual void set_armor() = 0;

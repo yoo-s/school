@@ -1,37 +1,27 @@
-#ifndef REPTILE_CPP_
-#define REPTILE_CPP_
-
 #include <iostream>
-#include "char.cpp"
+#include "reptile.hpp"
 
-class Reptile: public Character {
-	public:
-		Reptile(std::string type)
-			: Character(type) {};
-		~Reptile() {};
+Reptile::Reptile() : Character() {}
 
-		virtual int attack() {
-			int a = (rand() % 6 + 1);
-			int b = (rand() % 6 + 1);
-			int c = (rand() % 6 + 1);
+Reptile::~Reptile() {}
 
-			return a+b+c;
-		}
+int Reptile::attack() {
+	int a = (rand() % 6 + 1);
+	int b = (rand() % 6 + 1);
+	int c = (rand() % 6 + 1);
+	return a+b+c;
+}
 
-		virtual int defend() {
-			int a = (rand() % 6 + 1);
-			return a;
-		}
+int Reptile::defend() {
+	int a = (rand() % 6 + 1);
+	return a;
+}
 
-		virtual void set_armor() {
-			armor = 7;
-		}
+void Reptile::set_armor() {
+	armor = 7;
+}
 
-		virtual void set_strength() {
-			strength = 18;
-		}
-
-};
-
-#endif /* REPTILE_CPP_ */
+void Reptile::set_strength() {
+	strength = 18;
+}
 

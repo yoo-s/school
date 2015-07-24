@@ -1,35 +1,26 @@
-#ifndef BARBARIAN_CPP_
-#define BARBARIAN_CPP_
-
 #include <iostream>
-#include "char.cpp"
+#include "barbarian.hpp"
 
-class Barbarian: public Character {
-	public:
-		Barbarian(std::string type)
-			: Character(type) {};
-		~Barbarian() {};
+Barbarian::Barbarian() : Character() {}
 
-		virtual int attack() {
-			int a = (rand() % 6 + 1);
-			int b = (rand() % 6 + 1);
-			return a+b;
-		}
+Barbarian::~Barbarian() {}
 
-		virtual int defend() {
-			int a = (rand() % 6 + 1);
-			int b = (rand() % 6 + 1);
-			return a+b;
-		}
+int Barbarian::attack() {
+	int a = (rand() % 6 + 1);
+	int b = (rand() % 6 + 1);
+	return a+b;
+}
 
-		virtual void set_armor() {
-			armor = 0;
-		}
+int Barbarian::defend() {
+	int a = (rand() % 6 + 1);
+	int b = (rand() % 6 + 1);
+	return a+b;
+}
 
-		virtual void set_strength() {
-			strength = 12;
-		}
+void Barbarian::set_armor() {
+	armor = 0;
+}
 
-};
-
-#endif /* BARBARIAN_CPP_ */
+void Barbarian::set_strength() {
+	strength = 12;
+}

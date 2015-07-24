@@ -6,29 +6,13 @@
 
 class Barbarian: public Character {
 	public:
-		Barbarian(std::string type)
-			: Character(type) {};
-		~Barbarian() {};
+		Barbarian();
+		~Barbarian();
 
-		virtual int attack() {
-			int a = (rand() % 6 + 1);
-			int b = (rand() % 6 + 1);
-			return a+b;
-		}
-
-		virtual int defend() {
-			int a = (rand() % 6 + 1);
-			int b = (rand() % 6 + 1);
-			return a+b;
-		}
-
-		virtual void set_armor() {
-			armor = 0;
-		}
-
-		virtual void set_strength() {
-			strength = 12;
-		}
+		virtual int attack();
+		virtual int defend();
+		virtual void set_armor();
+		virtual void set_strength();
 
 };
 

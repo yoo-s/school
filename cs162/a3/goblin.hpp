@@ -6,28 +6,13 @@
 
 class Goblin: public Character {
 	public:
-		Goblin(std::string type)
-			: Character(type) {};
-		~Goblin() {};
+		Goblin();
+		~Goblin();
 
-		virtual int attack() {
-			int a = (rand() % 6 + 1);
-			int b = (rand() % 6 + 1);
-			return a+b;
-		}
-
-		virtual int defend() {
-			int a = (rand() % 6 + 1);
-			return a;
-		}
-
-		virtual void set_armor() {
-			armor = 3;
-		}
-
-		virtual void set_strength() {
-			strength = 8;
-		}
+		virtual int attack();
+		virtual int defend();
+		virtual void set_armor();
+		virtual void set_strength();
 
 };
 

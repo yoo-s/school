@@ -1,31 +1,19 @@
-#ifndef CHAR_CPP_
-#define CHAR_CPP_
-
 #include <iostream>
-#include <string>
-#include <time.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "char.hpp"
 
-class Character {
-	protected:
-		std::string chartype;
+Character::Character() {}
 
-	public:
-		int armor;
-		int strength;
-		Character(std::string type) {};
-		virtual ~Character() {};
+Character::~Character() {}
 
-		std::string get_name() {
-			return chartype;
-		}
+void Character::set_name(std::string name) {
+	charname = name;
+}
 
-		virtual int attack() = 0;
-		virtual int defend() = 0;
-		virtual void set_armor() = 0;
-		virtual void set_strength() = 0;
+int Character::attack() {}
 
-};
+int Character::defend() {}
 
-#endif /* CHAR_CPP_ */
+void Character::set_armor() {}
+
+void Character::set_strength() {}
+

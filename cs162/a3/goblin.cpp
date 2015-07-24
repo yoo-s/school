@@ -1,34 +1,26 @@
-#ifndef GOBLIN_CPP_
-#define GOBLIN_CPP_
-
 #include <iostream>
-#include "char.cpp"
+#include "goblin.hpp"
 
-class Goblin: public Character {
-	public:
-		Goblin(std::string type)
-			: Character(type) {};
-		~Goblin() {};
+Goblin::Goblin() : Character() {}
 
-		virtual int attack() {
-			int a = (rand() % 6 + 1);
-			int b = (rand() % 6 + 1);
-			return a+b;
-		}
+Goblin::~Goblin() {}
 
-		virtual int defend() {
-			int a = (rand() % 6 + 1);
-			return a;
-		}
+int Goblin::attack() {
+	int a = (rand() % 6 + 1);
+	int b = (rand() % 6 + 1);
+	return a+b;
+}
 
-		virtual void set_armor() {
-			armor = 3;
-		}
+int Goblin::defend() {
+	int a = (rand() % 6 + 1);
+	return a;
+}
 
-		virtual void set_strength() {
-			strength = 8;
-		}
+void Goblin::set_armor() {
+	armor = 3;
+}
 
-};
+void Goblin::set_strength() {
+	strength = 8;
+}
 
-#endif /* GOBLIN_CPP_ */

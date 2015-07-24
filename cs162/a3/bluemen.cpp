@@ -1,38 +1,28 @@
-#ifndef BLUEMEN_CPP_
-#define BLUEMEN_CPP_
-
 #include <iostream>
-#include "char.cpp"
+#include "bluemen.hpp"
 
-class Bluemen: public Character {
-	public:
-		Bluemen(std::string type)
-		: Character(type) {};
-		~Bluemen() {};
+Bluemen::Bluemen() : Character() {}
 
-		virtual int attack() {
-			int a = (rand() % 10 + 1);
-			int b = (rand() % 10 + 1);
-			return a+b;
-		}
+Bluemen::~Bluemen() {}
 
-		virtual int defend() {
-			int a = (rand() % 6 + 1);
-			int b = (rand() % 6 + 1);
-			int c = (rand() % 6 + 1);
+int Bluemen::attack() {
+	int a = (rand() % 10 + 1);
+	int b = (rand() % 10 + 1);
+	return a+b;
+}
 
-			return a+b+c;
-		}
+int Bluemen::defend() {
+	int a = (rand() % 6 + 1);
+	int b = (rand() % 6 + 1);
+	int c = (rand() % 6 + 1);
+	return a+b+c;
+}
 
-		virtual void set_armor() {
-			armor = 3;
-		}
+void Bluemen::set_armor() {
+	armor = 3;
+}
 
-		virtual void set_strength() {
-			strength = 12;
-		}
-
-};
-
-#endif /* BLUEMEN_CPP_ */
+void Bluemen::set_strength() {
+	strength = 12;
+}
 
