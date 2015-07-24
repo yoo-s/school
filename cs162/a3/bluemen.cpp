@@ -1,7 +1,10 @@
 #include <iostream>
 #include "bluemen.hpp"
 
-Bluemen::Bluemen() : Character() {}
+Bluemen::Bluemen() : Character() {
+	armor = 3;
+	strength = 12;
+}
 
 Bluemen::~Bluemen() {}
 
@@ -16,13 +19,5 @@ int Bluemen::defend() {
 	int b = (rand() % 6 + 1);
 	int c = (rand() % 6 + 1);
 	return a+b+c;
-}
-
-void Bluemen::set_armor() {
-	armor = 3;
-}
-
-void Bluemen::set_strength() {
-	strength = 12;
 }
 

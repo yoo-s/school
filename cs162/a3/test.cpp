@@ -87,13 +87,15 @@ int main() {
 		std::cout << "Not valid options." << std::endl;
 	}
 
-	round(c, c2, roundnum);
-	/*while (c->strength > 0 || c2->strength > 0) {
+	while (c->strength > 0 && c2->strength > 0) {
 		round(c, c2, roundnum);
 		roundnum++;
-		round(c2, c, roundnum);
-		roundnum++;
-	}*/
+		//round(c2, c, roundnum);
+		//roundnum++;
+		Character *temp = c;
+		c2 = c;
+		c = temp;
+	}
 
 	if (c->strength > c2->strength) {
 		winner = c->charname;

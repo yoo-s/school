@@ -1,7 +1,10 @@
 #include <iostream>
 #include "barbarian.hpp"
 
-Barbarian::Barbarian() : Character() {}
+Barbarian::Barbarian() : Character() {
+	armor = 0;
+	strength = 12;
+}
 
 Barbarian::~Barbarian() {}
 
@@ -17,10 +20,3 @@ int Barbarian::defend() {
 	return a+b;
 }
 
-void Barbarian::set_armor() {
-	armor = 0;
-}
-
-void Barbarian::set_strength() {
-	strength = 12;
-}

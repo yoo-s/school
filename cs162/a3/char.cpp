@@ -13,7 +13,3 @@ int Character::attack() {}
 
 int Character::defend() {}
 
-void Character::set_armor() {}
-
-void Character::set_strength() {}
-

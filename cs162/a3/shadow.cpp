@@ -1,7 +1,10 @@
 #include <iostream>
 #include "shadow.hpp"
 
-Shadow::Shadow() : Character() {}
+Shadow::Shadow() : Character() {
+	armor = 0;
+	strength = 12;
+}
 
 Shadow::~Shadow() {}
 
@@ -14,13 +17,5 @@ int Shadow::attack() {
 int Shadow::defend() {
 	int a = (rand() % 6 + 1);
 	return a;
-}
-
-void Shadow::set_armor() {
-	armor = 0;
-}
-
-void Shadow::set_strength() {
-	strength = 12;
 }
 

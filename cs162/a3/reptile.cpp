@@ -1,7 +1,10 @@
 #include <iostream>
 #include "reptile.hpp"
 
-Reptile::Reptile() : Character() {}
+Reptile::Reptile() : Character() {
+	armor = 7;
+	strength = 18;
+}
 
 Reptile::~Reptile() {}
 
@@ -15,13 +18,5 @@ int Reptile::attack() {
 int Reptile::defend() {
 	int a = (rand() % 6 + 1);
 	return a;
-}
-
-void Reptile::set_armor() {
-	armor = 7;
-}
-
-void Reptile::set_strength() {
-	strength = 18;
 }
 

@@ -11,8 +11,6 @@ class Goblin: public Character {
 
 		virtual int attack();
 		virtual int defend();
-		virtual void set_armor();
-		virtual void set_strength();
 
 };
 
