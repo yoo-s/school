@@ -92,9 +92,9 @@ int main() {
 		roundnum++;
 		//round(c2, c, roundnum);
 		//roundnum++;
-		Character *temp = c;
-		c2 = c;
-		c = temp;
+		Character *temp = &c;
+		c = &c2;
+		c2 = &temp;
 	}
 
 	if (c->strength > c2->strength) {
