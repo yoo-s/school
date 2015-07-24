@@ -4,6 +4,11 @@
 #include <iostream>
 #include "char.hpp"
 
+/*********************************************
+ ** Class: Blue Men
+ ** Description: derived subclass representing the blue men character
+ ** Pre-Conditions: none
+ ********************************************/
 class Bluemen: public Character {
 	public:
 		Bluemen();

@@ -4,6 +4,11 @@
 #include <iostream>
 #include "char.hpp"
 
+/*********************************************
+ ** Class: Goblin
+ ** Description: derived subclass representing the goblin character
+ ** Pre-Conditions: none
+ ********************************************/
 class Goblin: public Character {
 	public:
 		Goblin();

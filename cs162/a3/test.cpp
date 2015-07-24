@@ -1,3 +1,12 @@
+/*********************************************
+ ** Program: test.cpp
+ ** Author: Soo-Min Yoo
+ ** Date: 07/23/15
+ ** Description: program that uses inheritance and polymorphism in a fantasy combat game.
+ ** Input: none
+ ** Output: none
+ ********************************************/
+
 #include <iostream>
 #include <string>
 #include <time.h>
@@ -10,23 +19,28 @@
 #include "bluemen.hpp"
 #include "shadow.hpp"
 
+/*********************************************
+ ** Function: round
+ ** Description: conducts rounds of combat until only one character has hp remaining.
+ ** Parameters: Character *&a, Character *&b
+ ********************************************/
+void round(Character *&a, Character *&b) {
+	int atk = a->attack();					// Attacker roll
+	int dfs = b->defend();					// Defender roll
+	int dmg = atk - dfs;					// Damage
+	int app_dmg = dmg - b->armor;			// Applied damage
 
-void round(Character *&a, Character *&b, int roundnum) {
-	int atk = a->attack();
-	int dfs = b->defend();
-	int dmg = atk - dfs;
-	int app_dmg = dmg - b->armor;
-
-	std::cout << a->charname << " and " << b->charname << " fight!" << std::endl;
 	std::cout << std::endl;
 
+	// if applied damage is less than 0, target's hp stays the same
 	if (app_dmg < 0) {
 		b->strength = b->strength;
+	// else target's strength decreases by applied damage
 	} else {
 		b->strength -= app_dmg;
 	}
 	
-	std::cout << "Round " << roundnum << ":" << std::endl;
+	// print results of each round
 	std::cout << a->charname << " inflicts " << atk << " damage." << std::endl;
 	std::cout << b->charname << " uses " << dfs << " defense." << std::endl;
 	std::cout << b->charname << " takes a total of " << app_dmg << " damage." << std::endl;
@@ -35,6 +49,10 @@ void round(Character *&a, Character *&b, int roundnum) {
 
 }
 
+/*********************************************
+ ** Function: main
+ ** Description: runs program
+ ********************************************/
 int main() {
 	srand(time(NULL));
 	
@@ -43,13 +61,14 @@ int main() {
 	Character *c;
 	Character *c2;
 	int roundnum = 1;
-	std::string winner;
 
+	// prompt user for two character types
 	std::cout << "Character 1: ";
 	std::cin >> option;
 	std::cout << "Character 2: ";
 	std::cin >> option2;
 
+	// assign character type depending on input integer
 	if (option == 1) {
 		c = new Barbarian();
 		c->set_name("Barbarian");
@@ -68,6 +87,7 @@ int main() {
 	} else {
 		std::cout << "Not valid options." << std::endl;
 	}
+	// do the same for option2
 	if (option2 == 1) {
 		c2 = new Barbarian();
 		c2->set_name("Barbarian");
@@ -87,23 +107,24 @@ int main() {
 		std::cout << "Not valid options." << std::endl;
 	}
 
+	// repeat rounds until one or both characters run out of hp
 	while (c->strength > 0 && c2->strength > 0) {
-		round(c, c2, roundnum);
+		std::cout << "Round " << roundnum << "--------------------" << std::endl;
+		std::cout << c->charname << " attacks " << c2->charname << std::endl;
+		round(c, c2);
+		std::cout << c2->charname << " attacks " << c->charname << std::endl;
+		round(c2, c);
 		roundnum++;
-		//round(c2, c, roundnum);
-		//roundnum++;
-		Character *temp = &c;
-		c = &c2;
-		c2 = &temp;
 	}
 
-	if (c->strength > c2->strength) {
-		winner = c->charname;
-	} else {
-		winner = c2->charname;
+	// print winner
+	if (c->strength > c2->strength && c->strength > 0) {
+		std::cout << "The winner is: " << c->charname << "!" << std::endl;
+	} else if (c->strength < c2->strength && c2->strength > 0) {
+		std::cout << "The winner is: " << c2->charname << "!" << std::endl;
+	} else if (c->strength == c2->strength || (c->strength <= 0 && c2->strength <= 0)) {
+		std::cout << "It's a draw!" << std::endl;
 	}
-
-	std::cout << "The winner is: " << winner << "!" << std::endl;
 
 
 	return 0;

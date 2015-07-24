@@ -7,6 +7,11 @@
 #include <time.h>
 #include <stdio.h>
 
+/*********************************************
+ ** Class: Character
+ ** Description: abstract parent class representing a character
+ ** Pre-Conditions: none
+ ********************************************/
 class Character {
 	public:
 		std::string charname;

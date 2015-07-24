@@ -4,6 +4,11 @@
 #include <iostream>
 #include "char.hpp"
 
+/*********************************************
+ ** Class: Shadow
+ ** Description: derived subclass representing the shadow character
+ ** Pre-Conditions: none
+ ********************************************/
 class Shadow: public Character {
 	public:
 		Shadow();

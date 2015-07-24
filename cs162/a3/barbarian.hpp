@@ -4,6 +4,11 @@
 #include <iostream>
 #include "char.hpp"
 
+/*********************************************
+ ** Class: Barbarian
+ ** Description: derived subclass representing the barbarian character
+ ** Pre-Conditions: none
+ ********************************************/
 class Barbarian: public Character {
 	public:
 		Barbarian();
