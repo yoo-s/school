@@ -1,0 +1,12 @@
+#CXX = g++\
+SRCS = list-ex-main.cpp list-ex.cpp\
+HEADERS = list-ex.hpp sorted.hpp\
+pr1: ${SRCS} ${HEADERS}\
+	${CXX} ${SRCS} -o ls\
+list-ex-main.o: list-ex-main.cpp\
+	${CXX} -c list-ex-main.cpp\
+list-ex.o: list-ex.cpp\
+	${CXX} -c list-ex.cpp\
+clean:\
+	rm -f *.o ls
+
