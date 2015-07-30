@@ -68,14 +68,14 @@ int main() {
 	char loser;
 	int roundnum = 1;
 
-	std::cout << "How many players on side 1? ";
+	std::cout << "How many players on line 1? ";
 	std::cin >> size1;
 	std::cout << "Enter player names:" << std::endl;
 	for (int i = 0; i < size1; i++) {
 		std::cin >> player;
 		line1.addBack(player);
 	}
-	std::cout << "How many players on side 2? ";
+	std::cout << "How many players on line 2? ";
 	std::cin >> size2;
 	std::cout << "Enter player names:" << std::endl;
 	for (int i = 0; i < size2; i++) {
@@ -89,23 +89,23 @@ int main() {
 	line2.display();
 	std::cout << "\n" << std::endl;
 
-	/*std::cout << "Round " << roundnum << ":" << std::endl;
-	round(line1, line2, pile, side1, side2);
-	round(line1, line2, pile, side1, side2);
-	roundnum++;*/
 	while (size1 > 0 && size2 > 0) {
 		std::cout << "Round " << roundnum << "-------------" << std::endl;
 		round(line1, line2, pile, size1, size2);
 		roundnum++;
 	}
+	int winside;
+	if (size1 > size2) {
+		winside = 1;
+	} else if (size1 < size2) {
+		winside = 2;
+	}
 
-
-	std::cout << "Final results:" << std::endl;
+	std::cout << "Final results ----------------" << std::endl;
 	std::cout << "1st place winner: " << "a" << std::endl;
 	std::cout << "2nd place winner: " << "b" << std::endl;
 	std::cout << "3rd place winner: " << "c" << std::endl;
-	std::cout << "Winning side: " << "Poppy" << std::endl;
-
+	std::cout << "Winning side: Line " << winside << std::endl;
 
 	return 0;
 
