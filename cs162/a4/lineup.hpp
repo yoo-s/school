@@ -4,6 +4,11 @@
 #include <iostream>
 #include <queue>
 
+/*********************************************
+ ** Class: Lineup
+ ** Description: queue containing input number of players
+ ** Pre-Conditions: none
+ ********************************************/
 class Lineup {
 	private:
 		class QueueNode {

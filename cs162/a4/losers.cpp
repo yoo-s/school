@@ -3,14 +3,29 @@
 #include <stdlib.h>
 #include "losers.hpp"
 
+/*********************************************
+ ** Function: Losers::push
+ ** Description: pushes element on top of stack
+ ** Parameters: char pl
+ ********************************************/
 void Losers::push(char pl) {
 	top = new PileNode(pl, top);
 }
 
+/*********************************************
+ ** Function: Losers::peek
+ ** Description: returns element on top of stack
+ ** Parameters: none
+ ********************************************/
 char Losers::peek() {
 	return top->player;
 }
 
+/*********************************************
+ ** Function: Losers::pop
+ ** Description: removes element on top of stack
+ ** Parameters: char &pl
+ ********************************************/
 void Losers::pop(char &pl) {
 	PileNode *temp;
 
@@ -25,6 +40,11 @@ void Losers::pop(char &pl) {
 	}
 }
 
+/*********************************************
+ ** Function: Losers::display
+ ** Description: displays stack's elements
+ ** Parameters: none
+ ********************************************/
 void Losers::display() const {
 	PileNode *ptr = top;
 
@@ -34,6 +54,11 @@ void Losers::display() const {
 	}
 }
 
+/*********************************************
+ ** Function: Losers::isEmpty
+ ** Description: checks if stack is empty
+ ** Parameters: none
+ ********************************************/
 bool Losers::isEmpty() const {
 	if (!top) {
 		return true;
@@ -41,17 +66,4 @@ bool Losers::isEmpty() const {
 		return false;
 	}
 }
-/*
-Losers::~Losers() {
-	ListNode *ptr = head;
 
-	while (ptr != NULL) {
-		// garbage keeps track of node to be deleted
-		ListNode *garbage = ptr;
-		// Move to next node if there is one
-		ptr = ptr->next;
-		// delete garbage node
-		delete garbage;
-	}
-}
-*/

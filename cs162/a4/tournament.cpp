@@ -1,3 +1,13 @@
+/*********************************************
+ ** Program: tournament.cpp
+ ** Author: Soo-Min Yoo
+ ** Date: 07/30/15
+ ** Description: program that runs a competition using two lineups and a loser pile 
+	through the use of stacks and queues.
+ ** Input: none
+ ** Output: none
+ ********************************************/
+
 #include <iostream>
 #include <stack>
 #include <queue>
@@ -7,6 +17,11 @@
 #include "lineup.hpp"
 #include "losers.hpp"
 
+/*********************************************
+ ** Function: round
+ ** Description: conducts rounds of combat until only one player remains.
+ ** Parameters: Lineup &line1, Lineup &line2, Losers &pile, int &s1, int &s2
+ ********************************************/
 void round(Lineup &line1, Lineup &line2, Losers &pile, int &s1, int &s2) {
 	int draw1;
 	int draw2;
@@ -56,6 +71,10 @@ void round(Lineup &line1, Lineup &line2, Losers &pile, int &s1, int &s2) {
 
 }
 
+/*********************************************
+ ** Function: main
+ ** Description: runs program
+ ********************************************/
 int main() {
 	srand(time(NULL));
 

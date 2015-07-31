@@ -4,13 +4,18 @@
 #include <iostream>
 #include <stack>
 
+/*********************************************
+ ** Class: Losers
+ ** Description: stack containing loser players
+ ** Pre-Conditions: none
+ ********************************************/
 class Losers {
 	private:
 		class PileNode {
 			friend class Losers;
 			char player;
 			PileNode *next;
-			//Constructor
+			//constructor
 			PileNode(char p1, PileNode *n1 = NULL) {
 				player = p1;
 				next = n1;

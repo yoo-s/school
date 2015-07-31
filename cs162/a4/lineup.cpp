@@ -3,11 +3,21 @@
 #include <stdlib.h>
 #include "lineup.hpp"
 
+/*********************************************
+ ** Function: Lineup::Lineup
+ ** Description: constructor
+ ** Parameters: none
+ ********************************************/
 Lineup::Lineup() {
 	front = NULL;
 	end = NULL;
 }
 
+/*********************************************
+ ** Function: Lineup::addBack
+ ** Description: adds element to the end of queue
+ ** Parameters: char pl
+ ********************************************/
 void Lineup::addBack(char pl) {
 	if (isEmpty()) {
 		front = new QueueNode(pl);
@@ -18,10 +28,20 @@ void Lineup::addBack(char pl) {
 	}
 }
 
+/*********************************************
+ ** Function: Lineup::getFront
+ ** Description: returns the element at front of queue
+ ** Parameters: none
+ ********************************************/
 char Lineup::getFront() {
 	return front->player;
 }
 
+/*********************************************
+ ** Function: Lineup::removeFront
+ ** Description: removes the element at front of queue
+ ** Parameters: char &pl
+ ********************************************/
 void Lineup::removeFront(char &pl) {
 	QueueNode *temp;
 
@@ -36,6 +56,11 @@ void Lineup::removeFront(char &pl) {
 	}
 }
 
+/*********************************************
+ ** Function: Lineup::display
+ ** Description: displays the queue's elements
+ ** Parameters: none
+ ********************************************/
 void Lineup::display() const {
 	QueueNode *ptr = front;
 
@@ -45,6 +70,11 @@ void Lineup::display() const {
 	}
 }
 
+/*********************************************
+ ** Function: Lineup::isEmpty
+ ** Description: checks if queue is empty
+ ** Parameters: none
+ ********************************************/
 bool Lineup::isEmpty() const {
 	if (front == NULL) {
 		return true;
@@ -53,6 +83,11 @@ bool Lineup::isEmpty() const {
 	}
 }
 
+/*********************************************
+ ** Function: Lineup::~Lineup
+ ** Description: destructor
+ ** Parameters: none
+ ********************************************/
 Lineup::~Lineup() {
 	char player;
 
