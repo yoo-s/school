@@ -15,13 +15,6 @@ class Piano : public Room {
 		Room* link4;
 
 	public:
-		/*void setRoom(Room* r) {
-			this->link1 = r->link1;
-			this->link2 = r->link2;
-			this->link3 = r->link3;
-			this->link4 = r->link4;
-		}*/
-
 		// Constructors
 		Piano(std::string n, std::string i);
 
@@ -31,14 +24,13 @@ class Piano : public Room {
 		std::string getInfo() {
 			return info;
 		}
-		//void links(Room* a, Room* b, Room* c, Room* d);
 
 		void printRoom() {
 			std::cout << "***" << getName() << "***" << std::endl;
 			std::cout << getInfo() << std::endl;
 		}
 		
-		void input(bool& game, Room*& lookat);
+		void input(bool& game, Room*& current, Room*& lookat);
 
 };
 

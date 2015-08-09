@@ -1,20 +1,13 @@
 #include <iostream>
 #include <string>
-#include <vector>
 #include "room.hpp"
-#include "item.hpp"
-#include "piano.hpp"
-#include "study.hpp"
 
-Piano piano("Piano Room", "You are in the piano room.");
-Study study("Study Room", "You are in the study room.");
-Room C("Room C", "You are in room C.");
-Room D("Room D", "You are in room D.");
-Room spare("Spare room", "You are in the spare room.");
+Room A("Living Room", "You are in the Living Room.");
+Room B("Study", "You are in the Study.");
+Room C("Kitchen", "You are in the Kitchen.");
+Room D("Bedroom", "You are in the Bedroom.");
+Room spare("Spare Room", "You are in the Spare Room.");
 Room* current;
-Room* lookat;
-Item key("key", "It's a key.");
-Item ball("ball", "It's a yellow ball.");
 
 void menu(bool& game) {
 	char action;
@@ -30,14 +23,11 @@ void menu(bool& game) {
 	}
 	std::cout << std::endl;
 }
-/*
+
 void input(bool& game) {
 	char action;
-	std::string item;
 	std::cout << "Enter action: ";
 	std::cin >> action;
-	//std::cin.ignore(1, '\n');			// this skips the apaces until next number
-	//std::cin >> item;
 
 	if (action == 'n') {
 		current = &B;
@@ -58,38 +48,23 @@ void input(bool& game) {
 	}
 }
 
-void takeItem(vector<Item>& inv, Item item) {
-	inv.push_back(item);
-}
-
-void useItem(vector<Item>& inv, std::string item) {
-	for (int i = 0; i < inv.size(); i++) {
-		if (inv[i].getName == item) {
-			std::cout << "You used " << inv[i].getName << "." << std::endl;
-			inv.pop_back(item);
-		}
-	}
-}
-*/
 int main() {
 	bool game = true;
-	piano.links(&study, &C, &D, &spare);
-	study.links(&piano, &C, &D, &spare);
-	C.links(&piano, &study, &D, &spare);
-	D.links(&piano, &study, &C, &spare);
-	spare.links(&piano, &study, &C, &D);
-	current = &piano;
-	std::vector<Item> inv;
-	//std::string item;
+	A.links(&B, &D, &spare, &box);
+	B.links(&A, &C, &drawer, &chest);
+	C.links(&B, &D, &fridge, &dogbed);
+	D.links(&A, &C, &base, &doggy);
+	spare.links(&A, &safe, &drawer, &birdcage);
+	current = &A;
 
 	std::cout << "------Start Game------" << std::endl;
 	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;
 	std::cout << "Enter 'm' for menu at any time to see directions on how to play.\n" << std::endl;
 
-	current->printRoom();
-	std::cout << std::endl;
 	while (game) {
-		current->input(game, current, lookat);
+		current->printRoom();
+		std::cout << std::endl;
+		input(game);
 	}
 
 	std::cout << "\n------End game------\n" << std::endl;

@@ -5,13 +5,17 @@
 Room::Room(std::string n, std::string i) {
 	name = n;
 	info = i;
+	link1 = NULL;
+	link2 = NULL;
+	link3 = NULL;
+	link4 = NULL;
 }
 
 void Room::links(Room* a, Room* b, Room* c, Room* d) {
-	link1 = a;
-	link2 = b;
-	link3 = c;
-	link4 = d;
+	this->link1 = a;
+	this->link2 = b;
+	this->link3 = c;
+	this->link4 = d;
 }
 
 void Room::menu(bool& game) {
@@ -29,7 +33,7 @@ void Room::menu(bool& game) {
 	std::cout << std::endl;
 }
 
-void Room::input(bool& game, Room*& lookat) {
+void Room::input(bool& game, Room*& current, Room*& lookat) {
 	char action;
 	std::string item;
 	std::cout << "Enter action: ";

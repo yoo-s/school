@@ -1,18 +1,20 @@
 CXX = g++
-SRCS = play.cpp room.cpp
-HEADERS = room.hpp
+SRCS = play.cpp room.cpp item.cpp piano.cpp study.cpp
+HEADERS = room.hpp item.hpp piano.hpp study.hpp
 pr1: ${SRCS} ${HEADERS}
 	${CXX} ${SRCS} -o play
 play.o: play.cpp
 	${CXX} -c play.cpp
 room.o: room.cpp
 	${CXX} -c room.cpp
-#roomA.o: roomA.cpp
-#	${CXX} -c roomA.cpp
-#roomB.o: roomB.cpp
-#	${CXX} -c roomB.cpp
+piano.o: piano.cpp
+	${CXX} -c piano.cpp
+study.o: study.cpp
+	${CXX} -c study.cpp
 #roomC.o: roomC.cpp
 #	${CXX} -c roomC.cpp
+item.o: item.cpp
+	${CXX} -c item.cpp
 clean:
 	rm -f *.o play
 

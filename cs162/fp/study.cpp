@@ -1,14 +1,14 @@
 #include <iostream>
 #include <string>
-#include "piano.hpp"
+#include "study.hpp"
 
-Piano::Piano(std::string n, std::string i) :
+Study::Study(std::string n, std::string i) :
 		Room(n, i) {
 	name = n;
 	info = i;
 }
 
-void Piano::input(bool& game, Room*& current, Room*& lookat) {
+void Study::input(bool& game, Room*& current, Room*& lookat) {
 	char action;
 	std::string item;
 	std::cout << "Enter action: ";
@@ -17,27 +17,19 @@ void Piano::input(bool& game, Room*& current, Room*& lookat) {
 	//std::cin >> item;
 	if (action == 'n') {
 		lookat = link1;
-		std::cout << "There is a piano." << std::endl;
+		std::cout << "There is a drawer desk." << std::endl;
 		std::cout << std::endl;
 	} else if (action == 'e') {
 		lookat = link2;
-		std::cout << "There is a door to the study room.\n" << std::endl;
-		std::cout << "a) Open door\nb) Back" << std::endl;
+		std::cout << "There is a wooden chest." << std::endl;
 		std::cout << std::endl;
-		std::cout << "Enter action: ";
-		std::cin >> action;
-		if (action == 'a') {
-			current = link2;
-		} else {
-			return;
-		}
 	} else if (action == 's') {
 		lookat = link3;
-		std::cout << "There is a door to the foyer." << std::endl;
+		std::cout << "There is a door to the kitchen." << std::endl;
 		std::cout << std::endl;
 	} else if (action == 'w') {
 		lookat = link4;
-		std::cout << "There is a picture frame." << std::endl;
+		std::cout << "There is a door to the piano room." << std::endl;
 		std::cout << std::endl;
 	} else if (action == 'm') {
 		menu(game);
