@@ -6,14 +6,14 @@
 #include "room.hpp"
 
 class Study : public Room {
-	private:
+/*	private:
 		std::string name;
 		std::string info;
 		Room* link1;
 		Room* link2;
 		Room* link3;
 		Room* link4;
-
+*/
 	public:
 		// Constructors
 		Study(std::string n, std::string i);

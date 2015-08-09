@@ -16,27 +16,34 @@ void Piano::input(bool& game, Room*& current, Room*& lookat) {
 	//std::cin.ignore(1, '\n');			// this skips the apaces until next number
 	//std::cin >> item;
 	if (action == 'n') {
-		lookat = link1;
+		//lookat = link1;
 		std::cout << "There is a piano." << std::endl;
 		std::cout << std::endl;
 	} else if (action == 'e') {
-		lookat = link2;
+		//lookat = link2;
 		std::cout << "There is a door to the study room.\n" << std::endl;
 		std::cout << "a) Open door\nb) Back" << std::endl;
 		std::cout << std::endl;
 		std::cout << "Enter action: ";
 		std::cin >> action;
 		if (action == 'a') {
-			current = link2;
+			current = north;
+			std::cout << "\n";
+			current->printRoom();
+			std::cout << "\n";
+			return;
 		} else {
+			std::cout << "\n";
+			current->printRoom();
+			std::cout << "\n";
 			return;
 		}
 	} else if (action == 's') {
-		lookat = link3;
+		//lookat = link3;
 		std::cout << "There is a door to the foyer." << std::endl;
 		std::cout << std::endl;
 	} else if (action == 'w') {
-		lookat = link4;
+		//lookat = link4;
 		std::cout << "There is a picture frame." << std::endl;
 		std::cout << std::endl;
 	} else if (action == 'm') {

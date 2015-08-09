@@ -5,13 +5,13 @@
 #include <string>
 
 class Room {
-	private:
+	protected:
 		std::string name;
 		std::string info;
-		Room* link1;
-		Room* link2;
-		Room* link3;
-		Room* link4;
+		Room* north;
+		Room* east;
+		Room* south;
+		Room* west;
 
 	public:
 		// Constructors
@@ -24,6 +24,10 @@ class Room {
 			return info;
 		}
 		virtual void links(Room* a, Room* b, Room* c, Room* d);
+		virtual Room* getN();
+		virtual Room* getE();
+		virtual Room* getS();
+		virtual Room* getW();
 
 		void printRoom() {
 			std::cout << "***" << getName() << "***" << std::endl;
