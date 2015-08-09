@@ -37,6 +37,9 @@ class Room {
 			std::cout << getInfo() << std::endl;
 		}
 
+		void menu(bool& game);
+		void input(bool& game, Room*& lookat);
+
 };
 
 #endif /* ROOM_HPP_ */

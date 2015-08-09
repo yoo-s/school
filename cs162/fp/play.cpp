@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "room.hpp"
+#include "item.hpp"
+#include "piano.hpp"
 
 Room A("Room A", "You are in room A.");
 Room B("Room B", "You are in room B.");
@@ -8,6 +11,9 @@ Room C("Room C", "You are in room C.");
 Room D("Room D", "You are in room D.");
 Room spare("Spare room", "You are in the spare room.");
 Room* current;
+Room* lookat;
+Item key("key", "It's a key.");
+Item ball("ball", "It's a yellow ball.");
 
 void menu(bool& game) {
 	char action;
@@ -21,12 +27,16 @@ void menu(bool& game) {
 	} else {
 		game = true;
 	}
+	std::cout << std::endl;
 }
 
 void input(bool& game) {
 	char action;
+	std::string item;
 	std::cout << "Enter action: ";
 	std::cin >> action;
+	//std::cin.ignore(1, '\n');			// this skips the apaces until next number
+	//std::cin >> item;
 
 	if (action == 'n') {
 		current = &B;
@@ -43,10 +53,23 @@ void input(bool& game) {
 	} else if (action == 'm') {
 		menu(game);
 	} else {
-		std::cout << "Invalid action." << std::endl;
+		std::cout << "Invalid action.\n" << std::endl;
 	}
 }
+/*
+void takeItem(vector<Item>& inv, Item item) {
+	inv.push_back(item);
+}
 
+void useItem(vector<Item>& inv, std::string item) {
+	for (int i = 0; i < inv.size(); i++) {
+		if (inv[i].getName == item) {
+			std::cout << "You used " << inv[i].getName << "." << std::endl;
+			inv.pop_back(item);
+		}
+	}
+}
+*/
 int main() {
 	bool game = true;
 	A.links(&B, &C, &D, &spare);
@@ -55,6 +78,8 @@ int main() {
 	D.links(&A, &B, &C, &spare);
 	spare.links(&A, &B, &C, &D);
 	current = &A;
+	std::vector<Item> inv;
+	//std::string item;
 
 	std::cout << "------Start Game------" << std::endl;
 	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;
@@ -63,7 +88,7 @@ int main() {
 	while (game) {
 		current->printRoom();
 		std::cout << std::endl;
-		input(game);
+		current->input(game, lookat);
 	}
 
 	std::cout << "\n------End game------\n" << std::endl;
