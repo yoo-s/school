@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "room.hpp"
 #include "item.hpp"
 #include "piano.hpp"
@@ -57,20 +58,20 @@ void input(bool& game) {
 		std::cout << "Invalid action.\n" << std::endl;
 	}
 }
-
-void takeItem(vector<Item>& inv, Item item) {
+*/
+void takeItem(std::vector<Item>& inv, Item* item) {
 	inv.push_back(item);
 }
 
-void useItem(vector<Item>& inv, Item item) {
+void useItem(std::vector<Item>& inv, Item* item) {
 	for (int i = 0; i < inv.size(); i++) {
-		if (inv[i].getName == "key") {
-			std::cout << "You used " << inv[i].getName << "." << std::endl;
+		if (inv[i]->getName == "key") {
+			std::cout << "You used " << inv[i]->getName << "." << std::endl;
 			inv.pop_back(item);
 		}
 	}
 }
-*/
+
 int main() {
 	bool game = true;
 	piano->links(study, C, D, spare);
@@ -81,6 +82,12 @@ int main() {
 	//current = piano;
 	std::vector<Item> inv;
 	//std::string item;
+	takeItem(inv, key);
+	takeItem(inv, ball);
+	std::cout << "\nInventory:\n";
+	for (int i = 0; i < inv.size(); i++) {
+		std::cout << inv[i]->getName() << std::endl;
+	}
 
 	std::cout << "------Start Game------" << std::endl;
 	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;
