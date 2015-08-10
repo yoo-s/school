@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
+#include "item.hpp"
 
 class Room {
 	protected:
@@ -16,6 +19,8 @@ class Room {
 	public:
 		// Constructors
 		Room(std::string n, std::string i);
+		
+		std::vector<Item*> items;
 
 		std::string getName() {
 			return name;
@@ -35,7 +40,12 @@ class Room {
 		}
 
 		virtual void menu(bool& game);
-		virtual void input(bool& game, Room*& current, Room*& lookat);
+		virtual void setItem(Item* item);
+		virtual void invPrint(std::vector<Item*> inv);
+		virtual void addItem(std::vector<Item*>& inv, Item* item);
+		virtual void dropItem(std::vector<Item*>& inv, Item* item);
+		virtual bool isHere(std::vector<Item*> inv, std::string itemName);
+		virtual void input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& lookat);
 
 };
 

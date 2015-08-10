@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 class Item {
 	private:
@@ -23,7 +25,6 @@ class Item {
 		void printItem() {
 			std::cout << getInfo() << std::endl;
 		}
-
 };
 
 #endif /* ITEM_HPP_ */

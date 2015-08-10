@@ -30,7 +30,7 @@ class Piano : public Room {
 			std::cout << getInfo() << std::endl;
 		}
 		
-		void input(bool& game, Room*& current, Room*& lookat);
+		void input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& lookat);
 
 };
 

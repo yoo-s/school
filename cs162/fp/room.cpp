@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <algorithm>
 #include "room.hpp"
 
 Room::Room(std::string n, std::string i) {
@@ -39,6 +41,7 @@ void Room::menu(bool& game) {
 
 	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;
 	std::cout << "Enter any other rooms by moving in the room's direction with the commands 'n', 's', 'e', or 'w' (w/o quotes).\n" << std::endl;
+	std::cout << "You can see items in your inventory by entering 'i' at any time.\n";
 	std::cout << "Quit game (q) or back to playing game (any other char)? ";
 	std::cin >> action;
 	if (action == 'q') {
@@ -49,7 +52,36 @@ void Room::menu(bool& game) {
 	std::cout << std::endl;
 }
 
-void Room::input(bool& game, Room*& current, Room*& lookat) {
+void Room::setItem(Item* item) {
+	items.push_back(item);
+}
+
+void Room::invPrint(std::vector<Item*> inv) {
+	std::cout << "\nInventory:\n";
+	for (int i = 0; i < inv.size(); i++) {
+		std::cout << inv[i]->getName() << std::endl;
+	}
+}
+
+void Room::addItem(std::vector<Item*>& inv, Item* item) {
+	inv.push_back(item);
+}
+
+void Room::dropItem(std::vector<Item*>& inv, Item* item) {
+	inv.erase(std::remove(inv.begin(), inv.end(), item), inv.end());
+}
+
+bool Room::isHere(std::vector<Item*> inv, std::string itemName) {
+	for (int i = 0; i < inv.size(); i++) {
+		if (inv[i]->getName() == itemName) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+void Room::input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& lookat) {
 	char action;
 	std::string item;
 	std::cout << "Enter action: ";
@@ -71,6 +103,8 @@ void Room::input(bool& game, Room*& current, Room*& lookat) {
 		std::cout << std::endl;
 	} else if (action == 'm') {
 		menu(game);
+	} else if (action == 'i') {
+		invPrint(inv);
 	} else {
 		std::cout << "Invalid action.\n" << std::endl;
 	}

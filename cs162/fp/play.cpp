@@ -58,7 +58,7 @@ void input(bool& game) {
 		std::cout << "Invalid action.\n" << std::endl;
 	}
 }
-*/
+*//*
 void takeItem(std::vector<Item>& inv, Item* item) {
 	inv.push_back(item);
 }
@@ -71,23 +71,33 @@ void useItem(std::vector<Item>& inv, Item* item) {
 		}
 	}
 }
-
-int main() {
-	bool game = true;
-	piano->links(study, C, D, spare);
-	study->links(piano, C, D, spare);
-	C->links(piano, study, D, spare);
-	D->links(piano, study, C, spare);
-	spare->links(piano, study, C, D);
-	//current = piano;
-	std::vector<Item> inv;
-	//std::string item;
-	takeItem(inv, key);
-	takeItem(inv, ball);
+*/
+/*
+void invPrint(std::vector<Item*> inv) {
 	std::cout << "\nInventory:\n";
 	for (int i = 0; i < inv.size(); i++) {
 		std::cout << inv[i]->getName() << std::endl;
 	}
+}
+
+void Item::addItem(std::vector<Item*>& inv, Item* item) {
+	inv.push_back(item);
+}
+
+void Item::dropItem(std::vector<Item*>& inv, Item* item) {
+	delete inv[item];
+}*/
+int main() {
+	bool game = true;
+	piano->links(study, C, D, spare);
+	piano->setItem(key);
+	piano->setItem(ball);
+	study->links(piano, C, D, spare);
+	C->links(piano, study, D, spare);
+	D->links(piano, study, C, spare);
+	spare->links(piano, study, C, D);
+	std::vector<Item*> inv;
+	current->addItem(inv, key);
 
 	std::cout << "------Start Game------" << std::endl;
 	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;
@@ -95,7 +105,7 @@ int main() {
 	current->printRoom();
 	std::cout << std::endl;
 	while (game) {
-		current->input(game, current, lookat);
+		current->input(game, inv, current, lookat);
 	}
 
 	std::cout << "\n------End game------\n" << std::endl;

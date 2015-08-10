@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "piano.hpp"
+#include "item.hpp"
 
 Piano::Piano(std::string n, std::string i) :
 		Room(n, i) {
@@ -8,7 +9,7 @@ Piano::Piano(std::string n, std::string i) :
 	info = i;
 }
 
-void Piano::input(bool& game, Room*& current, Room*& lookat) {
+void Piano::input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& lookat) {
 	char action;
 	std::string item;
 	std::cout << "Enter action: ";
@@ -27,16 +28,19 @@ void Piano::input(bool& game, Room*& current, Room*& lookat) {
 		std::cout << "Enter action: ";
 		std::cin >> action;
 		if (action == 'a') {
-			current = north;
+			if (current->isHere(inv, "key")) {
+				std::cout << "You unlock the door and go in.\n";
+				current->dropItem(key);
 			std::cout << "\n";
 			current->printRoom();
 			std::cout << "\n";
 			return;
-		} else {
+			} else {
 			std::cout << "\n";
 			current->printRoom();
 			std::cout << "\n";
 			return;
+			}
 		}
 	} else if (action == 's') {
 		//lookat = link3;
