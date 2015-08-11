@@ -1,13 +1,14 @@
 #include <iostream>
 #include <string>
 #include "item.hpp"
+#include "inv.hpp"
 
 Inventory::Inventory() :
 	woodenkey(false),
 	velvetkey(false),
 	dogfood(false),
 	bowl(false),
-	glassflower(false),
+	flower(false),
 	goldkey(false) {}
 
 /*void Inventory::setItem(Item* item) {

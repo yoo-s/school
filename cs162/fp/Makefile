@@ -1,7 +1,6 @@
 CXX = g++
 SRCS = play.cpp inv.cpp room.cpp item.cpp piano.cpp study.cpp
-HEADERS = inv.hpp room.hpp item.hpp piano.hpp study.hpp
-pr1: ${SRCS} ${HEADERS}
+pr1: ${SRCS}
 	${CXX} ${SRCS} -o play
 play.o: play.cpp
 	${CXX} -c play.cpp

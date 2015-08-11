@@ -15,7 +15,7 @@ class Inventory {
 		bool velvetkey;
 		bool dogfood;
 		bool bowl;
-		bool glassflower;
+		bool flower;
 		bool goldkey;
 
 		//void setItem(Item* item);
