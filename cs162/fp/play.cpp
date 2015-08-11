@@ -21,10 +21,8 @@ void gameLoop(bool& game, Room*& current, Inventory inv) {
 		std::cout << "Enter action: ";
 		std::cin >> action;
 
-		std::cout << "bleeeehh";
 		//process
 		current->go(game, action, current, inv);
-		std::cout << "bleeeehh";
 }
 
 int main() {
@@ -54,8 +52,6 @@ int main() {
 	
 	std::vector<Item*> in;
 
-	inv.addItem(in, woodkey);
-	inv.addItem(in, velvkey);
 	inv.print();
 	std::cout << "------Start Game------" << std::endl;
 	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;

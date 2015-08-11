@@ -9,7 +9,7 @@ Piano::Piano() : Room() {}
 void Piano::options() {
 
 	std::cout << "***Piano Room***\n" << std::endl;
-	std::cout << "You are in the piano room. You see a lovely piano, and a picture frame hanging on the wall." << std::endl;
+	std::cout << "You are in the piano room. You see a lovely piano, and a picture frame hanging on the wall.\n" << std::endl;
 	
 	std::cout << "What would you like to do?" << std::endl;
 	std::cout << "a) Play the piano" << std::endl;
@@ -38,6 +38,7 @@ void Piano::go(bool& game, char action, Room*& current, Inventory inv) {
 			if (inv.goldkey = true) {
 				std::cout << "You open the hidden door with the golden key and escape!\nCONGRATULATIONS!" << std::endl;
 				game = false;
+				return;
 			} else {
 				std::cout << "The door is locked." << std::endl;
 				return;
@@ -58,7 +59,7 @@ void Piano::go(bool& game, char action, Room*& current, Inventory inv) {
 		std::cin >> notes;
 		if (notes == "woof") {
 			std::cout << "The door unlocks and you go into the foyer.\n";
-			current = getE();
+			current = getS();
 			return;
 		} else {
 			std::cout << "The door remains locked." << std::endl;
@@ -71,18 +72,21 @@ void Piano::go(bool& game, char action, Room*& current, Inventory inv) {
 		std::cin >> num;
 		if (num = 617) {
 			std::cout << "The door unlocks and you go into the kitchen.\n";
-			current = getS();
+			current = getE();
 			return;
 		} else {
 			std::cout << "The door remains locked." << std::endl;
 			return;
 		}
+	// go to spare room
 	} else if (action == 'e') {
 		std::cout << "You go into the spare room.\n";
 		current = getW();
 		return;
+	// menu
 	} else if (action == 'm') {
 		menu(game);
+	// inventory
 	} else if (action == 'i') {
 		inv.print();
 	}
