@@ -3,10 +3,11 @@
 #include <vector>
 #include <algorithm>
 #include "room.hpp"
+#include "inv.hpp"
 #include "item.hpp"
 #include "piano.hpp"
 #include "study.hpp"
-
+/*
 Piano* piano = new Piano("Piano Room", "You are in the piano room.");
 Study* study = new Study("Study Room", "You are in the study room.");
 Room* C = new Room("Room C", "You are in room C.");
@@ -14,8 +15,7 @@ Room* D = new Room("Room D", "You are in room D.");
 Room* spare = new Room("Spare room", "You are in the spare room.");
 Room* current = piano;
 Room* lookat;
-Item* key = new Item("key", "It's a key.");
-Item* ball = new Item("ball", "It's a yellow ball.");
+*/
 
 void menu(bool& game) {
 	char action;
@@ -31,73 +31,47 @@ void menu(bool& game) {
 	}
 	std::cout << std::endl;
 }
-/*
-void input(bool& game) {
-	char action;
-	std::string item;
-	std::cout << "Enter action: ";
-	std::cin >> action;
-	//std::cin.ignore(1, '\n');			// this skips the apaces until next number
-	//std::cin >> item;
 
-	if (action == 'n') {
-		current = &B;
-		std::cout << std::endl;
-	} else if (action == 'e') {
-		current = &C;
-		std::cout << std::endl;
-	} else if (action == 's') {
-		current = &D;
-		std::cout << std::endl;
-	} else if (action == 'w') {
-		current = &spare;
-		std::cout << std::endl;
-	} else if (action == 'm') {
-		menu(game);
-	} else {
-		std::cout << "Invalid action.\n" << std::endl;
-	}
-}
-*//*
-void takeItem(std::vector<Item>& inv, Item* item) {
-	inv.push_back(item);
+void gameLoop(Room*& current) {
+		char action;
+
+		//present user a set of choices for current room
+		current->options();
+
+		//get user's menu option
+		std::cin >> action;
+
+		//process
+		current->go(action, current);
 }
 
-void useItem(std::vector<Item>& inv, Item* item) {
-	for (int i = 0; i < inv.size(); i++) {
-		if (inv[i]->getName == "key") {
-			std::cout << "You used " << inv[i]->getName << "." << std::endl;
-			inv.pop_back(item);
-		}
-	}
-}
-*/
-/*
-void invPrint(std::vector<Item*> inv) {
-	std::cout << "\nInventory:\n";
-	for (int i = 0; i < inv.size(); i++) {
-		std::cout << inv[i]->getName() << std::endl;
-	}
-}
-
-void Item::addItem(std::vector<Item*>& inv, Item* item) {
-	inv.push_back(item);
-}
-
-void Item::dropItem(std::vector<Item*>& inv, Item* item) {
-	delete inv[item];
-}*/
 int main() {
 	bool game = true;
-	piano->links(study, C, D, spare);
-	piano->setItem(key);
-	piano->setItem(ball);
+
+	Piano* piano;
+	Study* study;
+	Piano* C;
+	Study* D;
+	Piano* spare;
+	
+	Item key("Wooden Key");
+	Item ball("ball");
+	Item* wkey = &key;
+	Item* bb = &ball;
+	
+	Room* current = piano;
+
+	piano->links(C, study, D, spare);
+	//piano->setItem(key);
+	//piano->setItem(ball);
 	study->links(piano, C, D, spare);
-	C->links(piano, study, D, spare);
-	D->links(piano, study, C, spare);
-	spare->links(piano, study, C, D);
-	std::vector<Item*> inv;
-	current->addItem(inv, key);
+	//C->links(piano, study, D, spare);
+	//D->links(piano, study, C, spare);
+	//spare->links(piano, study, C, D);
+	std::vector<Item*> in;
+	inv.addItem(in, wkey);
+	inv.addItem(in, bb);
+	inv.print(in);
 
 	std::cout << "------Start Game------" << std::endl;
 	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;
@@ -105,7 +79,8 @@ int main() {
 	current->printRoom();
 	std::cout << std::endl;
 	while (game) {
-		current->input(game, inv, current, lookat);
+		gameLoop(current);
+		//current->input(game, inv, current, lookat);
 	}
 
 	std::cout << "\n------End game------\n" << std::endl;

@@ -4,9 +4,10 @@
 #include <algorithm>
 #include "room.hpp"
 
-Room::Room(std::string n, std::string i) {
-	name = n;
-	info = i;
+Room::Room() {
+//Room::Room(std::string n, std::string i) {
+//	name = n;
+//	info = i;
 	north = NULL;
 	east = NULL;
 	south = NULL;
@@ -36,6 +37,12 @@ Room* Room::getW() {
 	return west;
 }
 
+void Room::options() {
+}
+
+void Room::go(char action, Room*& current) {
+}
+
 void Room::menu(bool& game) {
 	char action;
 
@@ -52,36 +59,7 @@ void Room::menu(bool& game) {
 	std::cout << std::endl;
 }
 
-void Room::setItem(Item* item) {
-	items.push_back(item);
-}
-
-void Room::invPrint(std::vector<Item*> inv) {
-	std::cout << "\nInventory:\n";
-	for (int i = 0; i < inv.size(); i++) {
-		std::cout << inv[i]->getName() << std::endl;
-	}
-}
-
-void Room::addItem(std::vector<Item*>& inv, Item* item) {
-	inv.push_back(item);
-}
-
-void Room::dropItem(std::vector<Item*>& inv, Item* item) {
-	inv.erase(std::remove(inv.begin(), inv.end(), item), inv.end());
-}
-
-bool Room::isHere(std::vector<Item*> inv, std::string itemName) {
-	for (int i = 0; i < inv.size(); i++) {
-		if (inv[i]->getName() == itemName) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-}
-
-void Room::input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& lookat) {
+/*void Room::input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& lookat) {
 	char action;
 	std::string item;
 	std::cout << "Enter action: ";
@@ -90,16 +68,12 @@ void Room::input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& loo
 	//std::cin >> item;
 
 	if (action == 'n') {
-		//lookat = link1;
 		std::cout << std::endl;
 	} else if (action == 'e') {
-		//lookat = link2;
 		std::cout << std::endl;
 	} else if (action == 's') {
-		//lookat = link3;
 		std::cout << std::endl;
 	} else if (action == 'w') {
-		//lookat = link4;
 		std::cout << std::endl;
 	} else if (action == 'm') {
 		menu(game);
@@ -108,4 +82,4 @@ void Room::input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& loo
 	} else {
 		std::cout << "Invalid action.\n" << std::endl;
 	}
-}
+}*/

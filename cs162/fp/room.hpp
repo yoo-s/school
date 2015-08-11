@@ -17,9 +17,11 @@ class Room {
 		Room* west;
 
 	public:
+
 		// Constructors
-		Room(std::string n, std::string i);
-		
+		//Room(std::string n, std::string i);
+		Room();
+
 		std::vector<Item*> items;
 
 		std::string getName() {
@@ -33,19 +35,18 @@ class Room {
 		virtual Room* getE();
 		virtual Room* getS();
 		virtual Room* getW();
-
+		
 		void printRoom() {
 			std::cout << "***" << getName() << "***" << std::endl;
 			std::cout << getInfo() << std::endl;
 		}
 
+		virtual void options();
+		virtual void go(char action, Room*& current);
+
 		virtual void menu(bool& game);
-		virtual void setItem(Item* item);
-		virtual void invPrint(std::vector<Item*> inv);
-		virtual void addItem(std::vector<Item*>& inv, Item* item);
-		virtual void dropItem(std::vector<Item*>& inv, Item* item);
-		virtual bool isHere(std::vector<Item*> inv, std::string itemName);
-		virtual void input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& lookat);
+
+//		virtual void input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& lookat);
 
 };
 

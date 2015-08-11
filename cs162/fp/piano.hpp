@@ -6,14 +6,22 @@
 #include "room.hpp"
 
 class Piano : public Room {
-/*	private:
+	public:
+
+		Piano();
+
+		void options();
+		void go(char action, Room*& current);
+
+/*class Piano : public Room {
+	private:
 		std::string name;
 		std::string info;
 		Room* link1;
 		Room* link2;
 		Room* link3;
 		Room* link4;
-*/
+
 	public:
 		// Constructors
 		Piano(std::string n, std::string i);
@@ -31,7 +39,7 @@ class Piano : public Room {
 		}
 		
 		void input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& lookat);
-
+*/
 };
 
 #endif /* PIANO_HPP_ */
