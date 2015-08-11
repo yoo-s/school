@@ -15,10 +15,25 @@ Inventory::Inventory() :
 	inv.push_back(item);
 }*/
 
-void Inventory::print(std::vector<Item*> in) {
+void Inventory::print() {
 	std::cout << "\nInventory:\n";
-	for (int i = 0; i < in.size(); i++) {
-		std::cout << in[i]->getName() << std::endl;
+	if (woodenkey = true) {
+		std::cout << "Wooden Key" << std::endl;
+	}
+	if (velvetkey = true) {
+		std::cout << "Velvet Key" << std::endl;
+	}
+	if (dogfood = true) {
+		std::cout << "Dog Food" << std::endl;
+	}
+	if (bowl = true) {
+		std::cout << "Food Bowl" << std::endl;
+	}
+	if (flower = true) {
+		std::cout << "Glass Flower" << std::endl;
+	}
+	if (goldkey = true) {
+		std::cout << "Golden Key" << std::endl;
 	}
 }
 

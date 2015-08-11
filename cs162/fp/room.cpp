@@ -40,7 +40,12 @@ Room* Room::getW() {
 void Room::options() {
 }
 
-void Room::go(char action, Room*& current, Inventory inv) {
+void Room::go(bool& game, char action, Room*& current, Inventory& inv) {
+	if (action == 'm') {
+		menu(game);
+	} else if (action == 'i') {
+		inv.print();
+	}
 }
 
 void Room::menu(bool& game) {
@@ -59,27 +64,3 @@ void Room::menu(bool& game) {
 	std::cout << std::endl;
 }
 
-/*void Room::input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& lookat) {
-	char action;
-	std::string item;
-	std::cout << "Enter action: ";
-	std::cin >> action;
-	//std::cin.ignore(1, '\n');			// this skips the apaces until next number
-	//std::cin >> item;
-
-	if (action == 'n') {
-		std::cout << std::endl;
-	} else if (action == 'e') {
-		std::cout << std::endl;
-	} else if (action == 's') {
-		std::cout << std::endl;
-	} else if (action == 'w') {
-		std::cout << std::endl;
-	} else if (action == 'm') {
-		menu(game);
-	} else if (action == 'i') {
-		invPrint(inv);
-	} else {
-		std::cout << "Invalid action.\n" << std::endl;
-	}
-}*/

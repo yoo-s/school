@@ -11,7 +11,7 @@ class Foyer : public Room {
 		Foyer();
 
 		void options();
-		void go(char action, Room*& current, Inventory inv);
+		void go(bool& game, char action, Room*& current, Inventory inv);
 
 };
 

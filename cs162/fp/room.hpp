@@ -10,8 +10,6 @@
 
 class Room {
 	protected:
-		std::string name = "Piano Room";
-		std::string info = "You are in the piano room.";
 		Room* north;
 		Room* east;
 		Room* south;
@@ -22,36 +20,16 @@ class Room {
 		// Constructors
 		Room();
 
-		virtual bool woodenkey;
-		virtual bool velvetkey;
-		virtual bool dogfood;
-		virtual bool bowl;
-		virtual bool flower;
-		virtual bool goldkey;
-
-		std::string getName() {
-			return name;
-		}
-		std::string getInfo() {
-			return info;
-		}
 		virtual void links(Room* a, Room* b, Room* c, Room* d);
 		virtual Room* getN();
 		virtual Room* getE();
 		virtual Room* getS();
 		virtual Room* getW();
-		
-		void printRoom() {
-			std::cout << "***" << getName() << "***" << std::endl;
-			std::cout << getInfo() << std::endl;
-		}
 
 		virtual void options();
-		virtual void go(char action, Room*& current, Inventory inv);
+		virtual void go(bool& game, char action, Room*& current, Inventory& inv);
 
 		virtual void menu(bool& game);
-
-//		virtual void input(bool& game, std::vector<Item*>& inv, Room*& current, Room*& lookat);
 
 };
 

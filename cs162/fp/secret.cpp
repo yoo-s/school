@@ -7,8 +7,8 @@
 Secret::Secret() : Room() {}
 
 void Secret::options() {
-	std::cout << "***Piano Room***\n" << std::endl;
-	std::cout << "You are in the piano room." << std::endl;
+	std::cout << "***Spare Room***\n" << std::endl;
+	std::cout << "You are in the spare room." << std::endl;
 	
 	std::cout << "Where would you like to go?" << std::endl;
 	std::cout << "n) North" << std::endl;
@@ -17,7 +17,7 @@ void Secret::options() {
 	std::cout << "w) West" << std::endl;
 }
 
-void Secret::go(char action, Room*& current, Inventory inv) {
+void Secret::go(bool& game, char action, Room*& current, Inventory inv) {
 	char open;
 
 	if (action == 'n') {
@@ -31,8 +31,6 @@ void Secret::go(char action, Room*& current, Inventory inv) {
 		if (open == 'a') {
 				std::cout << "\n";
 				current = current->getE();
-				current->printRoom();
-				std::cout << "\n";
 				return;
 		}
 	} else if (action == 's') {
@@ -40,7 +38,7 @@ void Secret::go(char action, Room*& current, Inventory inv) {
 	} else if (action == 'w') {
 		std::cout << "You see a large picture frame hung on the wall.\n";
 	} else if (action == 'm') {
-		menu();
+		menu(game);
 	} else if (action == 'i') {
 		inv.print();
 	}

@@ -7,33 +7,24 @@
 #include "item.hpp"
 #include "piano.hpp"
 #include "study.hpp"
+#include "kitchen.hpp"
+#include "foyer.hpp"
+#include "secret.hpp"
 
-void menu(bool& game) {
-	char action;
-
-	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;
-	std::cout << "Enter any other rooms by moving in the room's direction with the commands 'n', 's', 'e', or 'w' (w/o quotes).\n" << std::endl;
-	std::cout << "Quit game (q) or back to playing game (any other char)? ";
-	std::cin >> action;
-	if (action == 'q') {
-		game = false;
-	} else {
-		game = true;
-	}
-	std::cout << std::endl;
-}
-
-void gameLoop(Room*& current, Inventory inv) {
+void gameLoop(bool& game, Room*& current, Inventory inv) {
 		char action;
 
 		//present user a set of choices for current room
 		current->options();
 
 		//get user's menu option
+		std::cout << "Enter action: ";
 		std::cin >> action;
 
+		std::cout << "bleeeehh";
 		//process
-		current->go(action, current, inv);
+		current->go(game, action, current, inv);
+		std::cout << "bleeeehh";
 }
 
 int main() {
@@ -55,7 +46,7 @@ int main() {
 	
 	Room* current = piano;
 
-	piano->links(study, kitchen foyer, secret);
+	piano->links(study, kitchen, foyer, secret);
 	study->links(piano, kitchen, foyer, secret);
 	kitchen->links(piano, study, foyer, secret);
 	foyer->links(piano, study, kitchen, secret);
@@ -63,16 +54,15 @@ int main() {
 	
 	std::vector<Item*> in;
 
-	inv.addItem(in, key);
-	inv.addItem(in, ball);
-	inv.print(in);
+	inv.addItem(in, woodkey);
+	inv.addItem(in, velvkey);
+	inv.print();
 	std::cout << "------Start Game------" << std::endl;
 	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;
 	std::cout << "Enter 'm' for menu at any time to see directions on how to play.\n" << std::endl;
-	current->printRoom();
 	std::cout << std::endl;
 	while (game) {
-		gameLoop(current, inv);
+		gameLoop(game, current, inv);
 	}
 
 	std::cout << "\n------End game------\n" << std::endl;

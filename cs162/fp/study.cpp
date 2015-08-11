@@ -7,6 +7,7 @@ Study::Study() : Room() {}
 
 void Study::options() {
 	std::cout << "***Study Room***\n";
+	std::cout << "You are in the study room." << std::endl;
 	std::cout << std::endl;
 	std::cout << "Where would you like to go? \n";
 	std::cout << "n) North\n";
@@ -15,7 +16,7 @@ void Study::options() {
 	std::cout << "w) West\n";
 }
 
-void Study::go(char action, Room*& current, Inventory inv) {
+void Study::go(bool& game, char action, Room*& current, Inventory inv) {
 	char open;
 
 	if (action == 'n') {
@@ -29,13 +30,8 @@ void Study::go(char action, Room*& current, Inventory inv) {
 				std::cout << "You open the wooden chest with the wooden key.\n";
 				std::cout << "There's a notepad inside that reads, '9+4*152'.\n";
 				inv.woodenkey = false;
-				std::cout << "\n";
-				current->printRoom();
-				std::cout << "\n";
 				return;
 			} else {
-				std::cout << "\n";
-				current->printRoom();
 				std::cout << "\n";
 				return;
 			}

@@ -7,8 +7,8 @@
 Foyer::Foyer() : Room() {}
 
 void Foyer::options() {
-	std::cout << "***Piano Room***\n" << std::endl;
-	std::cout << "You are in the piano room." << std::endl;
+	std::cout << "***Foyer***\n" << std::endl;
+	std::cout << "You are in the foyer." << std::endl;
 	
 	std::cout << "Where would you like to go?" << std::endl;
 	std::cout << "n) North" << std::endl;
@@ -17,7 +17,7 @@ void Foyer::options() {
 	std::cout << "w) West" << std::endl;
 }
 
-void Foyer::go(char action, Room*& current, Inventory inv) {
+void Foyer::go(bool& game, char action, Room*& current, Inventory inv) {
 	char open;
 
 	if (action == 'n') {
@@ -31,8 +31,6 @@ void Foyer::go(char action, Room*& current, Inventory inv) {
 		if (open == 'a') {
 				std::cout << "\n";
 				current = current->getE();
-				current->printRoom();
-				std::cout << "\n";
 				return;
 		}
 	} else if (action == 's') {

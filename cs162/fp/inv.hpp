@@ -19,7 +19,7 @@ class Inventory {
 		bool goldkey;
 
 		//void setItem(Item* item);
-		void print(std::vector<Item*> in);
+		void print();
 		void addItem(std::vector<Item*>& in, Item* item);
 		void dropItem(std::vector<Item*>& in, Item* item);
 };

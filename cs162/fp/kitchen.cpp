@@ -7,8 +7,8 @@
 Kitchen::Kitchen() : Room() {}
 
 void Kitchen::options() {
-	std::cout << "***Piano Room***\n" << std::endl;
-	std::cout << "You are in the piano room." << std::endl;
+	std::cout << "***Kitchen***\n" << std::endl;
+	std::cout << "You are in the kitchen." << std::endl;
 	
 	std::cout << "Where would you like to go?" << std::endl;
 	std::cout << "n) North" << std::endl;
@@ -17,7 +17,7 @@ void Kitchen::options() {
 	std::cout << "w) West" << std::endl;
 }
 
-void Kitchen::go(char action, Room*& current, Inventory inv) {
+void Kitchen::go(bool& game, char action, Room*& current, Inventory inv) {
 	char open;
 
 	if (action == 'n') {
@@ -31,8 +31,6 @@ void Kitchen::go(char action, Room*& current, Inventory inv) {
 		if (open == 'a') {
 				std::cout << "\n";
 				current = current->getE();
-				current->printRoom();
-				std::cout << "\n";
 				return;
 		}
 	} else if (action == 's') {
