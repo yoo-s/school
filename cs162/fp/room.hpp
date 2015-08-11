@@ -10,8 +10,8 @@
 
 class Room {
 	protected:
-		std::string name;
-		std::string info;
+		std::string name = "Piano Room";
+		std::string info = "You are in the piano room.";
 		Room* north;
 		Room* east;
 		Room* south;
@@ -20,10 +20,14 @@ class Room {
 	public:
 
 		// Constructors
-		//Room(std::string n, std::string i);
 		Room();
 
-		std::vector<Item*> items;
+		virtual bool woodenkey;
+		virtual bool velvetkey;
+		virtual bool dogfood;
+		virtual bool bowl;
+		virtual bool flower;
+		virtual bool goldkey;
 
 		std::string getName() {
 			return name;

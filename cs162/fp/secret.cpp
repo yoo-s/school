@@ -1,12 +1,12 @@
 #include <iostream>
 #include <string>
-#include "piano.hpp"
+#include "secret.hpp"
 #include "inv.hpp"
 #include "item.hpp"
 
-Piano::Piano() : Room() {}
+Secret::Secret() : Room() {}
 
-void Piano::options() {
+void Secret::options() {
 	std::cout << "***Piano Room***\n" << std::endl;
 	std::cout << "You are in the piano room." << std::endl;
 	
@@ -17,7 +17,7 @@ void Piano::options() {
 	std::cout << "w) West" << std::endl;
 }
 
-void Piano::go(char action, Room*& current, Inventory inv) {
+void Secret::go(char action, Room*& current, Inventory inv) {
 	char open;
 
 	if (action == 'n') {

@@ -7,15 +7,6 @@
 #include "item.hpp"
 #include "piano.hpp"
 #include "study.hpp"
-/*
-Piano* piano = new Piano("Piano Room", "You are in the piano room.");
-Study* study = new Study("Study Room", "You are in the study room.");
-Room* C = new Room("Room C", "You are in room C.");
-Room* D = new Room("Room D", "You are in room D.");
-Room* spare = new Room("Spare room", "You are in the spare room.");
-Room* current = piano;
-Room* lookat;
-*/
 
 void menu(bool& game) {
 	char action;
@@ -49,40 +40,31 @@ int main() {
 	bool game = true;
 
 	Inventory inv;
-	Piano* pianoroom;
-	Room* piano = pianoroom;
-	Study* studyroom;
-	Room* study = studyroom;
-	Piano* C;
-	Room* kitchen = C;
-	Study* D;
-	Room* foyer = D;
-	Piano* spare;
-	Room* secret = spare;
+	Piano* piano = new Piano();
+	Study* study = new Study();
+	Kitchen* kitchen = new Kitchen();
+	Foyer* foyer = new Foyer();
+	Secret* secret = new Secret();
 	
-	Item key("Wooden Key");
-	Item ball("ball");
-	Item* wkey = &key;
-	Item* bb = &ball;
+	Item* woodkey = new Item("Wooden Key");
+	Item* velvkey = new Item("Velvet Key");
+	Item* dfood = new Item("Dog Food");
+	Item* dbowl = new Item("Food Bowl");
+	Item* flow = new Item("Glass Flower");
+	Item* gold = new Item("Gold Key");
 	
 	Room* current = piano;
 
-	//std::cout << "POOOOOOOOOOOOOOOOOOOOP" << std::endl;
-	piano->links(kitchen, study, foyer, secret);
-
-	std::cout << "POOOOOOOOOOOOOOOOOOOOP" << std::endl;
-	//piano->setItem(key);
-	//piano->setItem(ball);
+	piano->links(study, kitchen foyer, secret);
 	study->links(piano, kitchen, foyer, secret);
-	//C->links(piano, study, D, spare);
-	//D->links(piano, study, C, spare);
-	//spare->links(piano, study, C, D);
+	kitchen->links(piano, study, foyer, secret);
+	foyer->links(piano, study, kitchen, secret);
+	secret->links(piano, study, kitchen, foyer);
 	
-	std::cout << "POOOOOOOOOOOOOOOOOOOOP" << std::endl;
 	std::vector<Item*> in;
 
-	inv.addItem(in, wkey);
-	inv.addItem(in, bb);
+	inv.addItem(in, key);
+	inv.addItem(in, ball);
 	inv.print(in);
 	std::cout << "------Start Game------" << std::endl;
 	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;
@@ -90,10 +72,7 @@ int main() {
 	current->printRoom();
 	std::cout << std::endl;
 	while (game) {
-		std::cout << "POOOOOOOOOOOOOOOOOOOOP" << std::endl;
 		gameLoop(current, inv);
-		std::cout << "POOOOOOOOOOOOOOOOOOOOP" << std::endl;
-		//current->input(game, inv, current, lookat);
 	}
 
 	std::cout << "\n------End game------\n" << std::endl;

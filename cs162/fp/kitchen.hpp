@@ -1,18 +1,18 @@
-#ifndef STUDY_HPP_
-#define STUDY_HPP_
+#ifndef KITCHEN_HPP_
+#define KITCHEN_HPP_
 
 #include <iostream>
 #include <string>
 #include "room.hpp"
 
-class Study : public Room {
+class Kitchen : public Room {
 	public:
 
-		Study();
+		Kitchen();
 
 		void options();
 		void go(char action, Room*& current, Inventory inv);
 
 };
 
-#endif /* STUDY_HPP_ */
+#endif /* KITCHEN_HPP_ */

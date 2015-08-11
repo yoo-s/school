@@ -1,5 +1,5 @@
 CXX = g++
-SRCS = play.cpp inv.cpp room.cpp item.cpp piano.cpp study.cpp
+SRCS = play.cpp inv.cpp room.cpp item.cpp piano.cpp study.cpp kitchen.cpp foyer.cpp secret.cpp
 pr1: ${SRCS}
 	${CXX} ${SRCS} -o play
 play.o: play.cpp
@@ -12,8 +12,12 @@ piano.o: piano.cpp
 	${CXX} -c piano.cpp
 study.o: study.cpp
 	${CXX} -c study.cpp
-#roomC.o: roomC.cpp
-#	${CXX} -c roomC.cpp
+kitchen.o: kitchen.cpp
+#	${CXX} -c kitchen.cpp
+foyer.o: foyer.cpp
+	${CXX} -c foyer.cpp
+secret.o: secret.cpp
+	${CXX} -c secret.cpp
 item.o: item.cpp
 	${CXX} -c item.cpp
 clean:

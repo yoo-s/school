@@ -1,18 +1,18 @@
-#ifndef STUDY_HPP_
-#define STUDY_HPP_
+#ifndef SECRET_HPP_
+#define SECRET_HPP_
 
 #include <iostream>
 #include <string>
 #include "room.hpp"
 
-class Study : public Room {
+class Secret : public Room {
 	public:
 
-		Study();
+		Secret();
 
 		void options();
 		void go(char action, Room*& current, Inventory inv);
 
 };
 
-#endif /* STUDY_HPP_ */
+#endif /* SECRET_HPP_ */
