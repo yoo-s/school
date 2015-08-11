@@ -11,7 +11,7 @@ class Piano : public Room {
 		Piano();
 
 		void options();
-		void go(char action, Room*& current);
+		void go(char action, Room*& current, Inventory inv);
 
 /*class Piano : public Room {
 	private:

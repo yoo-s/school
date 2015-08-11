@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "study.hpp"
+#include "item.hpp"
 
 /*Study::Study(std::string n, std::string i) :
 		Room(n, i) {
@@ -10,7 +11,7 @@
 
 Study::Study() : Room() {}
 
-void options() {
+void Study::options() {
 	std::cout << "***Study Room***\n";
 	std::cout << std::endl;
 	std::cout << "Where would you like to go? \n";
@@ -20,7 +21,7 @@ void options() {
 	std::cout << "w) West\n";
 }
 
-void go(char action, Room*& current) {
+void Study::go(char action, Room*& current, Inventory inv) {
 	char open;
 
 	if (action == 'n') {

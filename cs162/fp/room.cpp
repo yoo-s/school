@@ -40,7 +40,7 @@ Room* Room::getW() {
 void Room::options() {
 }
 
-void Room::go(char action, Room*& current) {
+void Room::go(char action, Room*& current, Inventory inv) {
 }
 
 void Room::menu(bool& game) {

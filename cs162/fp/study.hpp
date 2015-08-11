@@ -11,7 +11,7 @@ class Study : public Room {
 		Study();
 
 		void options();
-		void go(char action, Room*& current);
+		void go(char action, Room*& current, Inventory inv);
 
 /*class Study : public Room {
 	private:

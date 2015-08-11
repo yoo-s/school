@@ -32,7 +32,7 @@ void menu(bool& game) {
 	std::cout << std::endl;
 }
 
-void gameLoop(Room*& current) {
+void gameLoop(Room*& current, Inventory inv) {
 		char action;
 
 		//present user a set of choices for current room
@@ -42,17 +42,23 @@ void gameLoop(Room*& current) {
 		std::cin >> action;
 
 		//process
-		current->go(action, current);
+		current->go(action, current, inv);
 }
 
 int main() {
 	bool game = true;
 
-	Piano* piano;
-	Study* study;
+	Inventory inv;
+	Piano* pianoroom;
+	Room* piano = pianoroom;
+	Study* studyroom;
+	Room* study = studyroom;
 	Piano* C;
+	Room* kitchen = C;
 	Study* D;
+	Room* foyer = D;
 	Piano* spare;
+	Room* secret = spare;
 	
 	Item key("Wooden Key");
 	Item ball("ball");
@@ -61,25 +67,32 @@ int main() {
 	
 	Room* current = piano;
 
-	piano->links(C, study, D, spare);
+	//std::cout << "POOOOOOOOOOOOOOOOOOOOP" << std::endl;
+	piano->links(kitchen, study, foyer, secret);
+
+	std::cout << "POOOOOOOOOOOOOOOOOOOOP" << std::endl;
 	//piano->setItem(key);
 	//piano->setItem(ball);
-	study->links(piano, C, D, spare);
+	study->links(piano, kitchen, foyer, secret);
 	//C->links(piano, study, D, spare);
 	//D->links(piano, study, C, spare);
 	//spare->links(piano, study, C, D);
+	
+	std::cout << "POOOOOOOOOOOOOOOOOOOOP" << std::endl;
 	std::vector<Item*> in;
+
 	inv.addItem(in, wkey);
 	inv.addItem(in, bb);
 	inv.print(in);
-
 	std::cout << "------Start Game------" << std::endl;
 	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;
 	std::cout << "Enter 'm' for menu at any time to see directions on how to play.\n" << std::endl;
 	current->printRoom();
 	std::cout << std::endl;
 	while (game) {
-		gameLoop(current);
+		std::cout << "POOOOOOOOOOOOOOOOOOOOP" << std::endl;
+		gameLoop(current, inv);
+		std::cout << "POOOOOOOOOOOOOOOOOOOOP" << std::endl;
 		//current->input(game, inv, current, lookat);
 	}
 

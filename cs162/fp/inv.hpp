@@ -24,7 +24,5 @@ class Inventory {
 		void dropItem(std::vector<Item*>& in, Item* item);
 };
 
-Inventory inv;
-
 
 #endif /* INV_HPP_ */

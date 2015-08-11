@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "piano.hpp"
+#include "inv.hpp"
 #include "item.hpp"
 
 /*Piano::Piano(std::string n, std::string i) :
@@ -22,7 +23,7 @@ void Piano::options() {
 	std::cout << "w) West" << std::endl;
 }
 
-void Piano::go(char action, Room*& current) {
+void Piano::go(char action, Room*& current, Inventory inv) {
 	char open;
 
 	if (action == 'n') {
@@ -39,7 +40,6 @@ void Piano::go(char action, Room*& current) {
 				current->printRoom();
 				std::cout << "\n";
 				return;
-			}
 		}
 	} else if (action == 's') {
 		std::cout << "You're at the door to the foyer.\n";

@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include "inv.hpp"
 #include "item.hpp"
 
 class Room {
@@ -42,7 +43,7 @@ class Room {
 		}
 
 		virtual void options();
-		virtual void go(char action, Room*& current);
+		virtual void go(char action, Room*& current, Inventory inv);
 
 		virtual void menu(bool& game);
 
