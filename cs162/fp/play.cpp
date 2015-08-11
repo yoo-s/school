@@ -35,13 +35,6 @@ int main() {
 	Foyer* foyer = new Foyer();
 	Secret* secret = new Secret();
 	
-	Item* woodkey = new Item("Wooden Key");
-	Item* velvkey = new Item("Velvet Key");
-	Item* dfood = new Item("Dog Food");
-	Item* dbowl = new Item("Food Bowl");
-	Item* flow = new Item("Glass Flower");
-	Item* gold = new Item("Gold Key");
-	
 	Room* current = piano;
 
 	piano->links(study, kitchen, foyer, secret);
@@ -50,8 +43,6 @@ int main() {
 	foyer->links(piano, study, kitchen, secret);
 	secret->links(piano, study, kitchen, foyer);
 	
-	std::vector<Item*> in;
-
 	inv.print();
 	std::cout << "------Start Game------" << std::endl;
 	std::cout << "You are somehow locked in a strange room. Explore the room, find items and solve puzzles to escape!" << std::endl;

@@ -8,7 +8,6 @@ Inventory::Inventory() {
 	velvetkey = false;
 	dogfood = false;
 	bowl = false;
-	flower = false;
 	goldkey = false;
 }
 
@@ -31,11 +30,6 @@ void Inventory::print() {
 	}
 	if (bowl = true) {
 		std::cout << "Food Bowl" << std::endl;
-	} else {
-		std::cout << "---" << std::endl;
-	}
-	if (flower = true) {
-		std::cout << "Glass Flower" << std::endl;
 	} else {
 		std::cout << "---" << std::endl;
 	}

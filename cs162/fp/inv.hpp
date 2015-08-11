@@ -15,7 +15,6 @@ class Inventory {
 		bool velvetkey;
 		bool dogfood;
 		bool bowl;
-		bool flower;
 		bool goldkey;
 
 		void print();
