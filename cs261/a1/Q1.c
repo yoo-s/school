@@ -48,6 +48,22 @@ void output(struct student* students){
 
 void summary(struct student* students){
 	/*Compute and print the minimum, maximum and average scores of the ten students*/
+	int min = students[0].score;
+	int max = students[0].score;
+	int sum = 0;
+
+	for (int i = 0; i < 10; i++) {
+		if (min > students[i].score) {
+			min = students[i].score;
+		} else if (max < students[i].score) {
+			max = students[i].score;
+		}
+		sum += students[i].score;
+	}
+
+	printf("Minimum score: %d\n", min);
+	printf("Maximum score: %d\n", max);
+	printf("Average score: %g\n", (double)sum/10);
 
 }
 

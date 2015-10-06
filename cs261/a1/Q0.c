@@ -12,7 +12,7 @@ void fooA(int* iptr){
 	printf("Value pointed to by iptr: %d\n", *iptr);
 
 	/*Print the address pointed to by iptr*/
-	printf("Address pointed to by iptr: %p\n", iptr);
+	printf("Address pointed to by iptr: %p\n", &(*iptr));
 
 	/*Print the address of iptr itself*/
 	printf("Address of iptr itself: %p\n", iptr);
