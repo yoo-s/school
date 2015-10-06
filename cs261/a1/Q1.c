@@ -1,5 +1,5 @@
-/* CS261- Assignment 1 - Q.1*/
-/* Name: Soo-Min Yoo
+/* cs261- assignment 1 - q.1*/
+/* name: soo-min yoo
  * Date: 10/09/2015
  * Solution description:
  */
@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 #include <assert.h>
 
 struct student{
@@ -16,15 +17,16 @@ struct student{
 
 struct student* allocate(){
 	/*Allocate memory for ten students*/
-	struct student* students = malloc(sizeof(struct student) + 1);
+	struct student* stud = malloc(10 * sizeof(struct student));
 
 	/*return the pointer*/
-	return students;
+	return stud;
 }
 
 void generate(struct student* students){
 	/*Generate random ID and scores for 10 students, ID being between
 	 * 1 and 10, scores between 0 and 100*/
+	srand(time(NULL));
 	for (int i = 0; i < 10; i++) {
 		students[i].id = rand() % 10 + 1;
 		students[i].score = rand() % 100 + 1;
