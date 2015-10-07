@@ -7,10 +7,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 
 void sort(int* number, int n){
-	/*Sort the given array number , of length n*/
+	/*Sort the given array number, of length n*/
+	int temp;
 
+	for (int i = 0; i < n; i++) {
+		for (int j = i+1; j < n; j++) {
+			if (number[i] > number[j]) {
+				temp = number[i];
+				number[i] = number[j];
+				number[j] = temp;
+			}
+		}
+	}
 }
 
 int main(){
@@ -21,11 +32,13 @@ int main(){
 	int *arr = malloc(n * sizeof(int));
 
 	/*Fill this array with random numbers between 0 and n, using rand().*/
+	srand(time(NULL));
 	for (int i = 0; i < n; i++) {
 		arr[i] = rand() % n + 1;
 	}
 
 	/*Print the contents of the array.*/
+	printf("Original contents:\n");
 	for (int i = 0; i < n; i++) {
 		printf("%d \n", arr[i]);
 	}
@@ -34,6 +47,7 @@ int main(){
 	sort(arr, n);
 
 	/*Print the contents of the array.*/
+	printf("Sorted contents:\n");
 	for (int i = 0; i < n; i++) {
 		printf("%d \n", arr[i]);
 	}
