@@ -19,14 +19,20 @@ char toLowerCase(char ch){
 
 void studly(char* word){
 	/*Convert to studly caps*/
+	//
 }
 
 int main(){
 	/*Read word from the keyboard using scanf*/
+	char word[100];
+
+	printf("Type a word: ");
+	scanf("%s", word);
 
 	/*Call studly*/
 
 	/*Print the new word*/
+	printf("Your word in studly caps: %s\n", word);
 
 	return 0;
 }
