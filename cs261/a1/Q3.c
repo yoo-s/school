@@ -1,7 +1,8 @@
 /* CS261- Assignment 1 - Q.3*/
 /* Name: Soo-Min Yoo
  * Date: 10/09/2015
- * Solution description:
+ * Solution description: This program takes an array of 20 random numbers and
+ * sorts them in ascending order.
  */
 
 #include <stdio.h>

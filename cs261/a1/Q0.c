@@ -1,7 +1,7 @@
 /* CS261- Assignment 1 - Q. 0*/
 /* Name: Soo-Min Yoo
  * Date: 10/09/2015
- * Solution description:
+ * Solution description: This program examines how to use pointers.
  */
 
 #include <stdio.h>

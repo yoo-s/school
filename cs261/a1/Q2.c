@@ -1,7 +1,7 @@
 /* CS261- Assignment 1 - Q.2*/
 /* Name: Soo-Min Yoo
  * Date: 10/09/2015
- * Solution description:
+ * Solution description: This program demonstrates the concept of passing pointers by reference to modify the original value in the main function.
  */
 
 #include <stdio.h>

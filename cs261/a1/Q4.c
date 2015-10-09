@@ -1,7 +1,8 @@
 /* CS261- Assignment 1 - Q.4*/
 /* Name: Soo-Min Yoo
  * Date: 10/09/2015
- * Solution description:
+ * Solution description: This program modifies the sort function in Q3 to sort
+ * the students' scores from Q1 in ascending order.
  */
 
 #include <stdio.h>

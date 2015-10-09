@@ -1,7 +1,8 @@
 /* cs261- assignment 1 - q.1*/
 /* name: soo-min yoo
  * Date: 10/09/2015
- * Solution description:
+ * Solution description: This program prints the id's and scores of ten students
+ * as well as a summary of their scores.
  */
 
 #include <stdio.h>
