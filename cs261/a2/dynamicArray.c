@@ -90,7 +90,7 @@ void deleteDynArr(DynArr *v)
 	pre:	v is not null
 	post:	v has capacity newCap
 */
-void _dynArrSetCapacity(DynArr *v, int newCap)		// DONE
+void _dynArrSetCapacity(DynArr *v, int newCap)
 {	
 	/* FIXME: You will write this function */
 	assert(v != 0);
@@ -122,7 +122,7 @@ int sizeDynArr(DynArr *v)
 	post:	if reached capacity, capacity is doubled
 	post:	val is in the last utilized position in the array
 */
-void addDynArr(DynArr *v, TYPE val)		// DONE
+void addDynArr(DynArr *v, TYPE val)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
@@ -144,14 +144,15 @@ void addDynArr(DynArr *v, TYPE val)		// DONE
 	ret:	value stored at index pos
 */
 
-TYPE getDynArr(DynArr *v, int pos)		// DONE
+TYPE getDynArr(DynArr *v, int pos)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
+	assert(!isEmptyDynArr(v));
 	assert(pos < sizeDynArr(v) && pos >= 0);
 
 	/* FIXME: you must change this return value */
-	return v->data[pos]; 
+	return v->data[pos];
 }
 
 /*	Put an item into the dynamic array at the specified location,
@@ -165,10 +166,11 @@ TYPE getDynArr(DynArr *v, int pos)		// DONE
 	pre:	pos >= 0 and pos < size of the array
 	post:	index pos contains new value, val
 */
-void putDynArr(DynArr *v, int pos, TYPE val)		// DONE
+void putDynArr(DynArr *v, int pos, TYPE val)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
+	assert(!isEmptyDynArr(v));
 	assert(pos < sizeDynArr(v) && pos >= 0);
 	v->data[pos] = val;
 }
@@ -182,11 +184,11 @@ void putDynArr(DynArr *v, int pos, TYPE val)		// DONE
 	pre:	i, j >= 0 and i,j < size of the dynamic array
 	post:	index i now holds the value at j and index j now holds the value at i
 */
-void swapDynArr(DynArr *v, int i, int  j)		// DONE
+void swapDynArr(DynArr *v, int i, int  j)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
-	assert(v->data != 0);
+	assert(!isEmptyDynArr(v));
 	assert(i >= 0 && j >= 0 && i < sizeDynArr(v) && j < sizeDynArr(v));
 	TYPE temp = v->data[i];
 	v->data[i] = v->data[j];
@@ -204,10 +206,11 @@ void swapDynArr(DynArr *v, int i, int  j)		// DONE
 	post:	the element at idx is removed
 	post:	the elements past idx are moved back one
 */
-void removeAtDynArr(DynArr *v, int idx)		// DONE
+void removeAtDynArr(DynArr *v, int idx)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
+	assert(!isEmptyDynArr(v));
 	assert(idx < sizeDynArr(v) && idx >= 0);
 	for (int i = idx; i < sizeDynArr(v)-1; i++) {
 		v->data[i] = v->data[i+1];
@@ -229,7 +232,7 @@ void removeAtDynArr(DynArr *v, int idx)		// DONE
 	post:	none
 	ret:	1 if empty, otherwise 0
 */
-int isEmptyDynArr(DynArr *v)		// DONE
+int isEmptyDynArr(DynArr *v)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
@@ -252,7 +255,7 @@ int isEmptyDynArr(DynArr *v)		// DONE
 			if reached capacity, capacity is doubled
 			val is on the top of the stack
 */
-void pushDynArr(DynArr *v, TYPE val)		// DONE
+void pushDynArr(DynArr *v, TYPE val)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
@@ -266,7 +269,7 @@ void pushDynArr(DynArr *v, TYPE val)		// DONE
 	pre:	v is not empty
 	post:	no changes to the stack
 */
-TYPE topDynArr(DynArr *v)		// DONE
+TYPE topDynArr(DynArr *v)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
@@ -284,7 +287,7 @@ TYPE topDynArr(DynArr *v)		// DONE
 	post:	size is decremented by 1
 			the top has been removed
 */
-void popDynArr(DynArr *v)		// DONE
+void popDynArr(DynArr *v)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
@@ -307,7 +310,7 @@ void popDynArr(DynArr *v)		// DONE
 	pre:	v is not empty
 	post:	no changes to the bag
 */
-int containsDynArr(DynArr *v, TYPE val)		// DONE
+int containsDynArr(DynArr *v, TYPE val)
 {
 	/* FIXME: You will write this function */
 	int contains = 0;
@@ -337,7 +340,7 @@ int containsDynArr(DynArr *v, TYPE val)		// DONE
 	post:	val has been removed
 	post:	size of the bag is reduced by 1
 */
-void removeDynArr(DynArr *v, TYPE val)		// DONE
+void removeDynArr(DynArr *v, TYPE val)
 {
 	/* FIXME: You will write this function */
 	assert(v != 0);
