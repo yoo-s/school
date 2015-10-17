@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include "dynamicArray.h"
 
-
 void assertTrue(int predicate, char *message) 
 {
 	printf("%s: ", message);
@@ -38,7 +37,7 @@ int main(int argc, char* argv[]){
 	assertTrue(EQ(getDynArr(dyn, 3), 5), "Test 4th element == 5");
 	assertTrue(EQ(getDynArr(dyn, 4), 6), "Test 5th element == 6");
 	assertTrue(sizeDynArr(dyn) == 5, "Test size = 5");
-	
+
 	printf("\n\nTesting putDynArr...\nCalling putDynArr(dyn, 2, 7)\n");
 	putDynArr(dyn, 2, 7); 
 	printf("The array's content: [3,4,7,5,6]\n");
