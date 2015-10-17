@@ -1,0 +1,15 @@
+/* Filename: amortizedAnalysis.txt
+ * Name: Soo-Min Yoo
+ * Date: 10/16/15
+ */
+
+1. 16 push operations -> 16 cost units.
+   32 push operations -> 56 cost units.
+   big-oh complexity for push -> O(1+).
+
+2. 16 push operations -> 60 cost units.
+   32 push operations -> 260 cost units.
+   big-oh complexity for push -> O(n).
+
+3. Push onto the stack until it fills to its capacity and doubles its size. Pop a value off which will make it half its size due to its capacity being less than 1/2 full. Repeat.
+I would adjust the shrinking policy so that the stack would half its size when it's 1/4 full or less.
