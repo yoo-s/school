@@ -45,7 +45,7 @@ DynArr* createDynArr(int cap)
 {
 	DynArr *r;
 	assert(cap > 0);
-	r = (DynArr *)malloc(sizeof( DynArr));
+	r = (DynArr *)malloc(sizeof(DynArr));
 	assert(r != 0);
 	initDynArr(r,cap);
 	return r;

@@ -23,7 +23,7 @@ int isNumber(char *s, double *num)
 	else 
 	{
 		returnNum = strtod(s, &end);
-		/* If there's anythin in end, it's bad */
+		/* If there's anything in end, it's bad */
 		if((returnNum != 0.0) && (strcmp(end, "") == 0))
 		{
 			*num = returnNum;
@@ -41,6 +41,14 @@ int isNumber(char *s, double *num)
 void add (struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
+	double a, b;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+	b = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, a+b);
 }
 
 /*	param: stack the stack being manipulated
@@ -51,6 +59,14 @@ void add (struct DynArr *stack)
 void subtract(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
+	double a, b;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+	b = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, b-a);
 }
 
 /*	param: stack the stack being manipulated
@@ -61,13 +77,126 @@ void subtract(struct DynArr *stack)
 void divide(struct DynArr *stack)
 {
 	/* FIXME: You will write this function */
+	double a, b;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+	b = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, b/a);
 }
+
+void multiply(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	double a, b;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+	b = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, a*b);
+}
+
+void power(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	double a, b;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+	b = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, pow(b, a));
+}
+
+void squared(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	double a;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, pow(a, 2));
+}
+
+void cubed(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	double a;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, pow(a, 3));
+}
+
+void absolute(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	double a;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, abs(a));
+}
+
+void sqRt(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	double a;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, sqrt(a));
+}
+
+void exponent(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	double a;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, exp(a));
+}
+
+void natLog(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	double a;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, log(a));
+}
+
+void tenLog(struct DynArr *stack)
+{
+	/* FIXME: You will write this function */
+	double a;
+
+	a = topDynArr(stack);
+	popDynArr(stack);
+
+	pushDynArr(stack, log10(a));
+}
+
 
 double calculate(int numInputTokens, char **inputString)
 {
 	int i;
 	double result = 0.0;
 	char *s;
+	double num;
 	struct DynArr *stack;
 
 	//set up the stack
@@ -93,45 +222,55 @@ double calculate(int numInputTokens, char **inputString)
 			divide(stack);
 		else if(strcmp(s, "x") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Multiplying\n");
+			multiply(stack);
 		else if(strcmp(s, "^") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Power\n");
+			power(stack);
 		else if(strcmp(s, "^2") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Squaring\n");
+			squared(stack);
 		else if(strcmp(s, "^3") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Cubing\n");
+			cubed(stack);
 		else if(strcmp(s, "abs") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Absolute value\n");
+			absolute(stack);
 		else if(strcmp(s, "sqrt") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Square root\n");
+			sqRt(stack);
 		else if(strcmp(s, "exp") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Exponential\n");
+			exponent(stack);
 		else if(strcmp(s, "ln") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Natural Log\n");
+			natLog(stack);
 		else if(strcmp(s, "log") == 0)
 			/* FIXME: replace printf with your own function */
-			printf("Log\n");
-		else 
-		{
+			tenLog(stack);
+		else if (isNumber(s, &num))
 			// FIXME: You need to develop the code here (when s is not an operator)
 			// Remember to deal with special values ("pi" and "e")
-			
-		}
+			pushDynArr(stack, num);
+		else if (strcmp(s, "pi") == 0)
+			pushDynArr(stack, 3.14159265);
+		else if (strcmp(s, "e") == 0)
+			pushDynArr(stack, 2.7182818);
 	}	//end for 
 
 	/* FIXME: You will write this part of the function (2 steps below) 
 	 * (1) Check if everything looks OK and produce an error if needed.
 	 * (2) Store the final value in result and print it out.
 	 */
-	
-	return result;
+	if (sizeDynArr(stack) == 1) {
+		result = topDynArr(stack);
+		popDynArr(stack);
+		printf("Result: %g\n", result);
+		return result;
+	} else {
+		printf("\nError calculating result.");
+		printf("	-- at string '%c'\n", *s);
+		return 0;
+	}
 }
 
 int main(int argc , char** argv)

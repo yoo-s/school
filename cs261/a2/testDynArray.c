@@ -64,7 +64,7 @@ int main(int argc, char* argv[]){
 	assertTrue(EQ(topDynArr(dyn), 7), "Test topDynArr == 7");
 	
 	popDynArr(dyn);
-	printf("Poping...\nThe stack's content: [3,6,5] <- top\n");
+	printf("Popping...\nThe stack's content: [3,6,5] <- top\n");
 	assertTrue(EQ(topDynArr(dyn), 5), "Test topDynArr == 5");
 	
 	pushDynArr(dyn, 9);
