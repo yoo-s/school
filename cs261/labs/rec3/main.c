@@ -18,16 +18,30 @@ int isPalindrome(char *string)
 {
     int result = 0; /* set to 1 if 'string' is a palindrome */
     int i;
+	int count = 0;
     
     /* Before finishing this function, you'll need to finish sll.c */
-    
-
-    
-    /* This loop will help you iterate over a string one character at time */
+    struct sll *word = sll_create();
     for (i = 0; i < (int)strlen(string); i++)
     {
         /* "string[i]" will retrieve the next character */
+		sll_push(word, string[i]);
+		printf("%c->", sll_pop(word));
     }
+    
+    /* This loop will help you iterate over a string one character at time */
+    for (i = 0; i < (int)strlen(string); i++) {
+		if (sll_pop(word) == string[i]) {
+			count++;
+			printf("%d", count);
+	    }
+	}
+
+	if (count == (int)strlen(string)) {
+		result = 1;
+	} else {
+		result = 0;
+	}
     
     return result;
 }

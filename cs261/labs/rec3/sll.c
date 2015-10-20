@@ -59,7 +59,7 @@ struct sll_node* sll_node_create() {
     struct sll_node *node = NULL;
     
     /* FIXME: finish this function */
-    node = malloc(sizeof(sll_node));
+    node = (struct sll_node*)malloc(sizeof(struct sll_node));
     
     return node;
 }
@@ -72,6 +72,11 @@ void sll_push(struct sll *list, char value) {
     
     /* FIXME: write this function */
     /* Can you make it run in O(1)? */
+	struct sll_node *new = (struct sll_node*)malloc(sizeof(struct sll_node));
+	assert(new != 0);
+	new->value = value;
+	new->next = list->start;
+	list->start = new;
     
     return;
 }
@@ -80,11 +85,16 @@ void sll_push(struct sll *list, char value) {
  * list. */
 char sll_pop(struct sll *list) {
     assert (list != NULL);
+	assert (list->start);
     
     /* FIXME: write this function */
     /* Can you make it run in O(1)? */
-    
-    return '#'; /* This is just a placeholder to make the code compile */
+	struct sll_node *first = (struct sll_node*)malloc(sizeof(struct sll_node));;
+	first = list->start;
+	list->start = first->next;
+	free(first);
+
+    return first->value; /* This is just a placeholder to make the code compile */
 }
 
 /* Return the value most recently added to the list, but don't remove it from
@@ -95,6 +105,6 @@ char sll_top(struct sll *list) {
     /* FIXME: write this function */
     /* If you've written the previous two function such that they run in O(1),
      * doing the same here should be easy. */
-    
-    return '#'; /* This is just a placeholder to make the code compile */
+
+    return list->start->value; /* This is just a placeholder to make the code compile */
 }
