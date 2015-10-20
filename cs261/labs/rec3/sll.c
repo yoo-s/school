@@ -60,6 +60,7 @@ struct sll_node* sll_node_create() {
     
     /* FIXME: finish this function */
     node = (struct sll_node*)malloc(sizeof(struct sll_node));
+	node->next = NULL;
     
     return node;
 }
@@ -72,7 +73,7 @@ void sll_push(struct sll *list, char value) {
     
     /* FIXME: write this function */
     /* Can you make it run in O(1)? */
-	struct sll_node *new = (struct sll_node*)malloc(sizeof(struct sll_node));
+	struct sll_node *new = sll_node_create();
 	assert(new != 0);
 	new->value = value;
 	new->next = list->start;
@@ -85,11 +86,11 @@ void sll_push(struct sll *list, char value) {
  * list. */
 char sll_pop(struct sll *list) {
     assert (list != NULL);
-	assert (list->start);
+	assert (list->start != 0);
     
     /* FIXME: write this function */
     /* Can you make it run in O(1)? */
-	struct sll_node *first = (struct sll_node*)malloc(sizeof(struct sll_node));;
+	struct sll_node *first = sll_node_create();
 	first = list->start;
 	list->start = first->next;
 	free(first);

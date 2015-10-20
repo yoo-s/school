@@ -21,23 +21,31 @@ int isPalindrome(char *string)
 	int count = 0;
     
     /* Before finishing this function, you'll need to finish sll.c */
-    struct sll *word = sll_create();
-    for (i = 0; i < (int)strlen(string); i++)
-    {
+    struct sll *halfword = sll_create();
+    struct sll *halfword2 = sll_create();
+    for (i = 0; i < (int)strlen(string)/2; i++) {
         /* "string[i]" will retrieve the next character */
-		sll_push(word, string[i]);
-		printf("%c->", sll_pop(word));
+		sll_push(halfword, string[i]);
+		printf("%c", sll_top(halfword));
     }
-    
-    /* This loop will help you iterate over a string one character at time */
-    for (i = 0; i < (int)strlen(string); i++) {
-		if (sll_pop(word) == string[i]) {
-			count++;
-			printf("%d", count);
-	    }
+	printf(" ");
+	for (i = (int)strlen(string); i > (int)strlen(string)/2; i--) {
+		sll_push(halfword2, string[i]);
+		printf("%c", sll_top(halfword2));
 	}
 
-	if (count == (int)strlen(string)) {
+    
+    /* This loop will help you iterate over a string one character at time */
+    for (i = 0; i < (int)strlen(string)/2; i++) {
+		if (sll_top(halfword) == sll_top(halfword2)) {
+			sll_pop(halfword);
+			sll_pop(halfword2);
+			count++;
+	    }
+	}
+	printf("\n%d\n", count);
+
+	if (count == (int)strlen(string)/2) {
 		result = 1;
 	} else {
 		result = 0;

@@ -13,7 +13,7 @@ struct sll_node;
 
 struct sll* sll_create();
 void sll_free(struct sll *list);
-
+struct sll_node* sll_node_create();
 void sll_push(struct sll *list, char value);
 char sll_pop(struct sll *list);
 char sll_top(struct sll *list);
