@@ -123,7 +123,7 @@ void freeLinkedList(struct linkedList *lst) {
 	while(!isEmptyList(lst)) {
 		/* remove the link right after the first sentinel */
 		_removeLink(lst, lst->firstLink->next);
-	}		
+	}
 	/* remove the first and last sentinels */
 	free(lst->firstLink);
 	free(lst->lastLink);
