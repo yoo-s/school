@@ -148,13 +148,14 @@ void deleteLinkedList(struct linkedList *lst) {
 void _printList(struct linkedList* lst) {		// DONE
 	/* FIXME: you must write this */
 	assert(lst != 0);
-	struct Dlink *beg = malloc(sizeof(struct DLink));
-	beg = lst->firstLink->next;
+	struct Dlink *beg = lst->firstLink;
 	assert(beg != 0);
 	while (beg != lst->lastLink) {
 		printf("%d", beg->value);
 		beg = beg->next;
 	}
+	printf("%d", beg->value);
+	free(beg);
 }
 
 
