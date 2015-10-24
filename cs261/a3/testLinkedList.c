@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 	printf("Done.\n");
 	printf("Checking if first element is 2...It is %d\n", frontList(deq));
 	printf("Checking if last element is 9...It is %d\n", backList(deq));
-	printf("Now printing the whole deque...\n");
+	printf("Now printing the whole deque...");
 	_printList(deq);
 	printf("\nLet's remove the values from the deque.\n");
 	printf("Removing 2 from front of deque...");
@@ -47,11 +47,17 @@ int main(int argc, char* argv[]) {
 	printf("Done.\n");
 	printf("Let's add the values 1, 4, 9, and 16 to the bag.\n");
 	printf("Adding values...");
-	addList(bag, 1);
-	addList(bag, 4);
-	addList(bag, 9);
 	addList(bag, 16);
+	addList(bag, 9);
+	addList(bag, 4);
+	addList(bag, 1);
 	printf("Done.\n");
+	printf("Checking if bag contains the value 9...");
+	if (containsList(bag, 9)) {
+		printf("It does.\n");
+	} else {
+		printf("It does not.\n");
+	}
 	printf("Checking if bag contains the value 6...");
 	if (containsList(bag, 6)) {
 		printf("It does.\n");

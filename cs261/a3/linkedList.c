@@ -25,16 +25,16 @@ struct linkedList {
 	post: lst size is 0
 */
 void _initList (struct linkedList *lst) {
-  /* DONE: you must write this */
+	/* DONE: you must write this */
 	assert(lst != 0);
 	lst->firstLink = malloc(sizeof(struct DLink));
 	assert(lst->firstLink != 0);
 	lst->lastLink = malloc(sizeof(struct DLink));
 	assert(lst->lastLink != 0);
-	lst->firstLink->value = 0;
-	lst->lastLink->value = 0;
 	lst->firstLink->next = lst->lastLink;
+	lst->firstLink->prev = lst->lastLink;
 	lst->lastLink->next = lst->firstLink;
+	lst->lastLink->prev = lst->firstLink;
 	lst->size = 0;
 }
 
@@ -63,9 +63,9 @@ struct linkedList *createLinkedList() {
 /* Adds Before the provided link, l */
 void _addLinkBefore(struct linkedList *lst, struct DLink *l, TYPE v) {
 	/* DONE: you must write this */
-	struct DLink *new = malloc(sizeof(struct DLink));
 	assert(lst != 0);
 	assert(l != 0);
+	struct DLink *new = malloc(sizeof(struct DLink));
 	assert(new != 0);
 	new->value = v;
 	new->next = l;
@@ -148,15 +148,14 @@ void deleteLinkedList(struct linkedList *lst) {
 	pre: lst is not null
 */
 void _printList(struct linkedList* lst) {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(lst != 0);
-	struct DLink *beg = lst->firstLink;
+	struct DLink *beg = lst->firstLink->next;
 	assert(beg != 0);
 	while (beg != lst->lastLink) {
-		printf("%d", beg->value);
+		printf("%d ", beg->value);
 		beg = beg->next;
 	}
-	printf("%d", beg->value);
 	free(beg);
 }
 

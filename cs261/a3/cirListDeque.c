@@ -38,9 +38,9 @@ void _removeLink(struct cirListDeque *q, struct DLink *lnk);
 	pre:	q is not null
 	post:	q->Sentinel is allocated and q->size equals zero
 */
-void _initCirListDeque (struct cirListDeque *q)			// DONE
+void _initCirListDeque (struct cirListDeque *q)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	q->Sentinel = malloc(sizeof(struct DLink));
 	assert(q->Sentinel != 0);
@@ -65,9 +65,9 @@ struct cirListDeque *createCirListDeque()
 	pre:	none
 	post:	a link to store the value
 */
-struct DLink * _createLink (TYPE val)		// DONE
+struct DLink * _createLink (TYPE val)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	struct DLink *link = malloc(sizeof(struct DLink));
 	assert(link != 0);
 	link->value = val;
@@ -86,9 +86,9 @@ struct DLink * _createLink (TYPE val)		// DONE
 	pre:	lnk is in the deque 
 	post:	the new link is added into the deque after the existing link
 */
-void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)	// DONE
+void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	assert(lnk != 0);
 	assert(lnk->next != 0 && lnk->prev != 0);
@@ -110,9 +110,9 @@ void _addLinkAfter(struct cirListDeque *q, struct DLink *lnk, TYPE v)	// DONE
 	pre:	q is not null
 	post:	a link storing val is added to the back of the deque
 */
-void addBackCirListDeque (struct cirListDeque *q, TYPE val)		// DONE
+void addBackCirListDeque (struct cirListDeque *q, TYPE val)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	_addLinkAfter(q, q->Sentinel->prev, val);
 }
@@ -124,9 +124,9 @@ void addBackCirListDeque (struct cirListDeque *q, TYPE val)		// DONE
 	pre:	q is not null
 	post:	a link storing val is added to the front of the deque
 */
-void addFrontCirListDeque(struct cirListDeque *q, TYPE val)		// DONE
+void addFrontCirListDeque(struct cirListDeque *q, TYPE val)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	_addLinkAfter(q, q->Sentinel, val);
 }
@@ -138,9 +138,9 @@ void addFrontCirListDeque(struct cirListDeque *q, TYPE val)		// DONE
 	post:	none
 	ret: 	value of the front of the deque
 */
-TYPE frontCirListDeque(struct cirListDeque *q)		// DONE
+TYPE frontCirListDeque(struct cirListDeque *q)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	assert(!isEmptyCirListDeque(q));
 	/*temporary return value..you may need to change it*/
@@ -154,9 +154,9 @@ TYPE frontCirListDeque(struct cirListDeque *q)		// DONE
 	post:	none
 	ret: 	value of the back of the deque
 */
-TYPE backCirListDeque(struct cirListDeque *q)		// DONE
+TYPE backCirListDeque(struct cirListDeque *q)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	assert(!isEmptyCirListDeque(q));
 	/*temporary return value..you may need to change it*/
@@ -170,17 +170,14 @@ TYPE backCirListDeque(struct cirListDeque *q)		// DONE
 	pre:	q is not null and q is not empty
 	post:	the link is removed from the deque
 */
-void _removeLink(struct cirListDeque *q, struct DLink *lnk)		// DONE
+void _removeLink(struct cirListDeque *q, struct DLink *lnk)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	assert(!isEmptyCirListDeque(q));
-	struct DLink *temp = malloc(sizeof(struct DLink));
-	assert(temp != 0);
-	temp = lnk;
-	lnk->prev->next = temp->next;
-	lnk->next->prev = temp->prev;
-	free(temp);
+	lnk->prev->next = lnk->next;
+	lnk->next->prev = lnk->prev;
+	free(lnk);
 	q->size--;
 }
 
@@ -190,9 +187,9 @@ void _removeLink(struct cirListDeque *q, struct DLink *lnk)		// DONE
 	pre:	q is not null and q is not empty
 	post:	the front is removed from the deque
 */
-void removeFrontCirListDeque (struct cirListDeque *q)		// DONE
+void removeFrontCirListDeque (struct cirListDeque *q)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	assert(!isEmptyCirListDeque(q));
 	_removeLink(q, q->Sentinel->next);
@@ -204,9 +201,9 @@ void removeFrontCirListDeque (struct cirListDeque *q)		// DONE
 	pre:	q is not null and q is not empty
 	post:	the back is removed from the deque
 */
-void removeBackCirListDeque(struct cirListDeque *q)		// DONE
+void removeBackCirListDeque(struct cirListDeque *q)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	assert(!isEmptyCirListDeque(q));
 	_removeLink(q, q->Sentinel->prev);
@@ -218,10 +215,9 @@ void removeBackCirListDeque(struct cirListDeque *q)		// DONE
 	pre:	none
 	post:	All links (including Sentinel) are de-allocated
 */
-void freeCirListDeque(struct cirListDeque *q)		// DONE
+void freeCirListDeque(struct cirListDeque *q)
 {
-	/* FIXME: you must write this */
-	struct DLink *temp = malloc(sizeof(struct DLink));
+	/* DONE: you must write this */
 	while (!isEmptyCirListDeque(q)) {
 		_removeLink(q, q->Sentinel->next);
 	}
@@ -247,9 +243,9 @@ void deleteCirListDeque(struct cirListDeque *q)
 	pre:	q is not null
 	ret: 	1 if the deque is empty. Otherwise, 0.
 */
-int isEmptyCirListDeque(struct cirListDeque *q)		// DONE
+int isEmptyCirListDeque(struct cirListDeque *q)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	if (q->size == 0) {
 		return 1;
@@ -266,16 +262,15 @@ int isEmptyCirListDeque(struct cirListDeque *q)		// DONE
 	pre:	q is not null and q is not empty
 	post: 	the links in the deque are printed from front to back
 */
-void printCirListDeque(struct cirListDeque *q)		// DONE
+void printCirListDeque(struct cirListDeque *q)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	assert(!isEmptyCirListDeque(q));
-	struct Dlink *beg = malloc(sizeof(struct DLink));
-	beg = q->Sentinel->next;
+	struct DLink *beg = q->Sentinel->next;
 	assert(beg != 0);
 	while (beg != q->Sentinel) {
-		printf("%d", beg->value);
+		printf("%g ", beg->value);
 		beg = beg->next;
 	}
 
@@ -289,8 +284,15 @@ void printCirListDeque(struct cirListDeque *q)		// DONE
 */
 void reverseCirListDeque(struct cirListDeque *q)
 {
-	/* FIXME: you must write this */
+	/* DONE: you must write this */
 	assert(q != 0);
 	assert(!isEmptyCirListDeque(q));
-
+	struct DLink *curr = q->Sentinel;
+	struct DLink *temp;
+	do {
+		temp = curr->next;
+		curr->next = curr->prev;
+		curr->prev = temp;
+		curr = temp;
+	} while (curr != q->Sentinel);
 }
