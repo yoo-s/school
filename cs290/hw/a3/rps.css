@@ -1,0 +1,110 @@
+*{
+  /* A universal CSS reset */
+  margin:0;
+  padding:0;
+}
+
+html, body, p{
+  background: url("http://i.imgur.com/RRqdd9R.png") no-repeat fixed;
+  //background-color: #e6ffe6;
+  padding: 25px;
+  font-family: Helvetica, sans-serif;
+  font-size: 20px;
+  height: 100%;
+}
+
+/* The styles below are for the webpage content */
+
+h1{
+  color:#fff;
+  font-size:30px;
+  font-weight:normal;
+  padding:10px 0 20px;
+  text-align:center;
+}
+
+h4{
+  font-size:15px;
+  font-weight:normal;
+  text-align:center;
+}
+
+h1,h2{
+  font-family:"Myriad Pro",Arial,Helvetica,sans-serif;
+}
+
+a, a:visited, a:active {
+  color:#bba29b;
+  text-decoration:none;
+  outline:none;
+}
+
+a:hover{
+  color: #a97870;
+  text-decoration:none;
+}
+
+a img{
+  border:none;
+}
+
+img {
+  border: none;
+}
+
+.links {
+  position: relative;
+  text-align: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+.links li {
+  padding: 20px 40px;
+  display: inline;
+  float: left;
+  background-color: black;
+}
+
+li {
+  list-style-type: none;
+}
+
+table {
+  color: #fff5ee;
+  font-family: sans-serif;
+}
+
+td {
+  padding: 40px;
+}
+
+#button {
+  padding: 0px;
+  border-style: none;
+  width: 40px;
+}
+
+#button:hover {
+  box-shadow: #7b68ee 0.2em 0.2em 0.5em;
+}
+
+#copy {
+  padding: 0;
+  bottom: 0px;
+  color: #bba29b;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -40px;
+}
+
+.footer, .push {
+  height: 40px;
+}
