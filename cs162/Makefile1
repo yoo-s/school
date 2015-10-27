@@ -1,0 +1,14 @@
+CXX = g++
+SRCS = matrix.cpp war.cpp buttercup.cpp
+HEADERS = 
+pr1: ${SRCS} ${HEADERS}
+	${CXX} ${SRCS} -o a1
+matrix.o: matrix.cpp
+	${CXX} -c matrix.cpp
+war.o: war.cpp
+	${CXX} -c war.cpp
+buttercup.o: buttercup.cpp
+	${CXX} -c buttercup.cpp
+clean:
+	rm -f *.o a1
+
