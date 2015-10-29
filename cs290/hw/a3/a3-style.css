@@ -6,6 +6,7 @@
 
 html, body, p{
   background-color: #e6ffe6;
+  color: #6bb26b;
   padding: 25px;
   font-family: Helvetica, sans-serif;
   font-size: 20px;
@@ -25,11 +26,13 @@ html, body, p{
 /* The styles below are for the webpage content */
 
 h1{
-  color:#000;
+  color:#008f00;
   font-size:30px;
   font-weight:normal;
   padding:10px 0 20px;
   text-align:center;
+  font-family:"Myriad Pro",Arial,Helvetica,sans-serif;
+  text-decoration: underline;
 }
 
 h4{
@@ -38,23 +41,11 @@ h4{
   text-align:center;
 }
 
-h1,h2{
-  font-family:"Myriad Pro",Arial,Helvetica,sans-serif;
-}
-
-a, a:visited, a:active {
-  color:#bba29b;
-  text-decoration:none;
-  outline:none;
-}
-
-a:hover{
-  color: #a97870;
-  text-decoration:none;
-}
-
-a img{
-  border:none;
+#side {
+  border-style: dotted;
+  background-color: #ebffff;
+  border-color: #009999;
+  width: 25%;
 }
 
 #img {
@@ -67,25 +58,30 @@ a img{
   height: 6em;
 }
 
-.links {
-  position: relative;
-  text-align: center;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: black;
+#winner {
+  border-style: solid;
+  background-color: #f0f8f0;
+  width: 40%;
 }
 
-.links li {
-  padding: 20px 40px;
-  display: inline;
-  float: left;
-  background-color: black;
+#sc1 {
+  font-size: 2em;
+  color: #6bb26b;
+  text-align: left;
+}
+
+#sc2 {
+  font-size: 2em;
+  color: #6bb26b;
+  text-align: right;
 }
 
 li {
   list-style-type: none;
+}
+
+table {
+  border-spacing: 1em;
 }
 
 td {
@@ -119,7 +115,8 @@ td {
   font-family:Arial;
   font-size:15px;
   font-weight:bold;
-  padding:6px 24px;
+  padding:10px 24px;
+  margin: 5px;
   text-decoration:none;
   text-shadow:0px 1px 0px #ffffff;
 }
@@ -148,50 +145,3 @@ td {
   height: 40px;
 }
 
-/* Slide Show --------------------------- */
-
-#container {
-  width: 500px;
-  height: 400px;
-  margin: 20px auto;
-  position: relative;
-  border-style: solid;
-}
-
-#imgSS {
-  width: 500px;
-  height: 400px;
-  position: absolute;
-}
-
-#left {
-  width: 50px;
-  height: 400px;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-#right {
-  width: 50px;
-  height: 400px;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.goleft {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 45%;
-  left: 0px;
-}
-
-.goright {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 45%;
-  right: 0px;
-}
