@@ -1,34 +1,76 @@
-var userChoice = prompt("Do you choose rock, paper or scissors?");
-var computerChoice = Math.random();
-if (computerChoice < 0.34) {
-	computerChoice = "rock";
-} else if(computerChoice <= 0.67) {
-	computerChoice = "paper";
-} else {
-	computerChoice = "scissors";
-} console.log("Computer: " + computerChoice);
-compare(userChoice, computerChoice);
+var rockImg = "images/rock.png";
+var paperImg = "images/paper.jpg";
+var scissorsImg = "images/scissors.png";
+var youScore = 0;
+var compScore = 0;
 
-var compare = function(choice1, choice2) {
-    if (choice1 === choice2) {
-        return "The result is a tie!";
-    } else if (choice1 === "rock") {
-        if (choice2 === "scissors") {
-            return "rock wins";
+function compPic() {
+	var computerChoice = Math.random();
+	var computerImg;
+	if (computerChoice < 0.34) {
+		document.getElementById("img2").src = "images/rock.png";
+		computerImg = "images/rock.png";
+	} else if(computerChoice <= 0.67) {
+		document.getElementById("img2").src ="images/paper.jpg";
+		computerImg = "images/paper.jpg";
+	} else {
+		document.getElementById("img2").src ="images/scissors.png";
+		computerImg = "images/scissors.png";
+	}
+	return computerImg;
+}
+
+function pic1() {
+        document.getElementById("img").src = rockImg;
+        var youImg = rockImg;
+        compImg = compPic();
+        winner(youImg, compImg);
+}
+function pic2() {
+        document.getElementById("img").src = paperImg;
+        youImg = paperImg;
+        compImg = compPic();
+        winner(youImg, compImg);
+}
+function pic3() {
+        document.getElementById("img").src = scissorsImg;
+        youImg = scissorsImg;
+        compImg = compPic();
+        winner(youImg, compImg);
+}
+
+function winner(youImg, computerImg) {
+    if (youImg === computerImg) {
+        document.getElementById("winner").innerHTML = "The result is a tie!";
+    } else if (youImg == "images/rock.png") {
+        if (computerImg == "images/scissors.png") {
+            document.getElementById("winner").innerHTML = "rock wins";
+            youScore++;
+            document.getElementById("sc1").innerHTML = "" + youScore;
         } else {
-            return "paper wins";
+            document.getElementById("winner").innerHTML = "paper wins";
+            compScore++;
+            document.getElementById("sc2").innerHTML = "" + compScore;
         }
-    } else if (choice1 === "paper") {
-        if (choice2 === "rock") {
-            return "paper wins";
+    } else if (youImg == "images/paper.jpg") {
+        if (computerImg == "images/rock.png") {
+        	document.getElementById("winner").innerHTML = "paper wins";
+        	youScore++;
+            document.getElementById("sc1").innerHTML = "" + youScore;
         } else {
-            return "scissors wins";
+            document.getElementById("winner").innerHTML = "scissors wins";
+            compScore++;
+            document.getElementById("sc2").innerHTML = "" + compScore;
         }
-    } else if (choice1 === "scissors") {
-        if (choice2 === "rock") {
-            return "rock wins";
+    } else if (youImg == "images/scissors.png") {
+        if (computerImg == "images/rock.png") {
+        	document.getElementById("winner").innerHTML = "rock wins";
+        	compScore++;
+            document.getElementById("sc2").innerHTML = "" + compScore;
         } else {
-            return "scissors wins";
+            document.getElementById("winner").innerHTML = "scissors wins";
+            youScore++;
+            document.getElementById("sc1").innerHTML = "" + youScore;
         }
     }
 }

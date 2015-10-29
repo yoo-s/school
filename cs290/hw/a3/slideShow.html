@@ -1,17 +1,22 @@
-<body>
-    <div id="slideshow">
-        <img src="http://web.engr.oregonstate.edu/~schutfoj/cs290/images/cat1.jpg" width="400px">
-        <img src="http://web.engr.oregonstate.edu/~schutfoj/cs290/images/cat2.jpg" width = "400px">
-        <img src="http://web.engr.oregonstate.edu/~schutfoj/cs290/images/cat3.jpg" width = "400px">            
-        <img src="http://web.engr.oregonstate.edu/~schutfoj/cs290/images/cat4.jpg" width = "400px">
-        <img src="http://web.engr.oregonstate.edu/~schutfoj/cs290/images/cat5.jpg" width = "400px">
-        <img src="http://web.engr.oregonstate.edu/~schutfoj/cs290/images/cat6.jpg" width = "400px">
-        <img src="http://web.engr.oregonstate.edu/~schutfoj/cs290/images/cat7.jpg" width = "400px">   
-        <img src="http://web.engr.oregonstate.edu/~schutfoj/cs290/images/cat8.jpg" width = "400px">    
-</div>
-	<center>
-        <button class="myButton" id="btnPrev">Prev </button> 
-        <button class="myButton" id="btnNext">Next </button> 
-	</center>
-
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>yooso's SlideShow</title>
+    <link rel="stylesheet" href="a3-style.css">
+    <script type="text/Javascript" src="slideShow.js"></script>
+  </head>
+  <body onload="slideAuto(x);">
+    <div id="container">
+        <img src="http://web.engr.oregonstate.edu/~yooso/cs290/hw/a3/images/LC-ep001-01.png" id="imgSS" />
+        <div id="left"><img src="" onclick="slide(-1);" class="goleft"/></div>
+        <div id="right"><img src="" onclick="slide(1);" class="goright"/></div>
+    </div>
+    <div class="push"></div>
+    <div class="footer">
+      <center>
+      <p id="copy" style="font-size:10px; text-align: center">Copyright &copy; 2015 Soo-Min Yoo</p>
+      </center>
+    </div>
+  </body>
+</html>

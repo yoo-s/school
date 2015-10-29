@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
+    <meta charset="utf-8">
     <title>yooso's RockPaperScissors</title>
-    <link type="text/css" rel="stylesheet" href="#">
+    <link rel="stylesheet" href="a3-style.css">
+    <script type="text/Javascript" src="rockPaperScissors.js"></script>
   </head>
   <body>
-    <div id="main">
+    <div>
       <ul>
         <li>
-          <a class="h2p" href="#">
-            <span>How to Play</span>
-          </a>
+          <a class="myButton" href="h2p.html">How to Play</a>
         </li>
       </ul>
     </div>
 
-    <div class="wrapper">
+    <div>
       <center>
-      <h3>Rock Paper Scissors</h3>
+      <img src="images/rps_title.png" width="40%" />
       <br />
       <table>
         <tr>
-          <td width="400">
-            Here is my rps game.</td>
-          <br></br>
+          <td>
+            You</td>
+          <td colspan="3"></td>
+          <td>
+            Computer</td>
+        </tr>
+        <tr>
+          <td><img id="img" src="" /></td>
+          <td colspan="3" id="winner">Winner message goes here.</td>
+          <td><img id="img2" src="" /></td>
         </tr>
       </table>
       <br><br><hr>
       <table id="buttons">
         <tr>
           <td>
-            <a class="rock"><img src="images/rock.jpg" width="200">
-          </td>
-
-          <td>
-            <a class="paper"><img src="images/paper.jpg" width="200">
-          </td>
-
-          <td>
-            <a class="scissors"><img src="images/scissors.png" width="200">
-          </td>
+            <input type="button" class="myButton" value="Rock" onclick="pic1()" /><br>
+            <input type="button" class="myButton" value="Paper" onclick="pic2()" /><br>
+            <input type="button" class="myButton" value="Scissors" onclick="pic3()" /></td>
+          <td id="sc1">0</td>
+          <td>|</td>
+          <td id="sc2">0</td>
+          <td>COMPUTER</td>
         </tr>
       </table>
       </center>
