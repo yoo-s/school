@@ -26,12 +26,12 @@
 int compare(TYPE left, TYPE right)
 {
     /*DONE: write this*/
-	struct data *L = (struct data*)left;
-	struct data *R = (struct data*)right;
+	struct user *L = (struct user*)left;
+	struct user *R = (struct user*)right;
 
-	if (L->number < R->number) {
+	if (L->id < R->id) {
 		return -1;
-	} else if (L->number > R->number) {
+	} else if (L->id > R->id) {
 		return 1;
 	}
 	return 0;
@@ -41,8 +41,8 @@ int compare(TYPE left, TYPE right)
 void print_type(TYPE curval)
 {
     /*DONE: write this*/
-	struct data *cur = (struct data*)curval;
-	printf("%d", cur->number);
+	struct user *cur = (struct user*)curval;
+	printf("%d", cur->id);
 
 }
 

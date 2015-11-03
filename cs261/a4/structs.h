@@ -4,3 +4,14 @@ struct data {
 	int number;
 	char *name;
 };
+
+struct dbl {
+	double num;
+	char *name;
+}
+
+struct user {
+	int id;
+	char *username;
+	char *password;
+}
