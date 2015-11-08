@@ -23,26 +23,24 @@
   DO NOT compare the addresses pointed by left and right, i.e. "if (left < right)",
   which is really wrong.
  */
-int compare(TYPE left, TYPE right)
-{
+int compare(TYPE left, TYPE right) {
     /*DONE: write this*/
-	struct user *L = (struct user*)left;
-	struct user *R = (struct user*)right;
+	struct data *L = (struct data*)left;
+	struct data *R = (struct data*)right;
 
-	if (L->id < R->id) {
+	if (L->num < R->num) {
 		return -1;
-	} else if (L->id > R->id) {
+	} else if (L->num > R->num) {
 		return 1;
 	}
 	return 0;
 }
 
 /*Define this function, type casting the value of void * to the desired type*/
-void print_type(TYPE curval)
-{
+void print_type(TYPE curval) {
     /*DONE: write this*/
-	struct user *cur = (struct user*)curval;
-	printf("%d", cur->id);
+	struct data *cur = (struct data*)curval;
+	printf("%g", cur->num);
 
 }
 

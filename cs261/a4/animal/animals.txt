@@ -1,0 +1,7 @@
+Qdoes it live in the water?
+Qis it a mammal?
+Qdoes it climb trees?
+Awhale
+Asea turtle
+Acat
+Adog
