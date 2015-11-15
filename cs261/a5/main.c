@@ -9,8 +9,8 @@ int main (int argc, const char * argv[])
 {
 	char cmd = ' ';
 	DynArr* mainList = createDynArr(10);
-	struct Task *new;
-	struct Task *first;
+	TYPE new;
+	TYPE first;
 	char desc[TASK_DESC_SIZE];
 	int priority;
 	char filename[30];
@@ -88,9 +88,9 @@ int main (int argc, const char * argv[])
 					}
 				}
 				do {
-					printf("Task priority (1-10): ");
+					printf("Task priority (0-999): ");
 					scanf("%d", &priority);
-				} while (priority >= 0 && priority <= 10);
+				} while (!(priority >= 0 && priority <= 999));
 
 				new = createTask(priority, desc);
 				addHeap(mainList, new, compare);
@@ -100,7 +100,7 @@ int main (int argc, const char * argv[])
 			/* get first task */
 			case 'g':
 				if (sizeDynArr(mainList) > 0) {
-					first = (Task*)getMinHeap(mainList);
+					first = (struct Task*)getMinHeap(mainList);
 					printf("First task: %s\n", first->description);
 				} else {
 					printf("List is empty.\n");
@@ -110,7 +110,7 @@ int main (int argc, const char * argv[])
 			/* remove first task */
 			case 'r':
 				if (sizeDynArr(mainList) > 0) {
-					first = (Task*)getMinHeap(mainList);
+					first = (struct Task*)getMinHeap(mainList);
 					removeMinHeap(mainList, compare);
 					printf("Removed first task.\n");
 					free(first);
