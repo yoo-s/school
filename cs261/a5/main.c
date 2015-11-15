@@ -9,8 +9,8 @@ int main (int argc, const char * argv[])
 {
 	char cmd = ' ';
 	DynArr* mainList = createDynArr(10);
-	TaskP new;
-	TaskP first;
+	struct Task *new;
+	struct Task *first;
 	char desc[TASK_DESC_SIZE];
 	int priority;
 	char filename[30];
