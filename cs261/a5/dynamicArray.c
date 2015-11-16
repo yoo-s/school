@@ -541,7 +541,7 @@ TYPE getMinHeap(DynArr *heap)
 {
 	/* DONE: Write This */
 	assert(!isEmptyDynArr(heap));
-	return getDynArr(heap, 0);
+	return heap->data[0];
 }
 
 /*	Add a node to the heap
@@ -629,10 +629,11 @@ void _buildHeap(DynArr *heap, comparator compare)
 {
 	/* DONE: Write This */
 	assert(!isEmptyDynArr(heap));
-	int last;
-	last = sizeDynArr(heap) - 1;
-	for (int i = last; i >= 0; i--) {
+	int last = sizeDynArr(heap);
+	int i = last/2 - 1;
+	while (i != 0) {
 		_adjustHeap(heap, last, i, compare);
+		i--;
 	}
 }
 /*
@@ -649,9 +650,10 @@ void sortHeap(DynArr *heap, comparator compare)
 	assert(!isEmptyDynArr(heap));
 	int last = sizeDynArr(heap) - 1;
 	_buildHeap(heap, compare);
-	for (int i = last; i >= 0; i--) {
-		swapDynArr(heap, last, i);
+	while (last != -1) {
+		swapDynArr(heap, 0, last);
 		_adjustHeap(heap, last, 0, compare);
+		last--;
 	}
 }
 

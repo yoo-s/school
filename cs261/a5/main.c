@@ -9,8 +9,6 @@ int main (int argc, const char * argv[])
 {
 	char cmd = ' ';
 	DynArr* mainList = createDynArr(10);
-	struct Task *new;
-	struct Task *first;
 	char desc[TASK_DESC_SIZE];
 	int priority;
 	char filename[30];
@@ -47,12 +45,12 @@ int main (int argc, const char * argv[])
 				}
 				fileptr = fopen(filename, "r");
 				if (fileptr == 0) {
-					fprintf(stderr, "Error: unable to open file.\n");
+					fprintf(stderr, "Error: unable to open file.\n\n");
 					break;
 				}
 				loadList(mainList, fileptr);
 				fclose(fileptr);
-				printf("Loaded list.\n");
+				printf("Loaded list.\n\n");
 				break;
 			
 			/* save list */
@@ -67,14 +65,14 @@ int main (int argc, const char * argv[])
 					}
 					fileptr = fopen(filename, "w");
 					if (fileptr == 0) {
-						fprintf(stderr, "Error: unable to open file.\n");
+						fprintf(stderr, "Error: unable to open file.\n\n");
 						break;
 					}
 					saveList(mainList, fileptr);
 					fclose(fileptr);
-					printf("Saved list.\n");
+					printf("Saved list.\n\n");
 				} else {
-					printf("List is empty.\n");
+					printf("List is empty.\n\n");
 				}
 				break;
 
@@ -92,30 +90,27 @@ int main (int argc, const char * argv[])
 					scanf("%d", &priority);
 				} while (!(priority >= 0 && priority <= 999));
 
-				new = createTask(priority, desc);
+				TaskP new = createTask(priority, desc);
 				addHeap(mainList, new, compare);
-				printf("Added task.\n");
+				printf("Added task '%s'.\n\n", desc);
 				break;
 
 			/* get first task */
 			case 'g':
 				if (sizeDynArr(mainList) > 0) {
-					first = (struct Task*)getMinHeap(mainList);
-					printf("First task: %s\n", first->description);
+					printf("First task: %s\n\n", ((struct Task*)getMinHeap(mainList))->description);
 				} else {
-					printf("List is empty.\n");
+					printf("List is empty.\n\n");
 				}
 				break;
 
 			/* remove first task */
 			case 'r':
 				if (sizeDynArr(mainList) > 0) {
-					first = (struct Task*)getMinHeap(mainList);
+					printf("Removed first task '%s'.\n\n", ((struct Task*)getMinHeap(mainList))->description);
 					removeMinHeap(mainList, compare);
-					printf("Removed first task.\n");
-					free(first);
 				} else {
-					printf("List is empty.\n");
+					printf("List is empty.\n\n");
 				}
 				break;
 
@@ -124,13 +119,13 @@ int main (int argc, const char * argv[])
 				if (sizeDynArr(mainList) > 0) {
 					printList(mainList);
 				} else {
-					printf("List is empty.\n");
+					printf("List is empty.\n\n");
 				}
 				break;
 
 			/* exit program */
 			case 'e':
-				printf("Exit.\n");
+				printf("Exit.\n\n");
 				break;
 		}
 	/* Note: We have provided functions called printList(), saveList() and loadList() for you to use.  They can be found in toDoList.c */

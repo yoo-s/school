@@ -29,8 +29,8 @@
 int compare(TYPE left, TYPE right)
 {
 	/*DONE: write this*/
-	struct data *L = (struct data*)left;
-	struct data *R = (struct data*)right;
+	struct Task *L = (struct Task*)left;
+	struct Task *R = (struct Task*)right;
 
 	if (L->priority < R->priority) {
 		return -1;
@@ -68,7 +68,7 @@ ret: 	a task with description and priority
 TaskP createTask (int priority, char *desc)
 {
 	/*DONE: Write this */
-	TaskP task;
+	TaskP task = (TaskP)malloc(sizeof(struct Task));
 	task->priority = priority;
 	strcpy(task->description, desc);
 	return task;
