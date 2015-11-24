@@ -19,6 +19,20 @@ typedef void (*valPrinter)(ValueType val);
 /* load factor threshold for resizing the hash table */
 # define LOAD_FACTOR_THRESHOLD 0.75
 
+struct hashLink {
+   KeyType key; /*the key is what you use to look up a hashLink*/
+   ValueType value; /*the value stored with the hashLink, a pointer to int in the case of concordance*/
+   struct hashLink * next; /*notice how these are like linked list nodes*/
+};
+typedef struct hashLink hashLink;
+
+struct hashMap {
+    hashLink ** table; /*array of pointers to hashLinks*/
+    int tableSize; /*number of buckets in the table*/
+    int count; /*number of hashLinks in the table*/
+};
+typedef struct hashMap hashMap;
+
 int stringHash1(char * str);
 
 int stringHash2(char * str);

@@ -4,20 +4,6 @@
 #include <assert.h>
 #include "hashMap.h"
 
-struct hashLink {
-   KeyType key; /*the key is what you use to look up a hashLink*/
-   ValueType value; /*the value stored with the hashLink, a pointer to int in the case of concordance*/
-   struct hashLink * next; /*notice how these are like linked list nodes*/
-};
-typedef struct hashLink hashLink;
-
-struct hashMap {
-    hashLink ** table; /*array of pointers to hashLinks*/
-    int tableSize; /*number of buckets in the table*/
-    int count; /*number of hashLinks in the table*/
-};
-typedef struct hashMap hashMap;
-
 /*the first hashing function you can use*/
 int stringHash1(char * str)
 {
@@ -66,8 +52,18 @@ hashMap *createMap(int tableSize) {
  */
 void _freeLinks (struct hashLink **table, int tableSize)
 {
-	/*write this*/
+	/*DONE: write this*/
+	struct hashLink *itr;
+	struct hashLink *temp;
 
+	for (int i = 0; i < tableSize; i++) {
+		itr = table[i];
+		while (itr != 0) {
+			temp = itr->next;
+			free(itr);
+			itr = temp;
+		}
+	}
 }
 
 /* Deallocate buckets, table, and hashTable structure itself.*/
@@ -88,13 +84,28 @@ Resizes the hash table to be the size newTableSize
 */
 void _setTableSize(struct hashMap * ht, int newTableSize)
 {
-	/*write this*/
+	/*DONE: write this*/
+	struct hashLink *itr;
+	struct hashMap *new = createMap(newTableSize);
+
+	for (int i = 0; i < ht->tableSize; i++) {
+		if (ht->table[i] != 0) {
+			itr = ht->table[i];
+			while (itr != 0) {
+				insertMap(new, itr->key, itr->value);
+				itr = itr->next;
+			}
+		}
+	}
+	ht->table = new->table;
+	ht->tableSize = new->tableSize;
+	_freeLinks(ht->table, ht->tableSize);
+	free(ht->table);
 }
 
 /*
  insert the following values into a hashLink, you must create this hashLink but
- only after you confirm that this key does not already exist in the table. For example, you
- cannot have two hashLinks for the word "taco".
+ only after you confirm that this key does not already exist in the table. For example, you cannot have two hashLinks for the word "taco".
 
  if a hashLink already exists in the table for the key provided you should
  replace the value for that key.  As the developer, you DO NOT FREE UP THE MEMORY FOR THE VALUE.
@@ -107,7 +118,41 @@ void _setTableSize(struct hashMap * ht, int newTableSize)
  */
 void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 {
-	/*write this*/
+	/*DONE: write this*/
+	int idx;
+
+	if(HASHING_FUNCTION == 1) {
+		idx = stringHash1(k) % ht->tableSize;
+	} else if (HASHING_FUNCTION == 2) {
+		idx = stringHash2(k) % ht->tableSize;
+	}
+
+	// if bucket not empty
+	if (ht->table[idx] != 0) {
+		struct hashLink *itr = ht->table[idx];
+		while (strcmp(itr->key, k) != 0 && itr->next != 0) {
+			itr = itr->next;
+		}
+		if (strcmp(itr->key, k) != 0 && itr->next == 0) {
+			struct hashLink *new = malloc(sizeof(struct hashLink));
+			new->next = 0;
+			new->key = 0;
+			new->value = 0;
+			itr->next = new;
+			ht->count++;
+		} else {
+			itr->value = v;
+		}
+	}
+	//if bucket empty
+	else {
+		struct hashLink *new = malloc(sizeof(struct hashLink));
+		new->next = 0;
+		new->key = k;
+		new->value = v;
+		ht->table[idx] = new;
+		ht->count++;
+	}
 }
 
 /*
@@ -120,7 +165,21 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
  */
 ValueType atMap (struct hashMap * ht, KeyType k)
 {
-	/*write this*/
+	/*DONE: write this*/
+	int idx;
+
+	if(HASHING_FUNCTION == 1) {
+		idx = stringHash1(k) % ht->tableSize;
+	} else if (HASHING_FUNCTION == 2) {
+		idx = stringHash2(k) % ht->tableSize;
+	}
+	hashLink *itr = ht->table[idx];
+	while (itr != 0) {
+		if (strcmp(itr->key, k) == 0) {
+			return &(itr->value);
+		}
+		itr = itr->next;
+	}
 	return 0;
 }
 
@@ -130,7 +189,21 @@ ValueType atMap (struct hashMap * ht, KeyType k)
  */
 int containsKey (struct hashMap * ht, KeyType k)
 {
-	/*write this*/
+	/*DONE: write this*/
+	int idx;
+
+	if(HASHING_FUNCTION == 1) {
+		idx = stringHash1(k) % ht->tableSize;
+	} else if (HASHING_FUNCTION == 2) {
+		idx = stringHash2(k) % ht->tableSize;
+	}
+	hashLink *itr = ht->table[idx];
+	while (itr != 0) {
+		if (strcmp(itr->key, k) == 0) {
+			return 1;
+		}
+		itr = itr->next;
+	}
 	return 0;
 }
 
@@ -142,7 +215,32 @@ int containsKey (struct hashMap * ht, KeyType k)
  */
 void removeKey (struct hashMap * ht, KeyType k)
 {
-	/*write this*/
+	/*DONE: write this*/
+	int idx;
+
+	if(HASHING_FUNCTION == 1) {
+		idx = stringHash1(k) % ht->tableSize;
+	} else if (HASHING_FUNCTION == 2) {
+		idx = stringHash2(k) % ht->tableSize;
+	}
+	hashLink *itr = ht->table[idx];
+	hashLink *nextL = ht->table[idx]->next;
+	if (strcmp(itr->key, k) == 0) {
+		free(itr->key);
+		ht->table[idx] = nextL;
+		free(itr);
+		return;
+	}
+	while(nextL != 0) {
+		if (strcmp(nextL->key, k)) {
+			free(nextL->key);
+			itr->next = nextL->next;
+			free(nextL);
+			return;
+		}
+		itr = itr->next;
+		nextL = nextL->next;
+	}
 }
 
 /*

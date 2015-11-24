@@ -51,12 +51,40 @@ int main (int argc, const char * argv[]) {
         filename = "input1.txt"; /*specify your input text file here*/
 
     printf("opening file: %s\n", filename);
+	fileptr = fopen(filename, "r");
 
 	timer = clock();
 
 	hashTable = createMap(tableSize);
 
     /*... concordance code goes here ...*/
+	char *word;
+	do {
+		word = getWord(fileptr);
+		if (containsKey(hashTable, word)) {
+			int *occr = atMap(hashTable, word);
+			(*occr)++;
+			free(word);
+		} else {
+			insertMap(hashTable, word, (int*)1);
+		}
+	} while (word != 0);
+
+	// print words
+	struct hashLink *itr;
+	for (int i = 0; i < capacity(hashTable); i++) {
+		itr = hashTable->table[i];
+		while (itr != 0) {
+			keyPrint(itr->key);
+			printf(": ");
+			valPrint(itr->value);
+			printf("\n\n");
+			itr = itr->next;
+		}
+	}
+
+	deleteMap(hashTable);
+	fclose(fileptr);
 
 	/*... concordance code ends here ...*/
 
