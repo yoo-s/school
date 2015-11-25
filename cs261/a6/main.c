@@ -52,23 +52,43 @@ int main (int argc, const char * argv[]) {
 
     printf("opening file: %s\n", filename);
 	fileptr = fopen(filename, "r");
-
+	if (fileptr == NULL) {
+		printf("Error: Could not read file.");
+	}
 	timer = clock();
 
 	hashTable = createMap(tableSize);
 
     /*... concordance code goes here ...*/
-	char *word;
+/*	char *word;
 	do {
 		word = getWord(fileptr);
-		if (containsKey(hashTable, word)) {
-			int *occr = atMap(hashTable, word);
-			(*occr)++;
-			free(word);
-		} else {
-			insertMap(hashTable, word, (int*)1);
+		if (word != NULL) {
+			if (containsKey(hashTable, word)) {
+				int *occr = atMap(hashTable, word);
+				(*occr)++;
+				free(word);
+			} else {
+				insertMap(hashTable, word, (int*)1);
+			}
 		}
 	} while (word != 0);
+*/
+	while (!(feof(fileptr))) {
+		char *word = getWord(fileptr);
+		if (word != NULL) {
+			if (containsKey(hashTable, word)) {
+				int *val = (int*)atMap(hashTable, word);
+				(*val)++;
+				free(word);
+			} else {
+				int intVal = 1;
+				int *one = (int*)malloc(sizeof(int));
+				*one = 1;
+				insertMap(hashTable, word, &intVal);
+			}
+		}
+	}
 
 	// print words
 	struct hashLink *itr;

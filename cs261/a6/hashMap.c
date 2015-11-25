@@ -173,7 +173,7 @@ ValueType atMap (struct hashMap * ht, KeyType k)
 	} else if (HASHING_FUNCTION == 2) {
 		idx = stringHash2(k) % ht->tableSize;
 	}
-	hashLink *itr = ht->table[idx];
+	struct hashLink *itr = ht->table[idx];
 	while (itr != 0) {
 		if (strcmp(itr->key, k) == 0) {
 			return &(itr->value);
@@ -197,7 +197,8 @@ int containsKey (struct hashMap * ht, KeyType k)
 	} else if (HASHING_FUNCTION == 2) {
 		idx = stringHash2(k) % ht->tableSize;
 	}
-	hashLink *itr = ht->table[idx];
+	struct hashLink *itr = (hashLink*)malloc(sizeof(hashLink));
+	itr = ht->table[idx];
 	while (itr != 0) {
 		if (strcmp(itr->key, k) == 0) {
 			return 1;
@@ -223,8 +224,8 @@ void removeKey (struct hashMap * ht, KeyType k)
 	} else if (HASHING_FUNCTION == 2) {
 		idx = stringHash2(k) % ht->tableSize;
 	}
-	hashLink *itr = ht->table[idx];
-	hashLink *nextL = ht->table[idx]->next;
+	struct hashLink *itr = ht->table[idx];
+	struct hashLink *nextL = ht->table[idx]->next;
 	if (strcmp(itr->key, k) == 0) {
 		free(itr->key);
 		ht->table[idx] = nextL;
