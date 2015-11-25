@@ -137,8 +137,8 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 		if (strcmp(itr->key, k) != 0 && itr->next == 0) {
 			struct hashLink *new = malloc(sizeof(struct hashLink));
 			new->next = 0;
-			new->key = 0;
-			new->value = 0;
+			new->key = k;
+			new->value = (int*)v;
 			itr->next = new;
 			ht->count++;
 		} else {
@@ -150,7 +150,7 @@ void insertMap (struct hashMap * ht, KeyType k, ValueType v)
 		struct hashLink *new = malloc(sizeof(struct hashLink));
 		new->next = 0;
 		new->key = k;
-		new->value = v;
+		new->value = (int*)v;
 		ht->table[idx] = new;
 		ht->count++;
 	}
@@ -174,12 +174,17 @@ ValueType atMap (struct hashMap * ht, KeyType k)
 	} else if (HASHING_FUNCTION == 2) {
 		idx = stringHash2(k) % ht->tableSize;
 	}
-	struct hashLink *itr = ht->table[idx];
-	while (itr != 0) {
-		if (strcmp(itr->key, k) == 0) {
-			return &(itr->value);
+
+	if(ht->table[idx] != 0) {
+		struct hashLink *itr = ht->table[idx];
+		while (itr != 0) {
+			if (strcmp(itr->key, k) == 0) {
+				return itr->value;
+			} else {
+				itr = itr->next;
+			}
 		}
-		itr = itr->next;
+		return itr->value;
 	}
 	return 0;
 }
@@ -198,16 +203,15 @@ int containsKey (struct hashMap * ht, KeyType k)
 	} else if (HASHING_FUNCTION == 2) {
 		idx = stringHash2(k) % ht->tableSize;
 	}
+
 	struct hashLink *itr = ht->table[idx];
-	printf("%zu", (uintptr_t)k);
-	printf("%zu", (uintptr_t)itr->key);
 	while (itr != 0) {
-		if (itr->key == 0) {
-			if (strcmp(itr->key, k) == 0) {
-				return 1;
-			}
-			itr = itr->next;
+		if (strcmp(itr->key, k) == 0) {
+			printf("itr: %p\n", itr);
+			printf("itr->key: %s\n", itr->key);
+			return 1;
 		}
+		itr = itr->next;
 	}
 	return 0;
 }
@@ -228,23 +232,46 @@ void removeKey (struct hashMap * ht, KeyType k)
 	} else if (HASHING_FUNCTION == 2) {
 		idx = stringHash2(k) % ht->tableSize;
 	}
-	struct hashLink *itr = ht->table[idx];
-	struct hashLink *nextL = ht->table[idx]->next;
-	if (strcmp(itr->key, k) == 0) {
-		free(itr->key);
-		ht->table[idx] = nextL;
-		free(itr);
-		return;
-	}
-	while(nextL != 0) {
-		if (strcmp(nextL->key, k)) {
-			free(nextL->key);
-			itr->next = nextL->next;
-			free(nextL);
+
+	if (ht->table[idx] != 0) {
+		struct hashLink *itr = ht->table[idx];
+		struct hashLink *prev = itr;
+		if (itr == 0) {
 			return;
 		}
-		itr = itr->next;
-		nextL = nextL->next;
+		if(strcmp(itr->key, k) == 0) {
+			ht->table[idx] = prev->next;
+			free(prev);
+			ht->count--;
+			return;
+		}
+/*		while(1) {
+			if(itr->next == 0) {
+				break;
+			} else if (strcmp(itr->next->key, k) == 0) {
+				break;
+			} else {
+				itr = itr->next;
+			}
+		}
+		if (itr->next == 0) {
+			return;
+		} else {
+			struct hashLink *del = itr->next;
+			itr->next = del->next;
+			free(del);
+			ht->count--;
+		}*/
+		while(prev != 0) {
+			if (strcmp(prev->key, k)) {
+				free(prev->key);
+				itr->next = prev->next;
+				free(prev);
+				return;
+			}
+			itr = itr->next;
+			prev = prev->next;
+		}
 	}
 }
 
