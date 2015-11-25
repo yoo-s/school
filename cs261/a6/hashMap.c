@@ -3,6 +3,7 @@
 #include <string.h>
 #include <assert.h>
 #include "hashMap.h"
+#include <stdint.h>
 
 /*the first hashing function you can use*/
 int stringHash1(char * str)
@@ -197,13 +198,16 @@ int containsKey (struct hashMap * ht, KeyType k)
 	} else if (HASHING_FUNCTION == 2) {
 		idx = stringHash2(k) % ht->tableSize;
 	}
-	struct hashLink *itr = (hashLink*)malloc(sizeof(hashLink));
-	itr = ht->table[idx];
+	struct hashLink *itr = ht->table[idx];
+	printf("%zu", (uintptr_t)k);
+	printf("%zu", (uintptr_t)itr->key);
 	while (itr != 0) {
-		if (strcmp(itr->key, k) == 0) {
-			return 1;
+		if (itr->key == 0) {
+			if (strcmp(itr->key, k) == 0) {
+				return 1;
+			}
+			itr = itr->next;
 		}
-		itr = itr->next;
 	}
 	return 0;
 }

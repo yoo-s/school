@@ -1,0 +1,8 @@
+Written Questions
+
+1) "dog" and "god"
+2) stringHash2 is better since it considers each letter's position and thus gives it more specific hash values, resulting in quicker searches.
+3) No, the size() function will return the same value no matter which stringHash function is used, since it's just returning the number of elements added to the hash map.
+4) No, the tableLoad() function will return the same value with either stringHash function, because the load factor depends only on the number of elements and table size.
+5) Yes, the emptyBucket() function could return different values since the stringHash functions 
+
