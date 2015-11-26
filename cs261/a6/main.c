@@ -96,7 +96,7 @@ int main (int argc, const char * argv[]) {
 
 	/*... concordance code ends here ...*/
 
-	//printMap(hashTable, keyPrint, valPrint);
+	printMap(hashTable, keyPrint, valPrint);
 	timer = clock() - timer;
 	printf("\nconcordance ran in %f seconds\n", (float)timer / (float)CLOCKS_PER_SEC);
 	printf("Table emptyBuckets = %d\n", emptyBuckets(hashTable));
