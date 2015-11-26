@@ -233,19 +233,20 @@ void removeKey (struct hashMap * ht, KeyType k)
 		idx = stringHash2(k) % ht->tableSize;
 	}
 
+	struct hashLink *itr;
+
 	if (ht->table[idx] != 0) {
-		struct hashLink *itr = ht->table[idx];
-		struct hashLink *prev = itr;
-		if (itr == 0) {
-			return;
-		}
-		if(strcmp(itr->key, k) == 0) {
+		itr = ht->table[idx];
+		// found key the first time
+		if (strcmp(itr->key, k) == 0) {
+			struct hashLink *prev = itr;
 			ht->table[idx] = prev->next;
 			free(prev);
 			ht->count--;
 			return;
 		}
-/*		while(1) {
+		// decide whether to break or keep iterating
+		while(1) {
 			if(itr->next == 0) {
 				break;
 			} else if (strcmp(itr->next->key, k) == 0) {
@@ -254,23 +255,14 @@ void removeKey (struct hashMap * ht, KeyType k)
 				itr = itr->next;
 			}
 		}
+		// stop if reach end of file, if not remove next
 		if (itr->next == 0) {
 			return;
 		} else {
-			struct hashLink *del = itr->next;
-			itr->next = del->next;
-			free(del);
+			struct hashLink *prev = itr->next;
+			itr->next = prev->next;
+			free(prev);
 			ht->count--;
-		}*/
-		while(prev != 0) {
-			if (strcmp(prev->key, k)) {
-				free(prev->key);
-				itr->next = prev->next;
-				free(prev);
-				return;
-			}
-			itr = itr->next;
-			prev = prev->next;
 		}
 	}
 }
@@ -328,7 +320,7 @@ float tableLoad(struct hashMap *ht)
 {
 	int i;
 	struct hashLink *temp;
-	for(i = 0;i < capacity(ht); i++){
+	for(i = 0; i < capacity(ht); i++){
 		temp = ht->table[i];
 		if(temp != 0) {
 			printf("\nBucket Index %d -> ", i);

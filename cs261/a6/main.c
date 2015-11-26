@@ -60,32 +60,20 @@ int main (int argc, const char * argv[]) {
 	hashTable = createMap(tableSize);
 
     /*... concordance code goes here ...*/
-/*	char *word;
-	do {
+
+	char *word;
+	while (!(feof(fileptr))) {
 		word = getWord(fileptr);
 		if (word != NULL) {
 			if (containsKey(hashTable, word)) {
-				int *occr = atMap(hashTable, word);
+				int *occr = (int*)atMap(hashTable, word);
 				(*occr)++;
 				free(word);
 			} else {
-				insertMap(hashTable, word, (int*)1);
-			}
-		}
-	} while (word != 0);
-*/
-	while (!(feof(fileptr))) {
-		char *word = getWord(fileptr);
-		if (word != NULL) {
-			if (containsKey(hashTable, word)) {
-				int *val = (int*)atMap(hashTable, word);
-				(*val)++;
-				free(word);
-			} else {
-				int intVal = 1;
+				int intOccr = 1;
 				int *one = (int*)malloc(sizeof(int));
 				*one = 1;
-				insertMap(hashTable, word, &intVal);
+				insertMap(hashTable, word, &intOccr);
 			}
 		}
 	}
@@ -108,7 +96,7 @@ int main (int argc, const char * argv[]) {
 
 	/*... concordance code ends here ...*/
 
-	printMap(hashTable, keyPrint, valPrint);
+	//printMap(hashTable, keyPrint, valPrint);
 	timer = clock() - timer;
 	printf("\nconcordance ran in %f seconds\n", (float)timer / (float)CLOCKS_PER_SEC);
 	printf("Table emptyBuckets = %d\n", emptyBuckets(hashTable));
