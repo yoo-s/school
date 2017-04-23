@@ -2,8 +2,13 @@
 #include <stdio.h>
 #include <unistd.h>
 
+// buffer has max size of 32 items
+// it must be implicitly shared between the threads
 #define BUFSIZE 32
 
+// the two values should be created using the rdrand x86 ASM instruction on
+// systems that support it, and using the Mersenne Twister on systems that
+// don't support rdrand
 struct Item {
 	int first_value;
 	int second_value;
