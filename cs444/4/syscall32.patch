@@ -1,0 +1,8 @@
+--- ../hw4vm2/linux-yocto-3.14/arch/x86/syscalls/syscall_32.tbl	2017-06-07 19:47:58.640217796 -0700
++++ linux-yocto-3.14/arch/x86/syscalls/syscall_32.tbl	2017-06-12 12:51:45.815773641 -0700
+@@ -359,3 +359,5 @@
+ 350	i386	finit_module		sys_finit_module
+ 351	i386	sched_setattr		sys_sched_setattr
+ 352	i386	sched_getattr		sys_sched_getattr
++353	i386	mem_claimed		sys_get_mem_claimed
++354	i386	mem_free		sys_get_mem_free

@@ -1,0 +1,9 @@
+--- ../hw4vm2/linux-yocto-3.14/include/linux/syscalls.h	2017-06-07 19:48:01.897272976 -0700
++++ linux-yocto-3.14/include/linux/syscalls.h	2017-06-12 12:54:06.960121500 -0700
+@@ -855,4 +855,6 @@
+ asmlinkage long sys_kcmp(pid_t pid1, pid_t pid2, int type,
+ 			 unsigned long idx1, unsigned long idx2);
+ asmlinkage long sys_finit_module(int fd, const char __user *uargs, int flags);
++asmlinkage unsigned long sys_get_mem_claimed(void);
++asmlinkage unsigned long sys_get_mem_free(void);
+ #endif

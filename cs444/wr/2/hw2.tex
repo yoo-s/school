@@ -1,0 +1,50 @@
+\documentclass[10pt,draftclsnofoot,onecolumn,letterpaper]{IEEEtran}
+\renewcommand{\rmdefault}{ptm}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{listings}
+\usepackage{cite}
+
+\begin{document}
+\title{I/O and its Functionalities of Linux, Windows, and FreeBSD Operating Systems}
+\author{Soo-Min Yoo - CS444 Spring 2017}
+\date{2017-05-19}
+\maketitle{}
+
+
+Input/Output (I/O) is an essential, basic part of an operating system. Operating systems use the help of device drivers to handle various I/O device, and scheduling I/O requests can increase overall efficiency. I/O is implemented in different ways among different operating systems, and so in this paper we will be discussing the similarities and differences between how Linux, Windows, and FreeBSD implement their I/O.
+
+Linux provides the user with an "abstract machine" interface by using device drivers, which map hardware specific interfaces onto standard interfaces in the kernel\cite{1}. 
+Linux device drivers are usually implemented through kernel modules, and work in a number of different ways. One way is by direct memory access, or DMA, where tasks in the CPU are moved to the DMA controller until the DMA controller finishes the task and signals the CPU that it's finished. Other ways include the processor I/O, interrupt driven I/O, polled I/O, and memory mapped I/O\cite{1}. In a process I/O, the CPU takes care of all the I/O, while in an interrupt driven one the I/O occurs asynchronously with an interrupt raised when it's done. Polled I/O is where the system endlessly asks for data, and memory mapped I/O maps hardware registers directly to the CPU's address space\cite{1}.
+In Linux, block devices and character devices are the two main I/O devices used. Character devices had no random access, and act as streams of bytes that can't replay after they're consumed. Block devices do have random access, with fixed-size chunks of data called blocks that set a minimum addressable unit and represent the filesystem block size\cite{1}. Block I/O (BIO) subsystems use \verb!bio_structs! when working on memory blocks (called buffers), which allow buffers to be made up of many, non-contiguous pieces of memory spread throughout the process address space. These \verb!bio_structs! live inside request queues that the kernel maintains in the device. These queues are eventually merged - read and write requests in each queue are joined together with adjacent sectors on the disk\cite{1}.
+Linux uses three primary data structures - linked lists, queues, and binary trees. Queues in the Linux kernel are called kfifos, and work similarly to a generic linked list. Linked lists in Linux uses a data type called a \verb!list_head!, which is embedded in the data instead of the data in the node\cite{1}:
+
+\begin{verbatim}
+struct data {
+	struct *list_head node;
+	int data1;
+	char data2[10];
+	long data3;
+};
+\end{verbatim}
+
+Linux has a variety of algorithms for its I/O scheduling, most of them being some kind of variant of an elevator algorithm to minimize the amount of delay in servicing requests. These algorithms all do request sorting and merging, as well as prevent starvation of requests\cite{1}. The elevators used by Linux include the Linus elevator, Deadline, Anticipatory, No-op, LOOK/C-LOOK, and CFQ algorithms.
+The Linus elevator does front and back merging, sorting queues by physical location on the disk. The deadline elevator makes sure no starvation occurs by managing three queues that each have an expiration time. The anticipatory is like the deadline elevator except it also has an anticipation heuristic. After a request is submitted, it literally pauses for a few milliseconds, during which new requests may be submitted and be serviced right away, reducing overall read latency\cite{2}. The noop elevator just maintains the request queue in near-FIFO order, and does request merging. The LOOK/C-LOOK algorithm services sorted requests in the current direction of travel, and reverses direction and services the remaining requests. LOOK services in both directions while C-LOOK scans in only one direction. Finally, the complete fair queuing (CFQ) elevator sorts its queues sector-wise, with one queue for each process submitting I/O, and services the queues round robin\cite{2}. 
+
+The Windows I/O system is made up of several components and device drivers - the I/O manager, device driver, PnP manager, power manager, and Windows Management Instrumentation support routines.
+The I/O manager is the main core of the Windows I/O system. It's what presents an interface to all kernel-mode device drivers. Windows sends its I/O requests to drivers as I/O request packets, or IRPs\cite{4}. Device drivers receive the commands from the I/O manager for the devices they manage, and let the I/O manger know after the commands are finished. Drivers in Windows are object-based, so the I/O manager and other parts of the system export kernel-mode support routines that devices can use to help carry out its tasks\cite{4}.
+The IRPs are the main data structures similar to I/O request descriptors that Windows device drivers use to communicate with the operating system. They hold all the information that a driver needs to handle an I/O request, such as buffer size or I/O function type. An OS component or a driver sends an IRP to a driver by calling a function IoCallDriver, and its completion is reported to the I/O manager via IoCompleteRequest\cite{4}.
+A bit different than Linux, the two different types of drivers that Windows uses are either user-mode or kernel-mode drivers. User-mode drivers execute in user mode and provide an interface between a Windows application and kernel-mode drivers or other OS components, while kernel-mode drivers execute in kernel mode as part of the executive system that manages I/O, processes and threads, and so on\cite{3}.
+
+FreeBSD, on the other hand, uses character and network device drivers. The character device driver, like in Linux, transfers data directly to and from a user process. FreeBSD does not use block devices anymore ever since they stopped supporting cached disk devices. Instead they use network drivers, used by using the system call socket(2) \cite{6}.
+There are several I/O scheduling algorithms including the 4.4BSD scheduler, ULE scheduler, real time scheduler, or timeshare scheduler. In 4.4BSD, every runnable thread has a scheduling priority that puts them in a certain run queue. The system runs the threads from highest to lowest priority\cite{5}. In timeshare scheduling, which is good for interactive systems, the system uses multilevel feedback queues to dynamically change a thread's priority based on their resource use and consumption. The threads are moved around due to these priority changes, and the system switches to a higher priority thread as soon as the current thread finishes\cite{7}. Real time scheduling ensures that threads finish executing within a certain time limit or by a deadline.
+FreeBSD has three main types of I/O, which are the character-device interface, the filesystem, and the socket interface. Character devices are like those in Linux in that they map the hardware interface into a stream of bytes. The socket interface provides a communication API for network communication\cite{5}.
+FreeBSD device drivers are made up of three main sections: autoconfiguration and initialization routines, routines for servicing I/O requests (top half), and interrupt service routines (bottom half). The autoconfiguration part of the driver is used to ask if there is a device present and to set up the driver and any required software states. The I/O servicing portion is called by system calls or by the virtual-memory system, and executes synchronously in the top half of the kernel\cite{5}. Interrupt service routines are used when there's an interrupt by a device. The interrupt service routine gets requests from the device's queue, lets the requester know that the command finished, and moves on to other requests. The I/O queues are thus the main way in which the top and bottom halves of the device driver communicate\cite{5}.
+
+All three operating systems are similar in that they use device drivers to manage their I/O, with scheduling algorithms and data structures carrying out the job at the core. I think the similarities between these operating systems exist because all three systems have different types of I/O devices that work with each, and the I/O system had to be implemented in their own ways in order to appropriately work with those devices.
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{hw2references}{}
+\end{document}
+

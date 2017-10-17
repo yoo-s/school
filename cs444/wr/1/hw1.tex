@@ -1,0 +1,51 @@
+\documentclass[10pt,draftclsnofoot,onecolumn,letterpaper]{IEEEtran}
+\renewcommand{\rmdefault}{ptm}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{listings}
+\usepackage{cite}
+
+\begin{document}
+\title{Processes and Scheduling of Linux, Windows, and FreeBSD Operating Systems}
+\author{Soo-Min Yoo - CS444 Spring 2017}
+\date{2017-05-01}
+\maketitle{}
+
+
+A process is an entity that is a user-run application or task that has its own system resources like memory and files. A thread is a unit of work that can execute and be interrupted by its process so that other threads can run. Windows, Linux, and FreeBSD operating systems all have processes and threads, but they each have their own way of implementing them and different types of CPU scheduling algorithms. This paper will go over how each of the three operating systems implement processes, threads, and CPU scheduling, and touch on their similarites and differences.
+
+Processes in Linux, also known as tasks, are usually run in two different ways - either by a special startup init process, or from other running processes. Linux tasks are represented by struct \verb!task_struct! that contains information on managing tasks, such as process state, scheduling information, identifiers, timers, and file system. Below are some of the important fields in this data structure\cite{1}:
+
+\begin{verbatim}
+volatile long state; /* -1 unrunnable, 0 runnable, >0 stopped*/
+void *stack;
+unsigned int flags; /* per process flags, see here */
+struct list_head tasks; /* list of all tasks to iterate over */
+\end{verbatim}
+
+Linux processes are all schedulable and are always in one of five states - initialization, runnable, running, blocked, or exit. Processes and threads are only different in Linux by whether the SHARED flag is set or not when the process is created\cite{1}. When a new process is created, Linux copies all of the original process's attributes over the new process using the clone() command so that they can share system resources like files and virtual memory, which makes the two processes act as threads within one process. These cloned processes can't use share user stacks, however, and so each have their own separate user stacks\cite{2}.
+Processes are often in their runnable state since the OS is constantly switching between multiple processes. When they're not in the running state, they are either being blocked waiting for another process to finish, switching to another process, or exiting\cite{1}.
+Linux performs various types of CPU scheduling to run their processes efficiently for different kinds of systems. It uses a technique called time division multiplexing, which makes it seem like multiple processes are being executed simultaneously. Processes can be CPU bound or I/O bound, the first being most appropriate for numerical, high performance jobs on big systems while the latter works well with more interactive systems that rely a lot on user input\cite{1}. Compared to Windows, the two process classes in Linux are real time and normal. Examples of real time schedulers are the First Come First Serve (FIFO) or the Round Robin with Timeslice. In a FIFO scheduler, processes are scheduled on a first come, first serve basis. This doesn't work well with interactive systems that have processes that may need immediate attention. Round robin schedulier gives each process a timeslice of CPU time to run on. Once the timeslice runs out for the running process, the next process in the queue runs next - the cycle continuing until no more processes are left\cite{1}.
+
+Linux creates processes with fork() or fork() with exec(), whereas Windows uses a function called CreateProcess(). Windows has more complicated parts to process creation, like security contexts, while Linux just adds overhead. In Linux, a fork with no exec means no hard disk access, but Windows' CreateProcess always uses disk access\cite{4}.
+In Linux, when you have a parent process and create child processes from it, closing the parent process forces all of its child processes to exit as well. However, in Windows, closing a parent process does not cause its child process to exit. Instead, the child process becomes an independent process of its own with no parent and continues to run normally. Windows child processes store the PID of its parent process, but do not store information about a process that created its parent process.
+
+Windows supports preemptive multitasking, which makes it so that multiple processes can execute multiple threads at the same time by giving each process a small time slice of the system resources to run on\cite{4}. Processes are implemented as objects, and both processes and thread objects have synchronization capabilities\cite{3}. A process needs to have at least one thread to execute, which can then create other threads.
+Windows processes are made up of a unique PID, threads, a private virtual address where it's executed, list of open handles to system resources, and access tokens with information that determines how much account privileges to give to a user. Threads in a process are always in one of six states - ready, standby, running, waiting, transition, or terminated\cite{3}.
+Each process belongs to a user who created that process, along with a session which contains all the processes, desktops, and windows stations of a user logged into the system. When a user logs on into a Windows session, the user gets a security access token with a security ID. Every process that user runs has a copy of this token, which lets the user access certain objects or functions in the system depending on the account privileges the token gives them. If a process has a handle open to its access token, it can even change its own process attributes if the token lets it\cite{3}.
+When it comes to CPU scheduling, Windows implements a priority-driven preemptive scheduler with various priority levels, using round robin scheduling in each level. Depending on the thread, priority levels can be dynamically changed for some levels. There are two main classes of priority levels - real time and variable, each of which has 16 different levels. The real time class is used for threads that may need immediate attention, like communication and real-time tasks in interactive systems, so real time priority threads often have higher priority than other threads\cite{3}.
+Real time priority threads are all in a round robin queue, each with a fixed priority that doesn't change. But in the variable priority class, threads have priorities that start at an initial value but can change throughout its existence, and so they have FIFO queues at each level\cite{3}.
+Windows scheduling is similar to that of Linux in that process-bound threads are usually lower priority while I/O-bound threads are often high priority.
+
+FreeBSD processes are very similar to those of Windows and Linux - each process has a virtual address space, one or more executable threads, and system resources such as descriptors, signal status, and file system. Threads in a process run in either user mode or kernel mode. In user mode, the thread executes an application code with non-privileged protection mode, but then switches to run in kernel mode with privileged protection mode when a thread asks for the operating system's services\cite{7}.
+FreeBSD creates child processes from a parent process by using fork() to duplicate the context of the parent. The child process then shares all of it's parent's system resources, such as file descriptors, memory, and signal-handling status\cite{6}. Kind of like Windows, FreeBSD processes are organized into process groups, which are themselves contained in sessions.
+FreeBSD schedules its threads using one of its various schedulers - the 4.4BSD scheduler, ULE scheduler, real time scheduler, or timeshare scheduler. FreeBSD 5.2 and up use the ULE scheduler by default. In 4.4BSD, every runnable thread has a scheduling priority that puts them in a certain run queue. The system runs the threads from highest to lowest priority\cite{5}. In timeshare scheduling, which is good for interactive systems, the system uses multilevel feedback queues to dynamically change a thread's priority based on their resource use and consumption. The threads are moved around due to these priority changes, and the system switches to a higher priority thread as soon as the current thread finishes\cite{7}. Real time scheduling ensures that threads finish executing within a certain time limit or by a deadline. FreeBSD is different from Linux in that there exists an idle priority thread, which runs only when there's no other runnable threads and if its idle priority is equal to or greater than other idle-priority runnable threads\cite{7}.
+
+All three operating systems are similar in that they are monolithic, i.e. a single "master" scheduler that manages all other processes. Each of them have real time scheduling and schedulers that uses timeslices or multilevel feedback queues, as they are most often efficient for user-run machines. I think the similarities between these operating systems exist because all user-interactive computers have functionalities that are essential to giving the user a smooth experience in executing tasks that use processes and threads, but there are differences with each of the systems as well to provide advantages and disadvantages that go well with the kind of work that the user needs the computer to do. Ultimately, operating systems implement many different kinds of scheduling algorithms to find which algorithm will perform best for what the system will be used for.
+
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{hw1references}{}
+\end{document}
+
